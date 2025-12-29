@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loomper | A Primeira Plataforma da Logística Automotiva</title>
+    <meta name="description" content="Conectamos motoristas de cegonha, chapas e transportadoras em um ecossistema colaborativo. Cadastre-se gratuitamente e seja pioneiro!">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logotipo.PNG">
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           LOOMPER - DESIGN SYSTEM OTIMIZADO
+           Dark Theme + Dourado + Compactado 40%
+        ======================================== */
+        
+        :root {
+            /* Cores Principais */
+            --dark-primary: #0a1628;
+            --dark-secondary: #1a2850;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --orange: #FF6600;
+            --white: #ffffff;
+            --gray-light: rgba(255,255,255,0.8);
+            --gray-dark: rgba(255,255,255,0.5);
+            
+            /* Gradientes */
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #FF6600 100%);
+            --gradient-bg: linear-gradient(135deg, #0a1628 0%, #1a2850 100%);
+            --gradient-section: linear-gradient(180deg, rgba(212,175,55,0.05) 0%, transparent 100%);
+            
+            /* Sombras */
+            --shadow-gold: 0 8px 25px rgba(212,175,55,0.3);
+            --shadow-soft: 0 4px 15px rgba(0,0,0,0.3);
+            --text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            
+            /* Espaçamento Compactado */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 2.5rem;
+            
+            /* Tipografia */
+            --font-main: 'Montserrat', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background: var(--gradient-bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ========================================
+           HEADER OTIMIZADO
+        ======================================== */
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 45px;
+            filter: drop-shadow(0 2px 5px rgba(212,175,55,0.4));
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-gold);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-header {
+            background: var(--gradient-gold);
+            color: var(--dark-primary);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: var(--shadow-gold);
+            transition: all 0.3s;
+        }
+        
+        .cta-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.5);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* ========================================
+           HERO SECTION - COMPACTADO
+        ======================================== */
+        
+        .hero {
+            padding: 100px var(--spacing-md) var(--spacing-xl);
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212,175,55,0.1) 0%, transparent 50%),
+                var(--gradient-bg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 50%;
+            height: 100%;
+            background: url('assets/images/hero.png') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+        
+        .hero-text h1 span {
+            display: block;
+            font-size: 1.2em;
+            color: var(--white);
+            -webkit-text-fill-color: var(--white);
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray-light);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+        
+        .stat-item i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: var(--dark-primary);
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212,175,55,0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--dark-primary);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* ========================================
+           SEÇÕES - LAYOUT COMPACTADO
+        ======================================== */
+        
+        section {
+            padding: var(--spacing-xl) var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .section-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(135deg, var(--gold), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* ========================================
+           PERSONAS - GRID 3 COLUNAS COMPACTO
+        ======================================== */
+        
+        .personas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .persona-card {
+            background: rgba(26, 40, 80, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .persona-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .persona-card.featured {
+            border-color: var(--gold);
+            border-width: 2px;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .persona-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--gradient-gold);
+            color: var(--dark-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        
+        .persona-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .persona-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--white);
+        }
+        
+        .persona-card p {
+            color: var(--gray-light);
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .persona-benefits {
+            list-style: none;
+            text-align: left;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .persona-benefits li {
+            padding: 0.4rem 0;
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .persona-benefits i {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+        
+        /* ========================================
+           COMO FUNCIONA - GRID 2x3
+        ======================================== */
+        
+        .como-funciona {
+            background: var(--gradient-section);
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .step-card {
+            background: rgba(26, 40, 80, 0.4);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .step-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--dark-primary);
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin: var(--spacing-md) 0 var(--spacing-sm);
+        }
+        
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--white);
+        }
+        
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            line-height: 1.5;
+        }
+        
+        /* ========================================
+           BENEFÍCIOS - GRID 3x2
+        ======================================== */
+        
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .beneficio-card {
+            background: rgba(26, 40, 80, 0.4);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .beneficio-card:hover {
+            border-color: var(--gold);
+            background: rgba(26, 40, 80, 0.6);
+        }
+        
+        .beneficio-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .beneficio-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--white);
+        }
+        
+        .beneficio-card p {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            line-height: 1.5;
+        }
+        
+        /* ========================================
+           FAQ - ACCORDION COMPACTO
+        ======================================== */
+        
+        .faq {
+            background: var(--gradient-section);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: var(--spacing-lg) auto 0;
+        }
+        
+        .faq-item {
+            background: rgba(26, 40, 80, 0.4);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 10px;
+            margin-bottom: var(--spacing-sm);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--gold);
+        }
+        
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--white);
+            padding: var(--spacing-md);
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question i {
+            color: var(--gold);
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        
+        .faq-answer p {
+            padding: 0 var(--spacing-md) var(--spacing-md);
+            color: var(--gray-light);
+            line-height: 1.7;
+        }
+        
+        /* ========================================
+           FORMULÁRIO - NETLIFY FORMS
+        ======================================== */
+        
+        .formulario {
+            background: var(--gradient-bg);
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(26, 40, 80, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(10, 22, 40, 0.8);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--font-main);
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212,175,55,0.3);
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-gold);
+            color: var(--dark-primary);
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212,175,55,0.5);
+        }
+        
+        /* ========================================
+           FOOTER COMPACTO
+        ======================================== */
+        
+        footer {
+            background: rgba(10, 22, 40, 0.95);
+            padding: var(--spacing-lg) var(--spacing-md);
+            border-top: 1px solid rgba(212,175,55,0.2);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+        }
+        
+        .footer-col h4 {
+            color: var(--gold);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col a {
+            color: var(--gray-light);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+        
+        .footer-social a {
+            width: 35px;
+            height: 35px;
+            background: rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: all 0.3s;
+        }
+        
+        .footer-social a:hover {
+            background: var(--gold);
+            color: var(--dark-primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(212,175,55,0.1);
+            color: var(--gray-dark);
+            font-size: 0.85rem;
+        }
+        
+        /* ========================================
+           WHATSAPP FLUTUANTE
+        ======================================== */
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+        
+        /* ========================================
+           RESPONSIVO - MOBILE
+        ======================================== */
+        
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 22, 40, 0.98);
+                flex-direction: column;
+                padding: var(--spacing-lg);
+                transition: right 0.3s;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .personas-grid,
+            .steps-grid,
+            .beneficios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-ctas {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="assets/images/loomperapp-jpg.jpg" alt="Loomper Logo">
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#como-funciona">Como Funciona</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#faq">Dúvidas</a></li>
+                <li><a href="#cadastro" class="cta-header">Cadastrar Grátis</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span>Encontre chapas confiáveis</span>
+                    na hora que você precisa
+                </h1>
+                <p>
+                    Conectamos motoristas, ajudantes e transportadoras com segurança, 
+                    avaliação real e pagamento transparente.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>100% Gratuito</strong> para ajudantes</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span><strong>Verificação</strong> de segurança</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span><strong>Avaliações</strong> reais</span>
+                    </div>
+                </div>
+                
+                <div class="hero-ctas">
+                    <a href="#cadastro" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Quero Testar Grátis
+                    </a>
+                    <a href="#como-funciona" class="btn btn-secondary">
+                        <i class="fas fa-play-circle"></i> Como Funciona
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="assets/images/hero.png" alt="Loomper App Preview">
+            </div>
+        </div>
+    </section>
+    
+    <!-- PERSONAS -->
+    <section class="personas">
+        <div class="section-header">
+            <span class="section-badge">Para Você</span>
+            <h2 class="section-title">Selecione seu Perfil</h2>
+            <p class="section-subtitle">
+                O Loomper foi feito para facilitar a vida de todos na logística automotiva
+            </p>
+        </div>
+        
+        <div class="personas-grid">
+            <div class="persona-card">
+                <i class="fas fa-truck persona-icon"></i>
+                <h3>Sou Motorista</h3>
+                <p>Preciso de ajuda confiável para carga e descarga</p>
+                <ul class="persona-benefits">
+                    <li><i class="fas fa-check"></i> Chapas verificados perto de você</li>
+                    <li><i class="fas fa-check"></i> Avaliações antes de contratar</li>
+                    <li><i class="fas fa-check"></i> Pagamento transparente</li>
+                </ul>
+                <a href="#cadastro" class="btn btn-secondary" style="width: 100%; justify-content: center;">Começar</a>
+            </div>
+            
+            <div class="persona-card featured">
+                <span class="persona-badge">Mais Popular</span>
+                <i class="fas fa-user-hard-hat persona-icon"></i>
+                <h3>Sou Ajudante/Chapa</h3>
+                <p>Quero trabalhos seguros e bem avaliados</p>
+                <ul class="persona-benefits">
+                    <li><i class="fas fa-check"></i> Acesso 100% gratuito</li>
+                    <li><i class="fas fa-check"></i> Ofertas próximas a você</li>
+                    <li><i class="fas fa-check"></i> Construa sua reputação</li>
+                </ul>
+                <a href="#cadastro" class="btn btn-primary" style="width: 100%; justify-content: center;">Cadastrar Grátis</a>
+            </div>
+            
+            <div class="persona-card">
+                <i class="fas fa-building persona-icon"></i>
+                <h3>Sou Transportadora</h3>
+                <p>Preciso de operação eficiente e confiável</p>
+                <ul class="persona-benefits">
+                    <li><i class="fas fa-check"></i> Rede verificada de profissionais</li>
+                    <li><i class="fas fa-check"></i> Gestão completa de operações</li>
+                    <li><i class="fas fa-check"></i> Relatórios em tempo real</li>
+                </ul>
+                <a href="#cadastro" class="btn btn-secondary" style="width: 100%; justify-content: center;">Demonstração</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- COMO FUNCIONA -->
+    <section class="como-funciona" id="como-funciona">
+        <div class="section-header">
+            <span class="section-badge">Simplicidade</span>
+            <h2 class="section-title">Funciona Assim (sem complicação)</h2>
+            <p class="section-subtitle">Em 5 passos simples você já está operando</p>
+        </div>
+        
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-number">1</span>
+                <i class="fas fa-user-plus step-icon"></i>
+                <h3>Cadastro Gratuito</h3>
+                <p>Crie seu perfil em menos de 2 minutos</p>
+            </div>
+            
+            <div class="step-card">
+                <span class="step-number">2</span>
+                <i class="fas fa-shield-check step-icon"></i>
+                <h3>Validação</h3>
+                <p>Verificação básica de segurança</p>
+            </div>
+            
+            <div class="step-card">
+                <span class="step-number">3</span>
+                <i class="fas fa-bell step-icon"></i>
+                <h3>Solicitação</h3>
+                <p>Publique necessidades com local e horário</p>
+            </div>
+            
+            <div class="step-card">
+                <span class="step-number">4</span>
+                <i class="fas fa-handshake step-icon"></i>
+                <h3>Execução</h3>
+                <p>Serviço com tracking da plataforma</p>
+            </div>
+            
+            <div class="step-card">
+                <span class="step-number">5</span>
+                <i class="fas fa-star step-icon"></i>
+                <h3>Avaliação</h3>
+                <p>Quem trabalha bem aparece mais</p>
+            </div>
+            
+            <div class="step-card" style="background: var(--gradient-section); border-color: var(--gold);">
+                <i class="fas fa-rocket step-icon"></i>
+                <h3>Pronto!</h3>
+                <p>Você faz parte do ecossistema</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- BENEFÍCIOS -->
+    <section class="beneficios" id="beneficios">
+        <div class="section-header">
+            <span class="section-badge">Vantagens</span>
+            <h2 class="section-title">Por que escolher o Loomper?</h2>
+        </div>
+        
+        <div class="beneficios-grid">
+            <div class="beneficio-card">
+                <i class="fas fa-gift beneficio-icon"></i>
+                <h3>100% Gratuito</h3>
+                <p>Acesso completo sem mensalidades para ajudantes</p>
+            </div>
+            
+            <div class="beneficio-card">
+                <i class="fas fa-shield-alt beneficio-icon"></i>
+                <h3>Segurança Verificada</h3>
+                <p>Validação de todas as partes envolvidas</p>
+            </div>
+            
+            <div class="beneficio-card">
+                <i class="fas fa-star-half-alt beneficio-icon"></i>
+                <h3>Sistema de Avaliação</h3>
+                <p>Reputação que abre portas</p>
+            </div>
+            
+            <div class="beneficio-card">
+                <i class="fas fa-map-marker-alt beneficio-icon"></i>
+                <h3>Proximidade Real</h3>
+                <p>Conecte-se com profissionais próximos</p>
+            </div>
+            
+            <div class="beneficio-card">
+                <i class="fas fa-money-bill-wave beneficio-icon"></i>
+                <h3>Pagamento Direto</h3>
+                <p>Acordos transparentes entre as partes</p>
+            </div>
+            
+            <div class="beneficio-card">
+                <i class="fas fa-chart-line beneficio-icon"></i>
+                <h3>Destaque Pioneiro</h3>
+                <p>Selo especial e prioridade no beta</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <span class="section-badge">Dúvidas</span>
+            <h2 class="section-title">Perguntas Frequentes</h2>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>É gratuito mesmo?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Sim! Para chapas e ajudantes, o acesso é <strong>100% gratuito para sempre</strong>. Acreditamos que inclusão vem antes da monetização.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Como recebo pelo serviço?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>No início, o pagamento é <strong>acordado diretamente entre as partes</strong>. Futuramente, ofereceremos intermediação financeira segura.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>As transportadoras são verificadas?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>Sim, todas!</strong> Trabalhamos com curadoria e validação básica para reduzir riscos.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Quando o aplicativo será lançado?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>O app beta está previsto para <strong>1º trimestre de 2026</strong>. Cadastre-se agora para acesso antecipado!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FORMULÁRIO CADASTRO -->
+    <section class="formulario" id="cadastro">
+        <div class="section-header">
+            <span class="section-badge">Junte-se a Nós</span>
+            <h2 class="section-title">Seja um Pioneiro do Loomper</h2>
+            <p class="section-subtitle">Cadastre-se gratuitamente e garanta acesso antecipado ao beta</p>
+        </div>
+        
+        <div class="form-container">
+            <form name="cadastro-loomper" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/sucesso.html">
+                <input type="hidden" name="form-name" value="cadastro-loomper">
+                <p style="display: none;">
+                    <label>Não preencha se for humano: <input name="bot-field"></label>
+                </p>
+                
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefone">Telefone/WhatsApp *</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo">Qual é o seu perfil? *</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="">Selecione...</option>
+                        <option value="motorista">Motorista de Cegonha</option>
+                        <option value="ajudante">Ajudante/Chapa</option>
+                        <option value="transportadora">Transportadora</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cidade">Cidade/Estado</label>
+                    <input type="text" id="cidade" name="cidade" placeholder="Ex: São Paulo - SP">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensagem">Conte-nos sobre sua expectativa (opcional)</label>
+                    <textarea id="mensagem" name="mensagem" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-paper-plane"></i> Garantir Minha Vaga
+                </button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Loomper</h4>
+                <p style="color: var(--gray-light); font-size: 0.9rem; margin-top: 0.5rem;">
+                    O primeiro ecossistema completo da logística automotiva brasileira.
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/loomper1"_blank" rel="noopener""><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Plataforma</h4>
+                <ul>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#beneficios">Benefícios</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#cadastro">Cadastrar</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Nosso Propósito</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Apoie o Projeto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacity.html">Privacidade</a></li>
+                    <li><a href="terms.html">Termos de Uso</a></li>
+                    <li><a href="#">LGPD</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Loomper. Todos os direitos reservados.</p>
+            <p>CNPJ: 59.150.688/0001-39 | contato@loomper.com.br</p>
+        </div>
+    </footer>
+    
+    <!-- WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5511965858142?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Loomper" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- JAVASCRIPT -->
+    <script>
+        // Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Fechar todos
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Abrir o clicado
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#cadastro') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Analytics Tracking (preparado)
+        function trackEvent(category, action, label) {
+            console.log('Event:', category, action, label);
+            // Google Analytics implementar aqui
+        }
+        
+        // Track form submit
+        document.querySelector('form').addEventListener('submit', () => {
+            trackEvent('Form', 'Submit', 'Cadastro');
+        });
+    </script>
+</body>
+</html>
