@@ -7,23 +7,21 @@
     <meta name="description" content="A revolução da logística automotiva. Conectamos motoristas, chapas e empresas.">
     
     <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
     
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- DESIGN SYSTEM (Baseado no Designer) --- */
         :root {
             --dark-bg: #0a1628;
             --dark-card: rgba(26, 40, 80, 0.7);
             --gold: #D4AF37;
             --orange: #FF6600;
             --white: #ffffff;
-            --gray: #a0a0a0;
             --gradient-gold: linear-gradient(135deg, #FF6600 0%, #D4AF37 100%);
-            --shadow: 0 10px 30px rgba(0,0,0,0.5);
+            --shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
@@ -31,52 +29,45 @@
         a { text-decoration: none; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- HEADER --- */
+        /* HEADER */
         .navbar {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px);
+            background: rgba(10, 22, 40, 0.98); border-bottom: 1px solid rgba(255,255,255,0.05);
             padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .logo img { height: 40px; }
+        .logo img { height: 45px; width: auto; object-fit: contain; } /* Logo corrigido */
         
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { color: #ccc; font-weight: 500; font-size: 0.9rem; }
         .nav-links a:hover { color: var(--gold); }
-        
         .btn-cta {
             background: var(--gradient-gold); color: #000; font-weight: 800;
             padding: 10px 25px; border-radius: 30px; border: none; cursor: pointer;
             box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3); transition: 0.3s;
         }
         .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 102, 0, 0.5); }
-        
         .menu-toggle { display: none; font-size: 1.5rem; color: var(--gold); cursor: pointer; }
 
-        /* --- HERO (Conversão) --- */
+        /* HERO COM CAMINHÃO */
         .hero {
             position: relative; min-height: 90vh;
             display: flex; align-items: center; justify-content: center;
             padding: 120px 5% 50px; text-align: center;
-            background: radial-gradient(circle at center, #1a2850 0%, #0a1628 100%);
-            overflow: hidden;
+            /* Fundo com a imagem do caminhão real */
+            background: url('assets/images/caminhao_bg.jpg') no-repeat center center/cover;
         }
-        /* Efeito de fundo */
         .hero::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('assets/images/hero.png') center/cover no-repeat; opacity: 0.2;
+            background: rgba(10, 22, 40, 0.85); /* Overlay escuro para leitura */
+            z-index: 1;
         }
-        
         .hero-content { position: relative; z-index: 2; max-width: 900px; }
-        
         .hero h1 {
             font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #ccc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
-        .hero h1 span { color: var(--orange); -webkit-text-fill-color: var(--orange); }
-        
-        .hero p { font-size: 1.2rem; color: #bbb; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
-        
+        .hero h1 span { color: var(--orange); }
+        .hero p { font-size: 1.2rem; color: #ddd; margin-bottom: 40px; text-shadow: 1px 1px 2px black; }
         .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
         .btn-outline {
             background: transparent; border: 2px solid var(--gold); color: var(--gold);
@@ -84,45 +75,32 @@
         }
         .btn-outline:hover { background: var(--gold); color: #000; }
 
-        /* --- SUPER CARD (Tabs + Timeline) --- */
+        /* SUPER CARD */
         .section { padding: 80px 5%; }
         .container { max-width: 1100px; margin: 0 auto; }
-        
         .super-card {
             background: var(--dark-card); border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px; overflow: hidden; backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
         }
-        
-        .tabs { display: flex; background: rgba(0,0,0,0.3); }
+        .tabs { display: flex; background: rgba(0,0,0,0.3); overflow-x: auto; }
         .tab {
-            flex: 1; padding: 20px; text-align: center; cursor: pointer;
+            flex: 1; padding: 20px; text-align: center; cursor: pointer; min-width: 100px;
             color: #888; font-weight: 600; transition: 0.3s; border-bottom: 3px solid transparent;
         }
-        .tab:hover { color: #fff; }
         .tab.active { color: var(--orange); border-bottom-color: var(--orange); background: rgba(255,255,255,0.05); }
         .tab i { display: block; font-size: 1.5rem; margin-bottom: 5px; }
-
         .tab-content { padding: 40px; display: none; animation: fadeIn 0.5s; }
         .tab-content.active { display: block; }
-        
         .profile-desc { text-align: center; font-size: 1.2rem; margin-bottom: 40px; color: #ddd; }
-
-        /* Timeline Horizontal */
-        .timeline { display: flex; justify-content: space-between; position: relative; margin-bottom: 40px; }
-        .timeline::before {
-            content: ''; position: absolute; top: 20px; left: 0; width: 100%; height: 2px;
-            background: rgba(255,255,255,0.1); z-index: 0;
-        }
-        .step { position: relative; z-index: 1; text-align: center; flex: 1; }
+        
+        .timeline { display: flex; justify-content: space-between; position: relative; margin-bottom: 40px; overflow-x: auto; padding-bottom: 10px; }
+        .step { position: relative; z-index: 1; text-align: center; flex: 1; min-width: 80px; }
         .step-num {
             width: 40px; height: 40px; background: var(--dark-bg); border: 2px solid var(--gold);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             margin: 0 auto 10px; color: var(--gold); font-weight: 700;
         }
-        .step-title { font-size: 0.9rem; color: #fff; font-weight: 600; }
-        
-        /* Grid de Benefícios */
         .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
         .benefit-item {
             background: rgba(255,255,255,0.03); padding: 20px; border-radius: 10px;
@@ -133,36 +111,23 @@
         .benefit-title { font-weight: 700; color: #fff; margin-bottom: 5px; }
         .benefit-text { font-size: 0.85rem; color: #aaa; }
 
-        /* --- APOIE --- */
-        .support { text-align: center; padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.05); }
-        .support h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.5rem; }
-        .support p { color: #888; max-width: 600px; margin: 0 auto 30px; }
-        .pill-btn {
-            background: transparent; border: 1px solid #555; color: #ccc;
-            padding: 8px 20px; border-radius: 50px; margin: 5px; cursor: pointer; transition: 0.3s;
-        }
-        .pill-btn:hover { border-color: var(--gold); color: var(--gold); }
-
-        /* --- FOOTER --- */
+        /* FOOTER */
         footer { background: #050b14; padding: 60px 5% 20px; border-top: 1px solid #222; }
         .footer-content { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; max-width: 1200px; margin: 0 auto; }
-        
         .footer-links-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .f-col h4 { color: var(--white); margin-bottom: 20px; border-left: 3px solid var(--orange); padding-left: 10px; }
         .f-col a { display: block; color: #777; margin-bottom: 10px; font-size: 0.9rem; }
         .f-col a:hover { color: var(--orange); }
-
-        .footer-img-col { position: relative; height: 250px; border-radius: 15px; overflow: hidden; }
+        .footer-img-col { position: relative; height: 250px; border-radius: 15px; overflow: hidden; background: #111; }
         .footer-img-col img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
         .manifesto {
             position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
             background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            color: white; text-align: right; font-style: italic; font-weight: 600;
+            color: white; text-align: right; font-style: italic; font-weight: 600; text-shadow: 2px 2px 4px black;
         }
-
         .copyright { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #111; color: #444; font-size: 0.8rem; }
 
-        /* --- MODAL FORM --- */
+        /* MODAIS */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); z-index: 2000;
@@ -170,41 +135,32 @@
             backdrop-filter: blur(5px);
         }
         .modal-box {
-            background: #151f32; border: 1px solid #333; width: 100%; max-width: 450px;
+            background: #151f32; border: 1px solid #333; width: 100%; max-width: 500px;
             border-radius: 15px; padding: 30px; position: relative;
             box-shadow: var(--shadow); max-height: 90vh; overflow-y: auto;
         }
         .close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #666; cursor: pointer; }
+        .modal-text p { margin-bottom: 15px; color: #ccc; font-size: 0.95rem; }
+        .modal-text ul { list-style: disc; margin-left: 20px; margin-bottom: 20px; color: #bbb; font-size: 0.9rem; }
         
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; color: #ccc; margin-bottom: 5px; font-size: 0.9rem; }
-        .form-control {
-            width: 100%; padding: 12px; background: #0a1628; border: 1px solid #333;
-            border-radius: 8px; color: #fff; font-size: 1rem;
-        }
-        .form-control:focus { outline: none; border-color: var(--orange); }
+        .form-control { width: 100%; padding: 12px; background: #0a1628; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 1rem; }
+        .btn-submit { width: 100%; background: var(--orange); color: white; border: none; padding: 16px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 10px; }
         
-        .check-group { display: flex; gap: 10px; font-size: 0.8rem; color: #888; margin-top: 15px; }
-        .check-group a { color: var(--gold); }
+        /* PIX BUTTONS */
+        .pill-btn { background: transparent; border: 1px solid #ffd700; color: #ffd700; padding: 8px 15px; border-radius: 20px; margin: 5px; cursor: pointer; }
+        .pill-btn:hover { background: #ffd700; color: #000; }
 
-        /* --- WHATSAPP --- */
-        .wa-float {
-            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
-            background: #25D366; border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: white; font-size: 2rem; z-index: 1500;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: pulse 2s infinite;
-        }
+        .wa-float { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; z-index: 1500; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: pulse 2s infinite; }
 
-        /* --- RESPONSIVO --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
-            .nav-links { display: none; position: absolute; top: 70px; right: 0; background: var(--dark-bg); width: 200px; flex-direction: column; padding: 20px; border-left: 1px solid #333; }
+            .nav-links { display: none; position: absolute; top: 70px; right: 0; background: var(--dark-bg); width: 220px; flex-direction: column; padding: 20px; border-left: 1px solid #333; }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .footer-content { grid-template-columns: 1fr; }
-            .footer-links-col { grid-template-columns: 1fr; text-align: center; }
-            .timeline { overflow-x: auto; padding-bottom: 15px; justify-content: flex-start; gap: 20px; }
-            .step { min-width: 80px; }
+            .benefits-grid { grid-template-columns: 1fr; }
         }
         @keyframes pulse { 0% {box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);} 70% {box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);} 100% {box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);} }
         @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
@@ -214,7 +170,7 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-        <a href="#" class="logo"><img src="assets/images/logo.svg" alt="Loomper" class="logo-img"></a>
+        <a href="#" class="logo"><img src="assets/images/logo.svg" alt="Loomper"></a>
         <div class="nav-links" id="navLinks">
             <a href="#funciona">Como Funciona</a>
             <a href="#" onclick="openModal('modal-sobre')">Sobre</a>
@@ -230,44 +186,29 @@
             <h1>Encontre chapas confiáveis <span>na hora que precisa.</span></h1>
             <p>Conectamos motoristas, ajudantes e transportadoras com segurança, avaliação real e pagamento transparente.</p>
             <div class="hero-btns">
-                <button class="btn-cta" onclick="checkDup()">QUERO SER PIONEIRO</button>
+                <button class="btn-cta" onclick="checkDup('Motorista Cegonheiro')">QUERO SER PIONEIRO</button>
                 <button class="btn-outline" onclick="window.location.href='#funciona'">COMO FUNCIONA</button>
             </div>
         </div>
     </section>
 
-    <!-- SUPER CARD (INTELIGENTE) -->
+    <!-- SUPER CARD (ABAS) -->
     <section id="funciona" class="section">
         <div class="container">
             <div class="super-card">
-                <!-- Abas -->
                 <div class="tabs">
                     <div class="tab active" onclick="setProfile('motorista', this)"><i class="fa-solid fa-truck"></i> Motorista</div>
                     <div class="tab" onclick="setProfile('chapa', this)"><i class="fa-solid fa-helmet-safety"></i> Chapa</div>
                     <div class="tab" onclick="setProfile('empresa', this)"><i class="fa-solid fa-building"></i> Empresa</div>
                 </div>
-
-                <!-- Conteúdo Dinâmico -->
                 <div class="tab-content active">
-                    <p class="profile-desc" id="profileDesc">Descrição do perfil aqui...</p>
-                    
-                    <!-- Timeline -->
+                    <p class="profile-desc" id="profileDesc">Descrição...</p>
                     <div class="timeline" id="timelineBox"></div>
-                    
-                    <!-- Benefícios -->
+                    <h3 style="text-align:center; color:#fff; margin:30px 0 20px;">O que você ganha</h3>
                     <div class="benefits-grid" id="benefitsBox"></div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- APOIE -->
-    <section class="support">
-        <h3>Mova este Propósito</h3>
-        <p>Projeto independente. Sua ajuda mantém a gratuidade para os motoristas.</p>
-        <button class="pill-btn" onclick="copyPix()">Apoiar R$ 20</button>
-        <button class="pill-btn" onclick="copyPix()">Apoiar R$ 50</button>
-        <p id="pixMsg" style="color:#25D366; font-size:0.8rem; display:none; margin-top:10px;">Chave PIX copiada!</p>
     </section>
 
     <!-- FOOTER RICO -->
@@ -276,18 +217,19 @@
             <div class="footer-links-col">
                 <div class="f-col">
                     <h4>Institucional</h4>
-                    <a href="#" onclick="openModal('modal-sobre')">Sobre</a>
-                    <a href="#" onclick="openModal('modal-investidores')">Investidores</a>
-                    <a href="#" onclick="openModal('modal-gov')">Governo</a>
+                    <a href="#" onclick="openModal('modal-sobre')">Sobre o Ecossistema</a>
+                    <a href="#" onclick="openModal('modal-investidores')">Para Investidores</a>
+                    <a href="#" onclick="openModal('modal-gov')">Governo & Social</a>
                 </div>
                 <div class="f-col">
                     <h4>Ajuda</h4>
-                    <a href="#" onclick="openModal('modal-faq')">FAQ</a>
-                    <a href="mailto:contato@loomper.com.br">Suporte</a>
+                    <a href="#" onclick="openModal('modal-faq')">FAQ (Perguntas)</a>
+                    <a href="mailto:contato@loomper.com.br">Suporte por Email</a>
                 </div>
                 <div class="f-col">
-                    <h4>Legal</h4>
-                    <a href="terms.html" target="_blank">Termos</a>
+                    <h4>Empresa</h4>
+                    <a href="#" onclick="openModal('modal-apoie')">Apoie o Projeto</a>
+                    <a href="terms.html" target="_blank">Termos de Uso</a>
                     <a href="privacy.html" target="_blank">Privacidade</a>
                 </div>
             </div>
@@ -302,7 +244,7 @@
         </div>
     </footer>
 
-    <!-- MODAL FORMULÁRIO -->
+    <!-- MODAL CADASTRO -->
     <div id="modal-form" class="modal">
         <div class="modal-box">
             <span class="close" onclick="closeModal('modal-form')">&times;</span>
@@ -318,11 +260,12 @@
 
                 <div class="form-group">
                     <label>Perfil</label>
-                    <select name="perfil" id="perfilInput" class="form-control">
-                        <option value="Motorista">Motorista</option>
-                        <option value="Chapa">Chapa/Ajudante</option>
+                    <select name="perfil" id="perfilInput" class="form-control" required>
+                        <option value="Motorista Cegonheiro">Motorista Cegonheiro</option>
+                        <option value="Chapa/Ajudante">Chapa/Ajudante</option>
                         <option value="Transportadora">Transportadora</option>
                         <option value="Investidor">Investidor</option>
+                        <option value="Governo">Governo/Social</option>
                     </select>
                 </div>
                 <div class="form-group"><label>Nome</label><input type="text" name="nome" class="form-control" required></div>
@@ -334,40 +277,94 @@
                     <div style="flex:2"><label>Cidade</label><input type="text" id="cityInput" name="cidade" list="cityList" class="form-control" required><datalist id="cityList"></datalist></div>
                 </div>
 
-                <div class="check-group">
-                    <input type="checkbox" required>
-                    <span>Concordo com <a href="terms.html" target="_blank">Termos</a> e <a href="privacy.html" target="_blank">Privacidade</a>.</span>
+                <div style="font-size:0.8rem; color:#888; margin-top:15px;">
+                    <input type="checkbox" required> Concordo com <a href="terms.html" target="_blank" style="color:var(--gold);">Termos</a> e <a href="privacy.html" target="_blank" style="color:var(--gold);">Privacidade</a>.
                 </div>
 
-                <button type="submit" class="btn-cta" style="width:100%; margin-top:20px;">CONFIRMAR</button>
+                <button type="submit" class="btn-submit">CONFIRMAR</button>
             </form>
         </div>
     </div>
 
-    <!-- MODAIS DE TEXTO (Sobre, Investidor, etc - Estrutura Padrão) -->
-    <div id="modal-sobre" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-sobre')">&times;</span><h3 style="color:var(--gold)">Sobre</h3><p style="color:#ccc; margin-top:10px;">O Loomper une as pontas soltas da logística. Não substituímos pessoas, organizamos relações.</p></div></div>
-    
-    <div id="modal-investidores" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-investidores')">&times;</span><h3 style="color:var(--gold)">Investidores</h3><p style="color:#ccc; margin-top:10px;">Modelo Asset Light, mercado bilionário. Rodada Seed aberta.</p><button class="btn-cta" style="width:100%; margin-top:15px;" onclick="closeModal('modal-investidores');checkDup('Investidor')">FALAR COM DIREÇÃO</button></div></div>
-    
-    <div id="modal-gov" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-gov')">&times;</span><h3 style="color:var(--gold)">Governo</h3><p style="color:#ccc; margin-top:10px;">Formalização de 80k invisíveis e dados para segurança viária.</p><button class="btn-cta" style="width:100%; margin-top:15px;" onclick="closeModal('modal-gov');checkDup('Governo')">AGENDAR REUNIÃO</button></div></div>
-    
-    <div id="modal-faq" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-faq')">&times;</span><h3 style="color:var(--gold)">FAQ</h3><p style="color:#ccc; margin-top:10px;"><strong>É gratuito?</strong> Sim, para motoristas e chapas.<br><br><strong>Tem validação?</strong> Sim, checamos todos os cadastros.</p></div></div>
+    <!-- MODAIS RICOS -->
+    <div id="modal-investidores" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-investidores')">&times;</span>
+        <h3 style="color:var(--gold)">Para Investidores</h3>
+        <div class="modal-text">
+            <p>O Loomper é um negócio <strong>asset light</strong>, orientado por dados e construído sobre um mercado real, recorrente e pouco digitalizado.</p>
+            <ul>
+                <li>Mercado bilionário na logística automotiva e rodoviária.</li>
+                <li>Base pulverizada, com forte efeito de rede.</li>
+                <li>Modelo escalável, com baixo custo marginal.</li>
+                <li>Forte impacto social aliado a eficiência operacional.</li>
+            </ul>
+            <p>Estamos em fase de validação de base e tração inicial (Seed / Pré-Seed). Aqui, impacto social não é custo. É vantagem competitiva.</p>
+        </div>
+        <button class="btn-submit" onclick="closeModal('modal-investidores');checkDup('Investidor')">FALAR COM A DIREÇÃO</button>
+    </div></div>
+
+    <div id="modal-sobre" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-sobre')">&times;</span>
+        <h3 style="color:var(--gold)">Sobre o Ecossistema</h3>
+        <div class="modal-text">
+            <p>Loomper une pontas soltas da logística automotiva que sempre existiram, mas nunca conversaram de forma organizada.</p>
+            <p>Conectamos motoristas de cegonha, chapas/ajudantes e transportadoras em um ecossistema colaborativo que transforma improviso em processo, informalidade em oportunidade e tempo perdido em produtividade.</p>
+            <p><strong>O Loomper não substitui pessoas. Ele organiza relações, gera confiança e cria previsibilidade onde hoje reina o risco.</strong></p>
+        </div>
+    </div></div>
+
+    <div id="modal-gov" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-gov')">&times;</span>
+        <h3 style="color:var(--gold)">Governo & Social</h3>
+        <div class="modal-text">
+            <p>Atuamos diretamente em uma das maiores dores sociais invisíveis do país: a informalidade no trabalho operacional rodoviário.</p>
+            <ul>
+                <li>Caminho para formalização progressiva de milhares de chapas.</li>
+                <li>Aumento da segurança viária, com menos improviso humano.</li>
+                <li>Inclusão produtiva com dignidade.</li>
+                <li>Geração de dados reais para políticas públicas.</li>
+            </ul>
+            <p>Não é assistencialismo. É infraestrutura social aplicada à economia real.</p>
+        </div>
+        <button class="btn-submit" onclick="closeModal('modal-gov');checkDup('Governo')">AGENDAR REUNIÃO</button>
+    </div></div>
+
+    <div id="modal-faq" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-faq')">&times;</span>
+        <h3 style="color:var(--gold)">Perguntas Frequentes</h3>
+        <div class="modal-text">
+            <p><strong>1. É gratuito mesmo?</strong><br>Sim. Para chapas e ajudantes, o acesso inicial é gratuito. Acreditamos que inclusão vem antes da monetização.</p>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:10px 0;">
+            <p><strong>2. Como recebo pelo serviço?</strong><br>No início, o pagamento é acordado diretamente entre as partes. Em fases futuras, o Loomper oferecerá intermediação segura.</p>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:10px 0;">
+            <p><strong>3. As transportadoras são verificadas?</strong><br>Sim. Trabalhamos com curadoria e validação para reduzir riscos.</p>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:10px 0;">
+            <p><strong>4. Quando lança?</strong><br>O app beta está previsto para o 1º trimestre de 2026.</p>
+        </div>
+    </div></div>
+
+    <div id="modal-apoie" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-apoie')">&times;</span>
+        <h3 style="color:var(--gold); text-align:center;">Mova este Propósito</h3>
+        <p style="color:#ccc; text-align:center; margin-top:10px;">O Loomper é uma iniciativa independente. Sua contribuição ajuda a manter a tecnologia gratuita para quem está na estrada.</p>
+        <div style="display:flex; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+            <button class="pill-btn" onclick="copyPix()">Apoiar R$ 20</button>
+            <button class="pill-btn" onclick="copyPix()">Apoiar R$ 50</button>
+            <button class="pill-btn" onclick="copyPix()">Outro Valor</button>
+        </div>
+        <p id="pixMsgModal" style="color:#25D366; font-size:0.8rem; display:none; margin-top:10px; text-align:center;">Chave PIX copiada!</p>
+    </div></div>
 
     <!-- ZAP FLOAT -->
     <a href="https://wa.me/5511965858142" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
-    <!-- LÓGICA (CÉREBRO) -->
+    <!-- LÓGICA -->
     <script>
         const DATA = {
             'motorista': {
-                desc: "Encontre chapas confiáveis e avalie o serviço.",
+                desc: "Encontre chapas confiáveis para carga e descarga.",
                 steps: ["Cadastro", "Validação", "Solicitar", "Execução", "Avaliação"],
                 benefits: [{t:"Grátis", d:"Sem mensalidade"}, {t:"Seguro", d:"Profissionais verificados"}, {t:"Rápido", d:"Ache em minutos"}, {t:"Pioneiro", d:"Selo exclusivo"}]
             },
             'chapa': {
                 desc: "Receba ofertas no celular e garanta sua renda.",
                 steps: ["Cadastro", "Aprovação", "Oferta", "Trabalho", "Recebimento"],
-                benefits: [{t:"App Grátis", d:"Vagas na mão"}, {t:"Histórico", d:"Seu currículo"}, {t:"Segurança", d:"Monitoramento"}, {t:"Renda", d:"Mais clientes"}]
+                benefits: [{t:"App Grátis", d:"Vagas na mão"}, {t:"Histórico", d:"Seu currículo"}, {t:"Segurança", d:"Monitoramento"}, {t:"Renda", d:"Mais oportunidades"}]
             },
             'empresa': {
                 desc: "Compliance, ESG e Gestão de Risco para frotas.",
@@ -379,7 +376,6 @@
         function init() {
             setProfile('motorista', document.querySelector('.tab'));
             loadStates();
-            // ID Generate
             if(!localStorage.getItem('lid')) localStorage.setItem('lid', "LMP-"+Math.floor(Math.random()*90000));
             document.getElementById('hiddenId').value = localStorage.getItem('lid');
         }
@@ -388,21 +384,16 @@
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             btn.classList.add('active');
             document.getElementById('profileDesc').innerText = DATA[key].desc;
-            
-            // Render Timeline
             let tl = document.getElementById('timelineBox'); tl.innerHTML = '';
             DATA[key].steps.forEach((s, i) => {
                 tl.innerHTML += `<div class="step"><div class="step-num">${i+1}</div><div class="step-title">${s}</div></div>`;
             });
-
-            // Render Benefits
             let bb = document.getElementById('benefitsBox'); bb.innerHTML = '';
             DATA[key].benefits.forEach(b => {
                 bb.innerHTML += `<div class="benefit-item"><div class="benefit-icon"><i class="fa-solid fa-check"></i></div><div class="benefit-title">${b.t}</div><div class="benefit-text">${b.d}</div></div>`;
             });
         }
 
-        /* MODAIS & FORM */
         function checkDup(prof) {
             document.getElementById('modal-form').style.display = 'flex';
             if(prof) document.getElementById('perfilInput').value = prof;
@@ -414,45 +405,32 @@
         function openModal(id) { document.getElementById(id).style.display='flex'; }
         function closeModal(id) { document.getElementById(id).style.display='none'; }
         window.onclick = e => { if(e.target.className === 'modal') e.target.style.display='none'; }
+        function toggleMenu() { let nav = document.getElementById('navLinks'); nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex'; }
         
-        function toggleMenu() {
-            let nav = document.getElementById('navLinks');
-            nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
-        }
-
         function copyPix() {
             navigator.clipboard.writeText('contato@loomper.com.br');
-            document.getElementById('pixMsg').style.display='block';
+            document.getElementById('pixMsgModal').style.display='block';
         }
 
-        /* IBGE & MASCARAS */
         let validCities = [];
         function loadStates() {
-            fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
-            .then(r=>r.json()).then(res => {
-                res.forEach(uf => {
-                    let o = document.createElement('option'); o.value=uf.sigla; o.innerText=uf.sigla;
-                    document.getElementById('ufSelect').appendChild(o);
-                });
+            fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome').then(r=>r.json()).then(res => {
+                res.forEach(uf => { let o = document.createElement('option'); o.value=uf.sigla; o.innerText=uf.sigla; document.getElementById('ufSelect').appendChild(o); });
             });
         }
         document.getElementById('ufSelect').addEventListener('change', function(){
             let u = this.value; let l = document.getElementById('cityList');
             document.getElementById('cityInput').value=""; l.innerHTML=""; validCities=[];
-            if(u) fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${u}/municipios`)
-            .then(r=>r.json()).then(res=>{
-                res.forEach(c=>{
-                    let o=document.createElement('option'); o.value=c.nome; l.appendChild(o); validCities.push(c.nome);
-                });
+            if(u) fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${u}/municipios`).then(r=>r.json()).then(res=>{
+                res.forEach(c=>{ let o=document.createElement('option'); o.value=c.nome; l.appendChild(o); validCities.push(c.nome); });
             });
         });
 
         document.getElementById('mainForm').addEventListener('submit', function(e){
-            if(!validCities.includes(document.getElementById('cityInput').value)) {
-                e.preventDefault(); alert('Cidade inválida para este estado.'); return;
-            }
+            if(!validCities.includes(document.getElementById('cityInput').value)) { e.preventDefault(); alert('Cidade inválida.'); return; }
             document.getElementById('hiddenDate').value = new Date().toLocaleString();
             localStorage.setItem('registered', 'true');
+            // GARANTIA: Salvar o perfil exato
             localStorage.setItem('userProfile', document.getElementById('perfilInput').value);
         });
 
