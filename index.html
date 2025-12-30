@@ -3,948 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Loomper | Rede Profissional de Transporte</title>
-    <meta name="description" content="A rede que protege motoristas profissionais do improviso.">
-    <meta name="theme-color" content="#0a0e17">
+    <title>Loomper | Logística sem Enrolação</title>
+    <meta name="theme-color" content="#0a1628">
+    <meta name="description" content="Conectamos motoristas, chapas e empresas. O jeito certo de fazer logística.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🚛%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Fontes & Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ===================== */
-        /* VARIÁVEIS             */
-        /* ===================== */
         :root {
-            --dark: #0a0e17;
-            --dark-card: #1a1f2e;
-            --primary: #ff5722;
-            --primary-dark: #e64a19;
-            --text: #ffffff;
-            --text-secondary: #e5e7eb;
-            --text-muted: #d1d5db;
-            --text-link: #fbbf24;
-            --border: rgba(255, 255, 255, 0.12);
+            --dark: #0a1628;
+            --gold: #D4AF37;
+            --orange: #FF6600;
+            --white: #ffffff;
+            --glass: rgba(0, 0, 0, 0.6);
         }
         
-        /* ===================== */
-        /* RESET                 */
-        /* ===================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
         
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark);
-            color: var(--text);
-            line-height: 1.6;
+        body { 
+            background-color: var(--dark); color: white; 
+            /* Fundo Geral */
+            background: url('assets/images/bg_home.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            min-height: 100vh;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
-        
-        /* ===================== */
-        /* DOBRA 1 — O ESCUDO    */
-        /* ===================== */
-        .fold-1 {
+
+        /* Máscara escura para o fundo */
+        .overlay-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 22, 40, 0.85); /* 85% opacidade */
+            z-index: 0;
+        }
+
+        /* --- CONTAINER PRINCIPAL --- */
+        .app-container {
+            position: relative; z-index: 1;
+            max-width: 800px; margin: 0 auto;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 24px 60px;
-            text-align: center;
-            background: linear-gradient(180deg, var(--dark) 0%, #1a1f2e 100%);
+            display: flex; flex-direction: column;
+            padding: 20px;
         }
-        
-        .container {
-            max-width: 600px;
-            width: 100%;
+
+        /* --- TOPO --- */
+        header { text-align: center; margin-bottom: 30px; padding-top: 20px; }
+        .logo { height: 50px; margin-bottom: 10px; }
+        .tagline { font-size: 1.4rem; font-weight: 800; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); letter-spacing: -0.5px; }
+        .sub-tag { font-size: 0.9rem; color: #ccc; font-weight: 500; margin-top: 5px; }
+
+        /* --- GRID DE CARTÕES (Visual) --- */
+        .cards-grid {
+            display: flex; flex-direction: column; gap: 20px;
+            flex-grow: 1; justify-content: center;
         }
-        
-        /* Logo discreto no topo */
-        .logo {
-            position: absolute;
-            top: 24px;
-            left: 24px;
-            font-size: 1.25rem;
-            font-weight: 900;
-            color: var(--text);
-            letter-spacing: -0.5px;
-        }
-        
-        .logo-accent {
-            color: var(--primary);
-        }
-        
-        /* Selo de contexto */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 87, 34, 0.1);
-            border: 1px solid rgba(255, 87, 34, 0.3);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--primary);
-            margin-bottom: 40px;
-        }
-        
-        .badge-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-        
-        /* H1 — ESPELHO DA DOR */
-        .h1 {
-            font-size: 2.25rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-        }
-        
-        .h1 .highlight {
-            color: var(--primary);
-        }
-        
-        /* H2 — PROMESSA */
-        .h2 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 48px;
-        }
-        
-        .h2 strong {
-            color: var(--text);
-            font-weight: 700;
-        }
-        
-        /* CTA ÚNICO */
-        .btn-primary {
-            width: 100%;
-            padding: 20px 32px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            font-size: 0.95rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(255, 87, 34, 0.3);
-            transition: all 0.3s ease;
+
+        .visual-card {
             position: relative;
+            height: 160px; /* Altura confortável para toque */
+            border-radius: 16px;
             overflow: hidden;
-        }
-        
-        .btn-primary:active {
-            transform: translateY(2px);
-        }
-        
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shine 3s infinite;
-        }
-        
-        /* Microcopy */
-        .micro {
-            margin-top: 16px;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        
-        /* Link secundário - CHAPA */
-        .hero-secondary {
-            margin-top: 24px;
-            color: var(--text-link);
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: underline;
             cursor: pointer;
-            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            transition: transform 0.2s;
+            background-color: #111;
         }
-        
-        .hero-secondary:hover {
-            color: #fcd34d;
+        .visual-card:active { transform: scale(0.98); }
+
+        /* Imagens de Fundo dos Cartões */
+        .card-bg {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s; opacity: 0.8;
         }
-        
-        /* ===================== */
-        /* DOBRA 2 — A REGRA     */
-        /* ===================== */
-        .fold-2 {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px 20px;
-            background: var(--dark);
+        .visual-card:hover .card-bg { transform: scale(1.05); opacity: 1; }
+
+        /* Gradiente sobre a foto */
+        .card-content {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 0 25px;
         }
+
+        .card-title { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; color: white; margin-bottom: 5px; text-shadow: 2px 2px 4px black; }
+        .card-desc { font-size: 0.9rem; color: #ddd; font-weight: 500; max-width: 85%; line-height: 1.3; text-shadow: 1px 1px 2px black; }
+        .card-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: var(--orange); opacity: 0.9; filter: drop-shadow(0 0 10px rgba(255,102,0,0.5)); }
+
+        /* Botão Empresa (Diferente) */
+        .card-small { height: 100px; border-color: var(--gold); }
+        .card-small .card-content { background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.8) 100%); }
+        .card-small .card-title { font-size: 1.1rem; color: var(--gold); }
+        .card-small .card-icon { font-size: 1.8rem; color: var(--gold); }
+
+        /* --- RODAPÉ SIMPLES --- */
+        footer { margin-top: 40px; text-align: center; font-size: 0.8rem; color: #777; padding-bottom: 20px; }
+        .footer-links a { color: #aaa; text-decoration: none; margin: 0 10px; font-weight: 600; }
         
-        .fold-2 .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .fold-2-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        
-        .rules-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-        
-        .rule-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 24px 20px;
-            background: var(--dark-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-        
-        .rule-icon {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 87, 34, 0.15);
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.1rem;
-            color: var(--primary);
-        }
-        
-        .rule-text {
-            flex: 1;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        
-        .rule-text strong {
-            color: var(--text);
-            font-weight: 700;
-        }
-        
-        .fold-2-footer {
-            text-align: center;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            font-style: italic;
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border);
-            font-weight: 500;
-        }
-        
-        /* ===================== */
-        /* DOBRA 3 — ECOSSISTEMA */
-        /* ===================== */
-        .fold-3 {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px 20px;
-            background: var(--dark-card);
-        }
-        
-        .fold-3 .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Bloco 1 — O Fluxo */
-        .flow-section {
-            margin-bottom: 60px;
-        }
-        
-        .flow-title {
-            font-size: 1.75rem;
-            font-weight: 800;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-        
-        .flow-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .flow-step {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-        }
-        
-        .flow-number {
-            flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 87, 34, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.05rem;
-            color: var(--primary);
-        }
-        
-        .flow-label {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-        
-        /* Bloco 2 — O Chapa */
-        .chapa-section {
-            background: rgba(255, 167, 38, 0.08);
-            border: 1px solid rgba(255, 167, 38, 0.3);
-            border-radius: 16px;
-            padding: 32px 24px;
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .chapa-title {
-            font-size: 1.35rem;
-            font-weight: 800;
-            margin-bottom: 24px;
-            color: var(--text);
-            line-height: 1.3;
-        }
-        
-        .chapa-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            text-align: left;
-        }
-        
-        .chapa-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        
-        .chapa-bullet {
-            width: 8px;
-            height: 8px;
-            background: #fbbf24;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-        
-        /* CTA FINAL */
-        .cta-final {
-            text-align: center;
-        }
-        
-        .btn-secondary {
-            width: 100%;
-            padding: 18px 32px;
-            background: transparent;
-            color: var(--text);
-            font-size: 0.95rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 87, 34, 0.1);
-        }
-        
-        .micro-final {
-            margin-top: 16px;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        
-        /* ===================== */
-        /* FOOTER MÍNIMO         */
-        /* ===================== */
-        .footer {
-            padding: 40px 20px;
-            background: var(--dark);
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
-        
-        .footer-info {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            font-weight: 500;
-        }
-        
-        .footer-info p {
-            margin-bottom: 8px;
-        }
-        
-        .footer-info strong {
-            color: var(--text);
-            font-weight: 700;
-        }
-        
-        /* ===================== */
-        /* MODAL                 */
-        /* ===================== */
+        /* --- MODAIS --- */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(4px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 2000;
+            display: none; align-items: end; /* Sheet mobile */
+            backdrop-filter: blur(5px);
         }
-        
-        .modal.active {
-            display: flex;
+        .modal-box {
+            background: #151f32; width: 100%; border-radius: 25px 25px 0 0;
+            padding: 30px 25px; position: relative; max-height: 90vh; overflow-y: auto;
+            border-top: 2px solid var(--orange); animation: slideUp 0.3s;
         }
+        .close { position: absolute; top: 20px; right: 20px; font-size: 1.8rem; color: #666; cursor: pointer; }
         
-        .modal-content {
-            background: var(--dark-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px 24px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.3s ease;
+        .modal-header { text-align: center; margin-bottom: 25px; }
+        .modal-header h3 { font-size: 1.8rem; color: white; margin-bottom: 5px; }
+        .modal-header p { color: #aaa; font-size: 0.95rem; }
+
+        /* Benefícios dentro do Modal */
+        .modal-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .m-benefit { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+        .m-benefit i { font-size: 1.5rem; color: var(--gold); margin-bottom: 8px; display:block; }
+        .m-benefit span { display: block; font-size: 0.85rem; color: #ddd; font-weight: 600; line-height: 1.2; }
+
+        /* Formulário */
+        .form-control { width: 100%; padding: 16px; background: #0a1628; border: 1px solid #333; border-radius: 10px; color: white; margin-bottom: 15px; font-size: 1rem; }
+        .form-control:focus { outline: none; border-color: var(--orange); }
+        
+        .btn-submit { width: 100%; padding: 18px; background: var(--orange); color: white; font-weight: 800; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; box-shadow: 0 5px 20px rgba(255,102,0,0.3); }
+        
+        .check-area { font-size: 0.8rem; color: #888; margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
+        .check-area a { color: var(--gold); text-decoration: underline; }
+
+        /* ZAP */
+        .wa-float {
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
+            background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 1500;
         }
+
+        @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
         
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 32px;
-            height: 32px;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 24px;
-            color: var(--text);
-            text-align: center;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-        
-        .form-input,
-        .form-select {
-            width: 100%;
-            padding: 14px 16px;
-            background: var(--dark);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 1rem;
-        }
-        
-        .form-input:focus,
-        .form-select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 12px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .form-checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin: 24px 0;
-        }
-        
-        .form-checkbox input {
-            margin-top: 4px;
-            flex-shrink: 0;
-        }
-        
-        .form-checkbox label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        
-        .form-checkbox a {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-        
-        .btn-submit {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            font-size: 1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-        
-        /* ===================== */
-        /* WHATSAPP              */
-        /* ===================== */
-        .whatsapp {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 56px;
-            height: 56px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
-            z-index: 1500;
-            animation: pulse 2s infinite;
-        }
-        
-        .whatsapp svg {
-            width: 28px;
-            height: 28px;
-            fill: white;
-        }
-        
-        /* ===================== */
-        /* ANIMATIONS            */
-        /* ===================== */
-        @keyframes shine {
-            0% { left: -100%; }
-            20% { left: 100%; }
-            100% { left: 100%; }
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* ===================== */
-        /* RESPONSIVE            */
-        /* ===================== */
+        /* Ajuste Desktop */
         @media (min-width: 768px) {
-            .h1 { font-size: 3.5rem; }
-            .h2 { font-size: 1.5rem; }
-            .btn-primary { max-width: 400px; }
-            .btn-secondary { max-width: 400px; margin: 0 auto; }
+            .modal { align-items: center; justify-content: center; }
+            .modal-box { max-width: 500px; border-radius: 20px; border-top: none; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+            .cards-grid { flex-direction: row; flex-wrap: wrap; align-content: center; }
+            .visual-card { width: 48%; height: 280px; }
+            .card-small { width: 100%; height: 140px; }
+            .logo { height: 60px; }
+            .tagline { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Logo discreto -->
-    <div class="logo">
-        LOOM<span class="logo-accent">PER</span>
+    <div class="overlay-bg"></div>
+
+    <div class="app-container">
+        <!-- HEADER -->
+        <header>
+            <img src="assets/images/logo.svg" alt="Loomper" class="logo">
+            <div class="tagline">Logística sem enrolação.</div>
+            <div class="sub-tag">Selecione seu perfil para começar:</div>
+        </header>
+
+        <!-- MENU VISUAL (DASHBOARD) -->
+        <div class="cards-grid">
+            
+            <!-- CARD 1: MOTORISTA -->
+            <div class="visual-card" onclick="openProfile('motorista')">
+                <!-- Certifique-se que o arquivo é card_motorista.jpg -->
+                <img src="assets/images/card_motorista.jpg" class="card-bg" alt="Motorista" onerror="this.style.display='none'">
+                <div class="card-content">
+                    <div class="card-title">Sou Motorista</div>
+                    <div class="card-desc">Quero ajuda segura para carga e descarga.</div>
+                </div>
+                <i class="fa-solid fa-truck-front card-icon"></i>
+            </div>
+
+            <!-- CARD 2: CHAPA -->
+            <div class="visual-card" onclick="openProfile('chapa')">
+                <!-- Certifique-se que o arquivo é card_chapa.jpg -->
+                <img src="assets/images/card_chapa.jpg" class="card-bg" alt="Chapa" onerror="this.style.display='none'">
+                <div class="card-content">
+                    <div class="card-title">Sou Ajudante</div>
+                    <div class="card-desc">Quero ofertas de trabalho no celular.</div>
+                </div>
+                <i class="fa-solid fa-helmet-safety card-icon"></i>
+            </div>
+
+            <!-- CARD 3: EMPRESA -->
+            <div class="visual-card card-small" onclick="openProfile('empresa')">
+                <!-- Certifique-se que o arquivo é card_empresa.jpg -->
+                <img src="assets/images/card_empresa.jpg" class="card-bg" alt="Empresa" onerror="this.style.display='none'">
+                <div class="card-content">
+                    <div class="card-title" style="font-size:1.1rem;">Sou Empresa / Frota</div>
+                    <div class="card-desc">Gestão de risco e compliance.</div>
+                </div>
+                <i class="fa-solid fa-building card-icon"></i>
+            </div>
+
+        </div>
+
+        <!-- RODAPÉ SIMPLES -->
+        <footer>
+            <div class="footer-links">
+                <a href="#" onclick="openTextModal('Sobre')">Sobre</a>
+                <a href="#" onclick="openTextModal('FAQ')">Dúvidas</a>
+                <a href="#" onclick="openTextModal('Apoie')">Apoie o Projeto</a>
+            </div>
+            <div style="margin-top:15px;">
+                <a href="terms.html" style="color:#555; font-size:0.75rem;">Termos de Uso</a>
+                <a href="privacy.html" style="color:#555; font-size:0.75rem;">Política de Privacidade</a>
+            </div>
+            <p style="margin-top:15px; opacity:0.5;">v7.0 Stable</p>
+        </footer>
     </div>
 
-    <!-- ========================================= -->
-    <!-- DOBRA 1 — O ESCUDO                        -->
-    <!-- ========================================= -->
-    <section class="fold-1">
-        <div class="container">
-            <div class="badge">
-                <div class="badge-dot"></div>
-                Acesso inicial por convite • Beta Pioneiro
+    <!-- MODAL DE CADASTRO (DINÂMICO) -->
+    <div id="modal-cadastro" class="modal">
+        <div class="modal-box">
+            <span class="close" onclick="closeModal()">&times;</span>
+            
+            <div class="modal-header">
+                <h3 id="modalTitle">Motorista</h3>
+                <p id="modalSub">Faça seu cadastro gratuito</p>
             </div>
-            
-            <h1 class="h1">
-                Quem vive da estrada sabe: o erro é de outro, mas <span class="highlight">a conta sobra pra você.</span>
-            </h1>
-            
-            <p class="h2">
-                Chega de pagar pelo improviso. O Loomper conecta você a <strong>profissionais indicados, validados e avaliados</strong> — com responsabilidade compartilhada.
-            </p>
-            
-            <button class="btn-primary" onclick="openModal()">
-                QUERO TRABALHAR COM PROFISSIONAIS
-            </button>
-            
-            <p class="micro">
-                Cadastro gratuito. Rede construída por indicação responsável.
-            </p>
-            
-            <div class="hero-secondary" onclick="openModal()">
-                Sou chapa e quero fazer parte dessa rede →
-            </div>
-        </div>
-    </section>
 
-    <!-- ========================================= -->
-    <!-- DOBRA 2 — A REGRA DO JOGO                 -->
-    <!-- ========================================= -->
-    <section class="fold-2">
-        <div class="container">
-            <h2 class="fold-2-title">Aqui ninguém se esconde.</h2>
-            
-            <div class="rules-list">
-                <div class="rule-item">
-                    <div class="rule-icon">1</div>
-                    <div class="rule-text">
-                        <strong>Você entra</strong> como motorista profissional
-                    </div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-icon">2</div>
-                    <div class="rule-text">
-                        <strong>Indica chapas</strong> de sua confiança
-                    </div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-icon">3</div>
-                    <div class="rule-text">
-                        Cada indicação é <strong>rastreável</strong>
-                    </div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-icon">4</div>
-                    <div class="rule-text">
-                        Quem indica <strong>também responde</strong>
-                    </div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-icon">5</div>
-                    <div class="rule-text">
-                        Profissionais crescem. <strong>Amadorismo não entra.</strong>
-                    </div>
-                </div>
-            </div>
-            
-            <p class="fold-2-footer">
-                O Loomper é feito por quem leva o próprio nome a sério.
-            </p>
-        </div>
-    </section>
+            <!-- Benefícios Visuais -->
+            <div class="modal-benefits" id="modalBenefits"></div>
 
-    <!-- ========================================= -->
-    <!-- DOBRA 3 — O ECOSSISTEMA                   -->
-    <!-- ========================================= -->
-    <section class="fold-3">
-        <div class="container">
-            
-            <!-- Bloco 1: O Fluxo -->
-            <div class="flow-section">
-                <h2 class="flow-title">Como funciona</h2>
-                
-                <div class="flow-steps">
-                    <div class="flow-step">
-                        <div class="flow-number">1</div>
-                        <div class="flow-label">Motorista entra</div>
-                    </div>
-                    
-                    <div class="flow-step">
-                        <div class="flow-number">2</div>
-                        <div class="flow-label">Indica chapas de confiança</div>
-                    </div>
-                    
-                    <div class="flow-step">
-                        <div class="flow-number">3</div>
-                        <div class="flow-label">Rede valida e registra histórico</div>
-                    </div>
-                    
-                    <div class="flow-step">
-                        <div class="flow-number">4</div>
-                        <div class="flow-label">MVP evolui com quem joga sério</div>
-                    </div>
-                </div>
+            <!-- Alerta de Duplicidade -->
+            <div id="dupMsg" style="background:#332b00; color:#ffd700; padding:10px; border-radius:8px; margin-bottom:15px; display:none; font-size:0.9rem; text-align:center;">
+                Você já tem cadastro! ID: <strong id="dupId"></strong>
             </div>
-            
-            <!-- Bloco 2: O Chapa -->
-            <div class="chapa-section">
-                <h3 class="chapa-title">Para o Chapa que é profissional: aqui o seu trabalho vale mais.</h3>
-                
-                <div class="chapa-list">
-                    <div class="chapa-item">
-                        <div class="chapa-bullet"></div>
-                        Entrar por indicação
-                    </div>
-                    <div class="chapa-item">
-                        <div class="chapa-bullet"></div>
-                        Construir reputação
-                    </div>
-                    <div class="chapa-item">
-                        <div class="chapa-bullet"></div>
-                        Trabalhar com motoristas sérios
-                    </div>
-                    <div class="chapa-item">
-                        <div class="chapa-bullet"></div>
-                        Crescer junto com a rede
-                    </div>
-                </div>
-            </div>
-            
-            <!-- CTA Final -->
-            <div class="cta-final">
-                <button class="btn-secondary" onclick="openModal()">
-                    QUERO FAZER PARTE DO BETA
-                </button>
-                
-                <p class="micro-final">
-                    Vagas iniciais limitadas. Base em construção.
-                </p>
-            </div>
-        </div>
-    </section>
 
-    <!-- ========================================= -->
-    <!-- FOOTER MÍNIMO                             -->
-    <!-- ========================================= -->
-    <footer class="footer">
-        <div class="footer-info">
-            <p>Loomper © 2025. Uma empresa do grupo <strong>Ajud.ai Brasil Inova Simples (i.s.)</strong></p>
-            <p>CNPJ: 59.150.688/0001-39 | São Bernardo do Campo-SP</p>
-        </div>
-    </footer>
+            <form name="cadastro-loomper" method="POST" data-netlify="true" action="/sucesso.html" id="mainForm">
+                <input type="hidden" name="perfil" id="perfilInput">
+                <input type="hidden" name="id_gerado" id="hiddenId">
+                <input type="hidden" name="data_aceite" id="hiddenDate">
 
-    <!-- ========================================= -->
-    <!-- MODAL CADASTRO                            -->
-    <!-- ========================================= -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2 class="modal-title">Cadastro Beta Pioneiro</h2>
-            
-            <form name="cadastro-loomper" method="POST" data-netlify="true" action="/sucesso.html">
-                <input type="hidden" name="id_gerado" id="userId">
-                <input type="hidden" name="data_aceite" id="userDate">
+                <input type="text" name="nome" class="form-control" placeholder="Seu Nome Completo" required>
+                <input type="tel" name="whatsapp" id="zapInput" class="form-control" placeholder="WhatsApp (DDD) 9..." required>
+                <input type="email" name="email" class="form-control" placeholder="E-mail" required>
                 
-                <div class="form-group">
-                    <label class="form-label">Perfil</label>
-                    <select name="perfil" class="form-select" required>
-                        <option value="Motorista">Motorista Cegonheiro</option>
-                        <option value="Chapa">Chapa/Ajudante</option>
-                        <option value="Empresa">Transportadora/Empresa</option>
-                    </select>
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1"><select id="ufSelect" name="uf" class="form-control" required><option value="">UF</option></select></div>
+                    <div style="flex:2"><input type="text" id="cityInput" name="cidade" list="cityList" class="form-control" placeholder="Cidade" required><datalist id="cityList"></datalist></div>
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Nome completo</label>
-                    <input type="text" name="nome" class="form-input" required>
+
+                <div class="check-area">
+                    <input type="checkbox" required>
+                    <span>Li e aceito os <a href="terms.html" target="_blank">Termos</a> e <a href="privacy.html" target="_blank">Privacidade</a>.</span>
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">WhatsApp</label>
-                    <input type="tel" name="whatsapp" id="zap" class="form-input" placeholder="(11) 99999-9999" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-input" required>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">UF</label>
-                        <select id="uf" name="uf" class="form-select" required>
-                            <option value="">-</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Cidade</label>
-                        <input type="text" id="city" name="cidade" list="cities" class="form-input" required>
-                        <datalist id="cities"></datalist>
-                    </div>
-                </div>
-                
-                <div class="form-checkbox">
-                    <input type="checkbox" id="terms" required>
-                    <label for="terms">
-                        Concordo com os <a href="terms.html" target="_blank">Termos de Uso</a> e <a href="privacy.html" target="_blank">Política de Privacidade</a>.
-                    </label>
-                </div>
-                
-                <button type="submit" class="btn-submit">CONFIRMAR CADASTRO</button>
+
+                <button type="submit" class="btn-submit" id="btnSubmit">ENTRAR AGORA</button>
             </form>
         </div>
     </div>
 
-    <!-- ========================================= -->
-    <!-- WHATSAPP                                  -->
-    <!-- ========================================= -->
-    <a href="https://wa.me/5511965858142" target="_blank" class="whatsapp">
-        <svg viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-        </svg>
-    </a>
+    <!-- MODAL DE TEXTO (Apoie, FAQ, Sobre) -->
+    <div id="modal-texto" class="modal">
+        <div class="modal-box">
+            <span class="close" onclick="document.getElementById('modal-texto').style.display='none'">&times;</span>
+            <h3 id="txtTitle" style="color:var(--gold); margin-bottom:15px; text-align:center;">Título</h3>
+            <div id="txtContent" style="color:#ccc; font-size:0.95rem; line-height:1.6; text-align:left;">Texto...</div>
+        </div>
+    </div>
 
-    <!-- ========================================= -->
-    <!-- SCRIPTS                                   -->
-    <!-- ========================================= -->
+    <a href="https://wa.me/5511965858142" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <!-- LÓGICA -->
     <script>
-        // Modal
-        function openModal() {
-            document.getElementById('modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
+        // DADOS DOS PERFIS
+        const DATA = {
+            'motorista': {
+                title: "Sou Motorista",
+                sub: "Acabe com o improviso. Tenha segurança.",
+                benefits: [
+                    {i:"fa-user-shield", t:"Profissionais"},
+                    {i:"fa-star", t:"Avaliação Real"},
+                    {i:"fa-bolt", t:"Rápido"},
+                    {i:"fa-ban", t:"Sem Custo"}
+                ]
+            },
+            'chapa': {
+                title: "Sou Ajudante",
+                sub: "Trabalho direto no seu celular.",
+                benefits: [
+                    {i:"fa-mobile", t:"App Grátis"},
+                    {i:"fa-id-card", t:"Histórico"},
+                    {i:"fa-hand-holding-dollar", t:"Renda Extra"},
+                    {i:"fa-lock", t:"Seguro"}
+                ]
+            },
+            'empresa': {
+                title: "Sou Empresa",
+                sub: "Gestão de risco para sua frota.",
+                benefits: [
+                    {i:"fa-file-contract", t:"Compliance"},
+                    {i:"fa-chart-line", t:"ESG"},
+                    {i:"fa-users-viewfinder", t:"Gestão"},
+                    {i:"fa-check-double", t:"Auditoria"}
+                ]
+            }
+        };
+
+        // TEXTOS INSTITUCIONAIS
+        const TEXTS = {
+            'Sobre': "<p>O Loomper conecta as pontas soltas da logística. Não substituímos pessoas, organizamos relações para dar segurança e dignidade a quem vive da estrada.</p><p>Uma iniciativa Ajud.ai Brasil.</p>",
+            'FAQ': "<p><strong>É gratuito?</strong><br>Sim, para motoristas e chapas.</p><p><strong>É seguro?</strong><br>Sim, fazemos validação de cadastro e monitoramos avaliações.</p><p><strong>Quando lança?</strong><br>App previsto para 2026. Site já funciona para pré-cadastro.</p>",
+            'Apoie': "<p>Somos um projeto independente. Sua ajuda mantém a plataforma gratuita para os motoristas.</p><div style='text-align:center; margin-top:20px;'><button class='btn-submit' style='padding:10px 20px;' onclick='copyPix()'>Copiar Chave PIX</button><p id='pixMsg' style='display:none; color:#25D366; margin-top:10px'>Copiado!</p></div>"
+        };
+
+        // LÓGICA DE ABERTURA DE MODAL
+        function openProfile(key) {
+            const d = DATA[key];
+            document.getElementById('modalTitle').innerText = d.title;
+            document.getElementById('modalSub').innerText = d.sub;
+            
+            // Define o valor do select escondido ou visível (se for mudar a lógica)
+            // Aqui vamos forçar o input hidden a ter o valor correto
+            let perfilVal = key === 'empresa' ? 'Transportadora' : (key === 'chapa' ? 'Chapa/Ajudante' : 'Motorista Cegonheiro');
+            document.getElementById('perfilInput').value = perfilVal;
+            
+            // Render Benefits
+            let html = '';
+            d.benefits.forEach(b => {
+                html += `<div class="m-benefit"><i class="fa-solid ${b.i}"></i><span>${b.t}</span></div>`;
+            });
+            document.getElementById('modalBenefits').innerHTML = html;
+            
+            // Check Duplicidade Local
+            if(localStorage.getItem('registered') === 'true') {
+                document.getElementById('dupMsg').style.display='block';
+                document.getElementById('dupId').innerText = localStorage.getItem('lid');
+            }
+
+            document.getElementById('modal-cadastro').style.display = 'flex';
         }
+
+        function closeModal() { document.getElementById('modal-cadastro').style.display = 'none'; }
         
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
+        function openTextModal(key) {
+            document.getElementById('txtTitle').innerText = key;
+            document.getElementById('txtContent').innerHTML = TEXTS[key];
+            document.getElementById('modal-texto').style.display = 'flex';
         }
-        
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
+
+        function copyPix() { navigator.clipboard.writeText('contato@loomper.com.br'); document.getElementById('pixMsg').style.display='block'; }
+
+        // INIT & UTILS (IBGE, ID, Mascaras)
+        if(!localStorage.getItem('lid')) localStorage.setItem('lid', "LMP-"+Math.floor(Math.random()*90000));
+        document.getElementById('hiddenId').value = localStorage.getItem('lid');
+
+        // IBGE Fetch
+        let validCities=[];
+        fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome').then(r=>r.json()).then(res=>{
+            res.forEach(u=>{
+                let o=document.createElement('option'); o.value=u.sigla; o.innerText=u.sigla;
+                document.getElementById('ufSelect').appendChild(o);
+            });
         });
         
-        // Estados
-        let validCities = [];
-        
-        fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
-            .then(r => r.json())
-            .then(states => {
-                const uf = document.getElementById('uf');
-                states.forEach(s => {
-                    const o = document.createElement('option');
-                    o.value = s.sigla;
-                    o.textContent = s.sigla;
-                    uf.appendChild(o);
+        document.getElementById('ufSelect').addEventListener('change',function(){
+            let u=this.value; let l=document.getElementById('cityList');
+            document.getElementById('cityInput').value=""; l.innerHTML=""; validCities=[];
+            if(u) fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${u}/municipios`).then(r=>r.json()).then(res=>{
+                res.forEach(c=>{
+                    let o=document.createElement('option'); o.value=c.nome; l.appendChild(o); validCities.push(c.nome);
                 });
             });
-        
-        document.getElementById('uf').addEventListener('change', function() {
-            const uf = this.value;
-            const city = document.getElementById('city');
-            const cities = document.getElementById('cities');
-            
-            city.value = '';
-            cities.innerHTML = '';
-            validCities = [];
-            
-            if (uf) {
-                fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
-                    .then(r => r.json())
-                    .then(data => {
-                        data.forEach(c => {
-                            const o = document.createElement('option');
-                            o.value = c.nome;
-                            cities.appendChild(o);
-                            validCities.push(c.nome);
-                        });
-                    });
+        });
+
+        // Form Submit
+        document.getElementById('mainForm').addEventListener('submit',function(e){
+            // Valida cidade
+            if(!validCities.includes(document.getElementById('cityInput').value)){
+                e.preventDefault(); alert('Por favor, selecione uma cidade válida da lista.'); return;
             }
+            // Grava dados
+            document.getElementById('hiddenDate').value = new Date().toLocaleString();
+            localStorage.setItem('registered', 'true');
+            localStorage.setItem('userProfile', document.getElementById('perfilInput').value);
+        });
+
+        // Mascara WhatsApp
+        document.getElementById('zapInput').addEventListener('input',function(e){
+            let x=e.target.value.replace(/\D/g,'').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value=!x[2]?x[1]:'('+x[1]+') '+x[2]+(x[3]?'-'+x[3]:'');
         });
         
-        // ID único
-        if (!localStorage.getItem('loomper_id')) {
-            localStorage.setItem('loomper_id', 'LMP-' + Math.floor(Math.random() * 90000 + 10000));
+        // Fechar modal ao clicar fora
+        window.onclick = e => { 
+            if(e.target.classList.contains('modal')) e.target.style.display='none'; 
         }
-        document.getElementById('userId').value = localStorage.getItem('loomper_id');
-        
-        // Máscara telefone
-        document.getElementById('zap').addEventListener('input', function(e) {
-            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-        });
-        
-        // Submit
-        document.querySelector('form').addEventListener('submit', function(e) {
-            if (!validCities.includes(document.getElementById('city').value)) {
-                e.preventDefault();
-                alert('Selecione uma cidade válida.');
-                return;
-            }
-            document.getElementById('userDate').value = new Date().toLocaleString('pt-BR');
-        });
     </script>
 </body>
 </html>
