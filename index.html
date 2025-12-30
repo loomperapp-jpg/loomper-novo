@@ -7,8 +7,8 @@
     <meta name="theme-color" content="#0a1628">
     <meta name="description" content="Conectamos motoristas, chapas e empresas. O jeito certo de fazer logística.">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/images/logo.png">
+    <!-- Favicon (Ajustado para o caminho correto) -->
+    <link rel="icon" type="image/png" href="ativos/imagens/FAVICON_Loomper.png">
     
     <!-- Fontes & Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,21 +27,19 @@
         
         body { 
             background-color: var(--dark); color: white; 
-            /* Fundo Geral */
-            background: url('assets/images/bg_home.jpg') no-repeat center center fixed; 
+            /* CORREÇÃO DE FUNDO: Caminho atualizado e extensão .jpeg */
+            background: url('ativos/imagens/bg_home.jpeg') no-repeat center center fixed; 
             background-size: cover;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Máscara escura para o fundo */
         .overlay-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 22, 40, 0.85); /* 85% opacidade */
+            background: rgba(10, 22, 40, 0.85);
             z-index: 0;
         }
 
-        /* --- CONTAINER PRINCIPAL --- */
         .app-container {
             position: relative; z-index: 1;
             max-width: 800px; margin: 0 auto;
@@ -50,13 +48,11 @@
             padding: 20px;
         }
 
-        /* --- TOPO --- */
         header { text-align: center; margin-bottom: 30px; padding-top: 20px; }
         .logo { height: 50px; margin-bottom: 10px; }
         .tagline { font-size: 1.4rem; font-weight: 800; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); letter-spacing: -0.5px; }
         .sub-tag { font-size: 0.9rem; color: #ccc; font-weight: 500; margin-top: 5px; }
 
-        /* --- GRID DE CARTÕES (Visual) --- */
         .cards-grid {
             display: flex; flex-direction: column; gap: 20px;
             flex-grow: 1; justify-content: center;
@@ -64,7 +60,7 @@
 
         .visual-card {
             position: relative;
-            height: 160px; /* Altura confortável para toque */
+            height: 160px;
             border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
@@ -75,14 +71,12 @@
         }
         .visual-card:active { transform: scale(0.98); }
 
-        /* Imagens de Fundo dos Cartões */
         .card-bg {
             width: 100%; height: 100%; object-fit: cover;
             transition: transform 0.5s; opacity: 0.8;
         }
         .visual-card:hover .card-bg { transform: scale(1.05); opacity: 1; }
 
-        /* Gradiente sobre a foto */
         .card-content {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
@@ -94,21 +88,18 @@
         .card-desc { font-size: 0.9rem; color: #ddd; font-weight: 500; max-width: 85%; line-height: 1.3; text-shadow: 1px 1px 2px black; }
         .card-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: var(--orange); opacity: 0.9; filter: drop-shadow(0 0 10px rgba(255,102,0,0.5)); }
 
-        /* Botão Empresa (Diferente) */
         .card-small { height: 100px; border-color: var(--gold); }
         .card-small .card-content { background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.8) 100%); }
         .card-small .card-title { font-size: 1.1rem; color: var(--gold); }
         .card-small .card-icon { font-size: 1.8rem; color: var(--gold); }
 
-        /* --- RODAPÉ SIMPLES --- */
         footer { margin-top: 40px; text-align: center; font-size: 0.8rem; color: #777; padding-bottom: 20px; }
         .footer-links a { color: #aaa; text-decoration: none; margin: 0 10px; font-weight: 600; }
         
-        /* --- MODAIS --- */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 2000;
-            display: none; align-items: end; /* Sheet mobile */
+            display: none; align-items: end;
             backdrop-filter: blur(5px);
         }
         .modal-box {
@@ -122,13 +113,11 @@
         .modal-header h3 { font-size: 1.8rem; color: white; margin-bottom: 5px; }
         .modal-header p { color: #aaa; font-size: 0.95rem; }
 
-        /* Benefícios dentro do Modal */
         .modal-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
         .m-benefit { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
         .m-benefit i { font-size: 1.5rem; color: var(--gold); margin-bottom: 8px; display:block; }
         .m-benefit span { display: block; font-size: 0.85rem; color: #ddd; font-weight: 600; line-height: 1.2; }
 
-        /* Formulário */
         .form-control { width: 100%; padding: 16px; background: #0a1628; border: 1px solid #333; border-radius: 10px; color: white; margin-bottom: 15px; font-size: 1rem; }
         .form-control:focus { outline: none; border-color: var(--orange); }
         
@@ -137,7 +126,6 @@
         .check-area { font-size: 0.8rem; color: #888; margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
         .check-area a { color: var(--gold); text-decoration: underline; }
 
-        /* ZAP */
         .wa-float {
             position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
             background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -146,7 +134,6 @@
 
         @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
         
-        /* Ajuste Desktop */
         @media (min-width: 768px) {
             .modal { align-items: center; justify-content: center; }
             .modal-box { max-width: 500px; border-radius: 20px; border-top: none; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
@@ -165,7 +152,8 @@
     <div class="app-container">
         <!-- HEADER -->
         <header>
-            <img src="assets/images/logo.png" alt="Loomper" class="logo">
+            <!-- CAMINHO CORRIGIDO -->
+            <img src="ativos/imagens/logo.svg" alt="Loomper" class="logo">
             <div class="tagline">Logística sem enrolação.</div>
             <div class="sub-tag">Selecione seu perfil para começar:</div>
         </header>
@@ -175,8 +163,8 @@
             
             <!-- CARD 1: MOTORISTA -->
             <div class="visual-card" onclick="openProfile('motorista')">
-                <!-- Certifique-se que o arquivo é card_motorista.jpg -->
-                <img src="assets/images/motorista.jpg" class="card-bg" alt="Motorista" onerror="this.style.display='none'">
+                <!-- CAMINHO CORRIGIDO: driver.jpeg -->
+                <img src="ativos/imagens/driver.jpeg" class="card-bg" alt="Motorista" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title">Sou Motorista</div>
                     <div class="card-desc">Quero ajuda segura para carga e descarga.</div>
@@ -186,8 +174,8 @@
 
             <!-- CARD 2: CHAPA -->
             <div class="visual-card" onclick="openProfile('chapa')">
-                <!-- Certifique-se que o arquivo é card_chapa.jpg -->
-                <img src="assets/images/chapa.jpg" class="card-bg" alt="Chapa" onerror="this.style.display='none'">
+                <!-- CAMINHO CORRIGIDO: chapa.jpeg -->
+                <img src="ativos/imagens/chapa.jpeg" class="card-bg" alt="Chapa" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title">Sou Ajudante</div>
                     <div class="card-desc">Quero ofertas de trabalho no celular.</div>
@@ -197,8 +185,8 @@
 
             <!-- CARD 3: EMPRESA -->
             <div class="visual-card card-small" onclick="openProfile('empresa')">
-                <!-- Certifique-se que o arquivo é card_empresa.jpg -->
-                <img src="assets/images/empresa.jpg" class="card-bg" alt="Empresa" onerror="this.style.display='none'">
+                <!-- CAMINHO CORRIGIDO: empresa.jpeg -->
+                <img src="ativos/imagens/empresa.jpeg" class="card-bg" alt="Empresa" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title" style="font-size:1.1rem;">Sou Empresa / Frota</div>
                     <div class="card-desc">Gestão de risco e compliance.</div>
@@ -219,11 +207,11 @@
                 <a href="terms.html" style="color:#555; font-size:0.75rem;">Termos de Uso</a>
                 <a href="privacy.html" style="color:#555; font-size:0.75rem;">Política de Privacidade</a>
             </div>
-            <p style="margin-top:15px; opacity:0.5;">v7.0 Stable</p>
+            <p style="margin-top:15px; opacity:0.5;">v7.1 Live</p>
         </footer>
     </div>
 
-    <!-- MODAL DE CADASTRO (DINÂMICO) -->
+    <!-- MODAL DE CADASTRO -->
     <div id="modal-cadastro" class="modal">
         <div class="modal-box">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -233,10 +221,8 @@
                 <p id="modalSub">Faça seu cadastro gratuito</p>
             </div>
 
-            <!-- Benefícios Visuais -->
             <div class="modal-benefits" id="modalBenefits"></div>
 
-            <!-- Alerta de Duplicidade -->
             <div id="dupMsg" style="background:#332b00; color:#ffd700; padding:10px; border-radius:8px; margin-bottom:15px; display:none; font-size:0.9rem; text-align:center;">
                 Você já tem cadastro! ID: <strong id="dupId"></strong>
             </div>
@@ -265,84 +251,54 @@
         </div>
     </div>
 
-    <!-- MODAL DE TEXTO (Apoie, FAQ, Sobre) -->
+    <!-- MODAL DE TEXTO -->
     <div id="modal-texto" class="modal">
-        <div class="modal-box">
+        <div class="modal-box" style="text-align:center;">
             <span class="close" onclick="document.getElementById('modal-texto').style.display='none'">&times;</span>
             <h3 id="txtTitle" style="color:var(--gold); margin-bottom:15px; text-align:center;">Título</h3>
             <div id="txtContent" style="color:#ccc; font-size:0.95rem; line-height:1.6; text-align:left;">Texto...</div>
         </div>
     </div>
 
-    <a href="https://wa.me/5511965858142" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-
-    <!-- LÓGICA -->
     <script>
-        // DADOS DOS PERFIS
         const DATA = {
             'motorista': {
                 title: "Sou Motorista",
                 sub: "Acabe com o improviso. Tenha segurança.",
-                benefits: [
-                    {i:"fa-user-shield", t:"Profissionais"},
-                    {i:"fa-star", t:"Avaliação Real"},
-                    {i:"fa-bolt", t:"Rápido"},
-                    {i:"fa-ban", t:"Sem Custo"}
-                ]
+                benefits: [{i:"fa-user-shield", t:"Profissionais"}, {i:"fa-star", t:"Avaliação"}, {i:"fa-bolt", t:"Rápido"}, {i:"fa-ban", t:"Sem Custo"}]
             },
             'chapa': {
                 title: "Sou Ajudante",
                 sub: "Trabalho direto no seu celular.",
-                benefits: [
-                    {i:"fa-mobile", t:"App Grátis"},
-                    {i:"fa-id-card", t:"Histórico"},
-                    {i:"fa-hand-holding-dollar", t:"Renda Extra"},
-                    {i:"fa-lock", t:"Seguro"}
-                ]
+                benefits: [{i:"fa-mobile", t:"App Grátis"}, {i:"fa-id-card", t:"Histórico"}, {i:"fa-hand-holding-dollar", t:"Renda"}, {i:"fa-lock", t:"Seguro"}]
             },
             'empresa': {
                 title: "Sou Empresa",
                 sub: "Gestão de risco para sua frota.",
-                benefits: [
-                    {i:"fa-file-contract", t:"Compliance"},
-                    {i:"fa-chart-line", t:"ESG"},
-                    {i:"fa-users-viewfinder", t:"Gestão"},
-                    {i:"fa-check-double", t:"Auditoria"}
-                ]
+                benefits: [{i:"fa-file-contract", t:"Compliance"}, {i:"fa-chart-line", t:"ESG"}, {i:"fa-users-viewfinder", t:"Gestão"}, {i:"fa-check-double", t:"Auditoria"}]
             }
         };
 
-        // TEXTOS INSTITUCIONAIS
         const TEXTS = {
-            'Sobre': "<p>O Loomper conecta as pontas soltas da logística. Não substituímos pessoas, organizamos relações para dar segurança e dignidade a quem vive da estrada.</p><p>Uma iniciativa Ajud.ai Brasil.</p>",
-            'FAQ': "<p><strong>É gratuito?</strong><br>Sim, para motoristas e chapas.</p><p><strong>É seguro?</strong><br>Sim, fazemos validação de cadastro e monitoramos avaliações.</p><p><strong>Quando lança?</strong><br>App previsto para 2026. Site já funciona para pré-cadastro.</p>",
-            'Apoie': "<p>Somos um projeto independente. Sua ajuda mantém a plataforma gratuita para os motoristas.</p><div style='text-align:center; margin-top:20px;'><button class='btn-submit' style='padding:10px 20px;' onclick='copyPix()'>Copiar Chave PIX</button><p id='pixMsg' style='display:none; color:#25D366; margin-top:10px'>Copiado!</p></div>"
+            'Sobre': "O Loomper conecta as pontas soltas da logística. Não substituímos pessoas, organizamos relações para dar segurança e dignidade a quem vive da estrada.",
+            'FAQ': "<strong>É gratuito?</strong> Sim, para motoristas e chapas.<br><br><strong>É seguro?</strong> Sim, fazemos validação de cadastro.",
+            'Apoie': "Somos um projeto independente. Sua ajuda mantém a plataforma gratuita.<br><br><button class='btn-submit' style='padding:10px;' onclick='copyPix()'>Copiar Chave PIX</button><p id='pixMsg' style='display:none; color:#25D366; margin-top:10px'>Copiado!</p>"
         };
 
-        // LÓGICA DE ABERTURA DE MODAL
         function openProfile(key) {
             const d = DATA[key];
             document.getElementById('modalTitle').innerText = d.title;
             document.getElementById('modalSub').innerText = d.sub;
+            document.getElementById('perfilInput').value = key === 'empresa' ? 'Transportadora' : (key === 'chapa' ? 'Chapa/Ajudante' : 'Motorista Cegonheiro');
             
-            // Define o valor do select escondido ou visível (se for mudar a lógica)
-            // Aqui vamos forçar o input hidden a ter o valor correto
-            let perfilVal = key === 'empresa' ? 'Transportadora' : (key === 'chapa' ? 'Chapa/Ajudante' : 'Motorista Cegonheiro');
-            document.getElementById('perfilInput').value = perfilVal;
-            
-            // Render Benefits
             let html = '';
-            d.benefits.forEach(b => {
-                html += `<div class="m-benefit"><i class="fa-solid ${b.i}"></i><span>${b.t}</span></div>`;
-            });
+            d.benefits.forEach(b => { html += `<div class="m-benefit"><i class="fa-solid ${b.i}"></i><span>${b.t}</span></div>`; });
             document.getElementById('modalBenefits').innerHTML = html;
             
-            // Check Duplicidade Local
             if(localStorage.getItem('registered') === 'true') {
                 document.getElementById('dupMsg').style.display='block';
                 document.getElementById('dupId').innerText = localStorage.getItem('lid');
             }
-
             document.getElementById('modal-cadastro').style.display = 'flex';
         }
 
@@ -356,51 +312,14 @@
 
         function copyPix() { navigator.clipboard.writeText('contato@loomper.com.br'); document.getElementById('pixMsg').style.display='block'; }
 
-        // INIT & UTILS (IBGE, ID, Mascaras)
         if(!localStorage.getItem('lid')) localStorage.setItem('lid', "LMP-"+Math.floor(Math.random()*90000));
         document.getElementById('hiddenId').value = localStorage.getItem('lid');
 
-        // IBGE Fetch
-        let validCities=[];
-        fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome').then(r=>r.json()).then(res=>{
-            res.forEach(u=>{
-                let o=document.createElement('option'); o.value=u.sigla; o.innerText=u.sigla;
-                document.getElementById('ufSelect').appendChild(o);
-            });
-        });
-        
-        document.getElementById('ufSelect').addEventListener('change',function(){
-            let u=this.value; let l=document.getElementById('cityList');
-            document.getElementById('cityInput').value=""; l.innerHTML=""; validCities=[];
-            if(u) fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${u}/municipios`).then(r=>r.json()).then(res=>{
-                res.forEach(c=>{
-                    let o=document.createElement('option'); o.value=c.nome; l.appendChild(o); validCities.push(c.nome);
-                });
-            });
-        });
-
-        // Form Submit
-        document.getElementById('mainForm').addEventListener('submit',function(e){
-            // Valida cidade
-            if(!validCities.includes(document.getElementById('cityInput').value)){
-                e.preventDefault(); alert('Por favor, selecione uma cidade válida da lista.'); return;
-            }
-            // Grava dados
-            document.getElementById('hiddenDate').value = new Date().toLocaleString();
-            localStorage.setItem('registered', 'true');
-            localStorage.setItem('userProfile', document.getElementById('perfilInput').value);
-        });
-
-        // Mascara WhatsApp
-        document.getElementById('zapInput').addEventListener('input',function(e){
-            let x=e.target.value.replace(/\D/g,'').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-            e.target.value=!x[2]?x[1]:'('+x[1]+') '+x[2]+(x[3]?'-'+x[3]:'');
-        });
-        
-        // Fechar modal ao clicar fora
-        window.onclick = e => { 
-            if(e.target.classList.contains('modal')) e.target.style.display='none'; 
-        }
+        let validCities=[];fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome').then(r=>r.json()).then(res=>{res.forEach(u=>{let o=document.createElement('option');o.value=u.sigla;o.innerText=u.sigla;document.getElementById('ufSelect').appendChild(o)})});
+        document.getElementById('ufSelect').addEventListener('change',function(){let u=this.value;let l=document.getElementById('cityList');document.getElementById('cityInput').value="";l.innerHTML="";validCities=[];if(u)fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${u}/municipios`).then(r=>r.json()).then(res=>{res.forEach(c=>{let o=document.createElement('option');o.value=c.nome;l.appendChild(o);validCities.push(c.nome)})})});
+        document.getElementById('mainForm').addEventListener('submit',function(e){if(!validCities.includes(document.getElementById('cityInput').value)){e.preventDefault();alert('Cidade inválida.');return}document.getElementById('hiddenDate').value=new Date().toLocaleString();localStorage.setItem('registered','true');localStorage.setItem('userProfile',document.getElementById('perfilInput').value)});
+        document.getElementById('zapInput').addEventListener('input',function(e){let x=e.target.value.replace(/\D/g,'').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);e.target.value=!x[2]?x[1]:'('+x[1]+') '+x[2]+(x[3]?'-'+x[3]:'')});
+        window.onclick = e => { if(e.target.className === 'modal') e.target.style.display='none'; }
     </script>
 </body>
 </html>
