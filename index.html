@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Loomper | Logística sem Enrolação</title>
     <meta name="theme-color" content="#0a1628">
-    <meta name="description" content="Conectamos motoristas, chapas e empresas. O jeito certo de fazer logística.">
     
-    <!-- Favicon (Ajustado para o caminho correto) -->
-    <link rel="icon" type="image/png" href="ativos/imagens/FAVICON_Loomper.png">
+    <!-- Favicon (Caminho Real) -->
+    <link rel="icon" type="image/png" href="assets/images/FAVICON_Loomper.png">
     
-    <!-- Fontes & Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     
@@ -27,8 +25,8 @@
         
         body { 
             background-color: var(--dark); color: white; 
-            /* CORREÇÃO DE FUNDO: Caminho atualizado e extensão .jpeg */
-            background: url('ativos/imagens/bg_home.jpeg') no-repeat center center fixed; 
+            /* FUNDO CORRIGIDO: assets/images/bg_home.jpeg */
+            background: url('assets/images/bg_home.jpeg') no-repeat center center fixed; 
             background-size: cover;
             min-height: 100vh;
             overflow-x: hidden;
@@ -49,7 +47,8 @@
         }
 
         header { text-align: center; margin-bottom: 30px; padding-top: 20px; }
-        .logo { height: 50px; margin-bottom: 10px; }
+        /* Logo ajustado para não cortar */
+        .logo { height: 50px; width: auto; max-width: 80%; }
         .tagline { font-size: 1.4rem; font-weight: 800; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); letter-spacing: -0.5px; }
         .sub-tag { font-size: 0.9rem; color: #ccc; font-weight: 500; margin-top: 5px; }
 
@@ -73,7 +72,7 @@
 
         .card-bg {
             width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.5s; opacity: 0.8;
+            transition: transform 0.5s; opacity: 0.7;
         }
         .visual-card:hover .card-bg { transform: scale(1.05); opacity: 1; }
 
@@ -86,7 +85,7 @@
 
         .card-title { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; color: white; margin-bottom: 5px; text-shadow: 2px 2px 4px black; }
         .card-desc { font-size: 0.9rem; color: #ddd; font-weight: 500; max-width: 85%; line-height: 1.3; text-shadow: 1px 1px 2px black; }
-        .card-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: var(--orange); opacity: 0.9; filter: drop-shadow(0 0 10px rgba(255,102,0,0.5)); }
+        .card-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: var(--orange); opacity: 0.9; }
 
         .card-small { height: 100px; border-color: var(--gold); }
         .card-small .card-content { background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.8) 100%); }
@@ -119,8 +118,6 @@
         .m-benefit span { display: block; font-size: 0.85rem; color: #ddd; font-weight: 600; line-height: 1.2; }
 
         .form-control { width: 100%; padding: 16px; background: #0a1628; border: 1px solid #333; border-radius: 10px; color: white; margin-bottom: 15px; font-size: 1rem; }
-        .form-control:focus { outline: none; border-color: var(--orange); }
-        
         .btn-submit { width: 100%; padding: 18px; background: var(--orange); color: white; font-weight: 800; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; box-shadow: 0 5px 20px rgba(255,102,0,0.3); }
         
         .check-area { font-size: 0.8rem; color: #888; margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
@@ -152,8 +149,8 @@
     <div class="app-container">
         <!-- HEADER -->
         <header>
-            <!-- CAMINHO CORRIGIDO -->
-            <img src="ativos/imagens/logo.svg" alt="Loomper" class="logo">
+            <!-- CORRIGIDO: assets/images/logo.svg -->
+            <img src="assets/images/logo.svg" alt="Loomper" class="logo">
             <div class="tagline">Logística sem enrolação.</div>
             <div class="sub-tag">Selecione seu perfil para começar:</div>
         </header>
@@ -163,8 +160,8 @@
             
             <!-- CARD 1: MOTORISTA -->
             <div class="visual-card" onclick="openProfile('motorista')">
-                <!-- CAMINHO CORRIGIDO: driver.jpeg -->
-                <img src="ativos/imagens/driver.jpeg" class="card-bg" alt="Motorista" onerror="this.style.display='none'">
+                <!-- CORRIGIDO: assets/images/driver.jpeg -->
+                <img src="assets/images/driver.jpeg" class="card-bg" alt="Motorista" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title">Sou Motorista</div>
                     <div class="card-desc">Quero ajuda segura para carga e descarga.</div>
@@ -174,8 +171,8 @@
 
             <!-- CARD 2: CHAPA -->
             <div class="visual-card" onclick="openProfile('chapa')">
-                <!-- CAMINHO CORRIGIDO: chapa.jpeg -->
-                <img src="ativos/imagens/chapa.jpeg" class="card-bg" alt="Chapa" onerror="this.style.display='none'">
+                <!-- CORRIGIDO: assets/images/chapa.jpeg -->
+                <img src="assets/images/chapa.jpeg" class="card-bg" alt="Chapa" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title">Sou Ajudante</div>
                     <div class="card-desc">Quero ofertas de trabalho no celular.</div>
@@ -185,8 +182,8 @@
 
             <!-- CARD 3: EMPRESA -->
             <div class="visual-card card-small" onclick="openProfile('empresa')">
-                <!-- CAMINHO CORRIGIDO: empresa.jpeg -->
-                <img src="ativos/imagens/empresa.jpeg" class="card-bg" alt="Empresa" onerror="this.style.display='none'">
+                <!-- CORRIGIDO: assets/images/empresa.jpeg -->
+                <img src="assets/images/empresa.jpeg" class="card-bg" alt="Empresa" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title" style="font-size:1.1rem;">Sou Empresa / Frota</div>
                     <div class="card-desc">Gestão de risco e compliance.</div>
@@ -207,7 +204,7 @@
                 <a href="terms.html" style="color:#555; font-size:0.75rem;">Termos de Uso</a>
                 <a href="privacy.html" style="color:#555; font-size:0.75rem;">Política de Privacidade</a>
             </div>
-            <p style="margin-top:15px; opacity:0.5;">v7.1 Live</p>
+            <p style="margin-top:15px; opacity:0.5;">v7.3 Live</p>
         </footer>
     </div>
 
@@ -215,14 +212,12 @@
     <div id="modal-cadastro" class="modal">
         <div class="modal-box">
             <span class="close" onclick="closeModal()">&times;</span>
-            
             <div class="modal-header">
                 <h3 id="modalTitle">Motorista</h3>
                 <p id="modalSub">Faça seu cadastro gratuito</p>
             </div>
-
             <div class="modal-benefits" id="modalBenefits"></div>
-
+            
             <div id="dupMsg" style="background:#332b00; color:#ffd700; padding:10px; border-radius:8px; margin-bottom:15px; display:none; font-size:0.9rem; text-align:center;">
                 Você já tem cadastro! ID: <strong id="dupId"></strong>
             </div>
@@ -260,12 +255,15 @@
         </div>
     </div>
 
+    <a href="https://wa.me/5511965858142" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <!-- LÓGICA -->
     <script>
         const DATA = {
             'motorista': {
                 title: "Sou Motorista",
                 sub: "Acabe com o improviso. Tenha segurança.",
-                benefits: [{i:"fa-user-shield", t:"Profissionais"}, {i:"fa-star", t:"Avaliação"}, {i:"fa-bolt", t:"Rápido"}, {i:"fa-ban", t:"Sem Custo"}]
+                benefits: [{i:"fa-user-shield", t:"Profissionais"}, {i:"fa-star", t:"Avaliação Real"}, {i:"fa-bolt", t:"Rápido"}, {i:"fa-ban", t:"Sem Custo"}]
             },
             'chapa': {
                 title: "Sou Ajudante",
@@ -280,16 +278,17 @@
         };
 
         const TEXTS = {
-            'Sobre': "O Loomper conecta as pontas soltas da logística. Não substituímos pessoas, organizamos relações para dar segurança e dignidade a quem vive da estrada.",
-            'FAQ': "<strong>É gratuito?</strong> Sim, para motoristas e chapas.<br><br><strong>É seguro?</strong> Sim, fazemos validação de cadastro.",
-            'Apoie': "Somos um projeto independente. Sua ajuda mantém a plataforma gratuita.<br><br><button class='btn-submit' style='padding:10px;' onclick='copyPix()'>Copiar Chave PIX</button><p id='pixMsg' style='display:none; color:#25D366; margin-top:10px'>Copiado!</p>"
+            'Sobre': "<p>O Loomper conecta as pontas soltas da logística. Não substituímos pessoas, organizamos relações para dar segurança e dignidade a quem vive da estrada.</p><p>Uma iniciativa Ajud.ai Brasil.</p>",
+            'FAQ': "<p><strong>É gratuito?</strong> Sim, para motoristas e chapas.<br><br><strong>É seguro?</strong> Sim, fazemos validação de cadastro.</p><p><strong>Quando lança?</strong> App previsto para 2026. Site já funciona para pré-cadastro.</p>",
+            'Apoie': "<p>Somos um projeto independente. Sua ajuda mantém a plataforma gratuita para os motoristas.</p><div style='text-align:center; margin-top:20px;'><button class='btn-submit' style='padding:10px 20px;' onclick='copyPix()'>Copiar Chave PIX</button><p id='pixMsg' style='display:none; color:#25D366; margin-top:10px'>Copiado!</p></div>"
         };
 
         function openProfile(key) {
             const d = DATA[key];
             document.getElementById('modalTitle').innerText = d.title;
             document.getElementById('modalSub').innerText = d.sub;
-            document.getElementById('perfilInput').value = key === 'empresa' ? 'Transportadora' : (key === 'chapa' ? 'Chapa/Ajudante' : 'Motorista Cegonheiro');
+            let perfilVal = key === 'empresa' ? 'Transportadora' : (key === 'chapa' ? 'Chapa/Ajudante' : 'Motorista Cegonheiro');
+            document.getElementById('perfilInput').value = perfilVal;
             
             let html = '';
             d.benefits.forEach(b => { html += `<div class="m-benefit"><i class="fa-solid ${b.i}"></i><span>${b.t}</span></div>`; });
