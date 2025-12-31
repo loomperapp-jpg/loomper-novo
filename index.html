@@ -3,75 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- SEO OTIMIZADO -->
-    <title>Loomper | Chapas, Ajudantes e Logística sem Improviso</title>
-    <meta name="description" content="O Loomper conecta motoristas, ajudantes e transportadoras para executar carga e descarga com segurança, agilidade e avaliação real. Beta gratuito.">
-    <meta property="og:title" content="Loomper | Logística sem Enrolação">
-    <meta property="og:description" content="A rede que protege o motorista do improviso e valoriza o chapa profissional.">
-    <meta property="og:image" content="https://loomper-novo.netlify.app/assets/images/hero.png">
+    <title>Loomper | Logística sem Enrolação</title>
     <meta name="theme-color" content="#0a1628">
+    <meta name="description" content="Conectamos motoristas, ajudantes e transportadoras. O jeito certo de fazer logística.">
     
     <link rel="icon" type="image/png" href="assets/images/FAVICON_Loomper.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* DESIGN SYSTEM V8 */
-        :root { --dark: #0a1628; --gold: #D4AF37; --orange: #FF6600; --white: #ffffff; --glass: rgba(0, 0, 0, 0.6); }
+        :root {
+            --dark: #0a1628;
+            --dark-light: #0f1724;
+            --gold: #D4AF37;
+            --orange: #FF6600;
+            --white: #ffffff;
+            --text-gray: #ddd;
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--dark); color: white; background: url('assets/images/bg_home.jpeg') no-repeat center center fixed; background-size: cover; min-height: 100vh; overflow-x: hidden; }
-        .overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 22, 40, 0.85); z-index: 0; }
-        .app-container { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; padding: 20px; }
         
+        body { 
+            background-color: var(--dark); color: white; 
+            background: url('assets/images/bg_home.jpeg') no-repeat center center fixed; 
+            background-size: cover;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .overlay-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 22, 40, 0.90); /* Um pouco mais escuro para leitura */
+            z-index: 0;
+        }
+
+        .app-container {
+            position: relative; z-index: 1;
+            max-width: 900px; margin: 0 auto;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            padding: 20px;
+        }
+
         /* HEADER */
-        header { text-align: center; margin-bottom: 20px; padding-top: 20px; }
-        .logo { height: 50px; width: auto; max-width: 80%; }
-        .tagline { font-size: 1.6rem; font-weight: 800; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: -0.5px; margin-top: 10px; }
-        .sub-tag { font-size: 0.9rem; color: #ccc; font-weight: 500; margin-top: 5px; max-width: 300px; margin-left: auto; margin-right: auto; line-height: 1.4; }
+        header { text-align: center; margin-bottom: 30px; padding-top: 20px; }
+        .logo { height: 60px; margin-bottom: 10px; object-fit: contain; }
+        .tagline { font-size: 1.4rem; font-weight: 800; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .sub-tag { font-size: 0.9rem; color: #ccc; font-weight: 500; margin-top: 5px; }
 
-        /* CARDS (DASHBOARD) */
-        .cards-grid { display: flex; flex-direction: column; gap: 15px; flex-grow: 1; justify-content: center; }
-        .visual-card { position: relative; height: 160px; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 15px 40px rgba(0,0,0,0.6); transition: transform 0.2s; background-color: #111; }
+        /* CARDS GRID */
+        .cards-grid {
+            display: flex; flex-direction: column; gap: 20px;
+            flex-grow: 1; justify-content: center; margin-bottom: 40px;
+        }
+
+        .visual-card {
+            position: relative; height: 160px; border-radius: 16px; overflow: hidden; cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            transition: transform 0.2s; background-color: #111;
+        }
         .visual-card:active { transform: scale(0.98); }
-        .card-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-        .card-content { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, transparent 100%); display: flex; flex-direction: column; justify-content: center; padding: 0 25px; }
-        .card-title { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: white; margin-bottom: 5px; text-shadow: 2px 2px 4px black; }
-        .card-desc { font-size: 0.9rem; color: #ddd; font-weight: 600; max-width: 85%; line-height: 1.3; text-shadow: 1px 1px 2px black; }
-        .card-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 2.2rem; color: var(--orange); opacity: 0.9; }
-        .card-small { height: 90px; border-color: var(--gold); }
-        .card-small .card-content { background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.8) 100%); }
-        .card-small .card-title { font-size: 1rem; color: var(--gold); }
-        .card-small .card-icon { font-size: 1.6rem; color: var(--gold); }
-
-        /* FOOTER */
-        footer { margin-top: 30px; text-align: center; font-size: 0.8rem; color: #777; padding-bottom: 20px; }
-        .footer-links a { color: #aaa; text-decoration: none; margin: 0 10px; font-weight: 600; }
-
-        /* MODAL */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; display: none; align-items: end; backdrop-filter: blur(5px); }
-        .modal-box { background: #151f32; width: 100%; border-radius: 25px 25px 0 0; padding: 30px 25px; position: relative; max-height: 90vh; overflow-y: auto; border-top: 2px solid var(--orange); animation: slideUp 0.3s; }
-        .close { position: absolute; top: 20px; right: 20px; font-size: 1.8rem; color: #666; cursor: pointer; z-index: 10; }
-        .modal-header { text-align: center; margin-bottom: 20px; }
-        .modal-header h3 { font-size: 1.6rem; color: white; margin-bottom: 5px; }
+        .card-bg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; opacity: 0.7; }
+        .visual-card:hover .card-bg { transform: scale(1.05); opacity: 1; }
         
-        /* PASSOS DO MODAL */
-        .pain-list { text-align: left; margin-bottom: 25px; }
-        .pain-item { display: flex; gap: 12px; margin-bottom: 15px; align-items: flex-start; }
-        .pain-icon { color: var(--gold); font-size: 1.2rem; margin-top: 2px; }
-        .pain-text { color: #ddd; font-size: 0.95rem; line-height: 1.4; }
-        .step-content { display: block; }
-        .hidden { display: none; }
+        .card-content {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
+            display: flex; flex-direction: column; justify-content: center; padding: 0 25px;
+        }
+        .card-title { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; color: white; margin-bottom: 5px; }
+        .card-desc { font-size: 0.9rem; color: #ddd; font-weight: 500; max-width: 85%; line-height: 1.3; }
+        .card-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: var(--orange); opacity: 0.9; }
 
-        /* FORM */
-        .form-control { width: 100%; padding: 14px; background: #0a1628; border: 1px solid #333; border-radius: 10px; color: white; margin-bottom: 12px; font-size: 1rem; }
-        .btn-submit { width: 100%; padding: 16px; background: var(--orange); color: white; font-weight: 800; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; box-shadow: 0 5px 20px rgba(255,102,0,0.3); margin-top: 10px; text-transform: uppercase; }
+        .card-small { height: 100px; border-color: var(--gold); }
+        .card-small .card-content { background: linear-gradient(90deg, rgba(10,22,40,0.98) 0%, rgba(10,22,40,0.8) 100%); }
+        .card-small .card-title { font-size: 1.1rem; color: var(--gold); }
+        .card-small .card-icon { font-size: 1.8rem; color: var(--gold); }
+
+        /* --- RODAPÉ RICO (NOVA ESTRUTURA) --- */
+        footer {
+            margin-top: 60px; background: rgba(5, 8, 15, 0.95); 
+            border-top: 1px solid #333; padding: 50px 20px 20px;
+            text-align: left; border-radius: 20px 20px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid; grid-template-columns: 1fr; gap: 40px;
+            max-width: 1000px; margin: 0 auto;
+        }
+        
+        .footer-block h4 { color: var(--gold); margin-bottom: 15px; font-size: 1.1rem; border-left: 3px solid var(--orange); padding-left: 10px; }
+        .footer-block p, .footer-block li { color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px; }
+        .footer-block ul { list-style: none; }
+        .footer-block a { color: #aaa; text-decoration: none; transition: 0.2s; }
+        .footer-block a:hover { color: var(--orange); padding-left: 5px; }
+        
+        .footer-legal { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #222; font-size: 0.8rem; color: #666; }
+        .footer-quote { text-align: center; font-style: italic; color: #fff; margin-top: 30px; font-weight: 600; opacity: 0.8; }
+
+        /* --- MODAIS (GERAL) --- */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 3000;
+            display: none; align-items: center; justify-content: center; padding: 15px;
+            backdrop-filter: blur(8px);
+        }
+        .modal-box {
+            background: #151f32; width: 100%; max-width: 600px; border-radius: 15px;
+            padding: 30px; position: relative; max-height: 90vh; overflow-y: auto;
+            border: 1px solid #333; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        .close { position: absolute; top: 20px; right: 20px; font-size: 2rem; color: #666; cursor: pointer; transition: 0.2s; }
+        .close:hover { color: var(--orange); }
+        
+        .modal-title { color: var(--gold); font-size: 1.5rem; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .modal-body { color: #ccc; font-size: 0.95rem; line-height: 1.7; text-align: justify; }
+        .modal-body h3 { color: white; margin: 20px 0 10px; font-size: 1.1rem; }
+        .modal-body ul { margin-left: 20px; margin-bottom: 15px; }
+        
+        /* Modal Cadastro Específico */
+        .modal-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .m-benefit { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; text-align: center; }
+        .m-benefit i { font-size: 1.2rem; color: var(--gold); margin-bottom: 5px; display:block; }
+        
+        /* Forms */
+        .form-control { width: 100%; padding: 14px; background: #0a1628; border: 1px solid #333; border-radius: 8px; color: white; margin-bottom: 12px; font-size: 1rem; }
+        .btn-submit { width: 100%; padding: 16px; background: var(--orange); color: white; font-weight: 800; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin-top: 10px; }
         .check-area { font-size: 0.8rem; color: #888; margin-bottom: 15px; display: flex; gap: 10px; align-items: center; }
-        .check-area a { color: var(--gold); text-decoration: underline; }
+        .check-area a { color: var(--gold); text-decoration: underline; cursor: pointer; }
 
-        .wa-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 1500; }
+        .wa-float {
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
+            background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 1500;
+        }
+
         @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-        @media (min-width: 768px) { .modal { align-items: center; justify-content: center; } .modal-box { max-width: 500px; border-radius: 20px; border-top: none; box-shadow: 0 20px 50px rgba(0,0,0,0.8); } .cards-grid { flex-direction: row; flex-wrap: wrap; align-content: center; } .visual-card { width: 48%; height: 250px; } .card-small { width: 100%; height: 120px; } .logo { height: 60px; } }
+        @media (min-width: 768px) {
+            .cards-grid { flex-direction: row; flex-wrap: wrap; }
+            .visual-card { width: 48%; height: 280px; }
+            .card-small { width: 100%; height: 140px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -79,181 +152,212 @@
     <div class="overlay-bg"></div>
 
     <div class="app-container">
+        <!-- HEADER -->
         <header>
-            <img src="assets/images/logo.svg" alt="Loomper" class="logo">
+            <!-- LOGO PNG AQUI -->
+            <img src="assets/images/logo.png" alt="Loomper" class="logo">
             <div class="tagline">Logística sem enrolação.</div>
-            <div class="sub-tag">Conectamos motoristas, ajudantes e frotas com segurança real.</div>
+            <div class="sub-tag">Selecione seu perfil para começar:</div>
         </header>
 
-        <!-- DASHBOARD (CARDS OTIMIZADOS) -->
+        <!-- DASHBOARD VISUAL -->
         <div class="cards-grid">
-            <!-- MOTORISTA -->
+            
             <div class="visual-card" onclick="openProfile('motorista')">
-                <img src="assets/images/driver.jpeg" class="card-bg" alt="Motorista" onerror="this.style.display='none'">
+                <img src="ativos/imagens/driver.jpeg" class="card-bg" alt="Motorista" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title">Sou Motorista</div>
-                    <div class="card-desc">Descarga certa, no tempo certo.</div>
+                    <div class="card-desc">Quero ajuda segura para carga e descarga.</div>
                 </div>
                 <i class="fa-solid fa-truck-front card-icon"></i>
             </div>
 
-            <!-- CHAPA -->
             <div class="visual-card" onclick="openProfile('chapa')">
-                <img src="assets/images/chapa.jpeg" class="card-bg" alt="Chapa" onerror="this.style.display='none'">
+                <img src="ativos/imagens/chapa.jpeg" class="card-bg" alt="Chapa" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title">Sou Ajudante</div>
-                    <div class="card-desc">Serviço constante e respeito.</div>
+                    <div class="card-desc">Quero ofertas de trabalho no celular.</div>
                 </div>
                 <i class="fa-solid fa-helmet-safety card-icon"></i>
             </div>
 
-            <!-- EMPRESA -->
             <div class="visual-card card-small" onclick="openProfile('empresa')">
-                <img src="assets/images/empresa.jpeg" class="card-bg" alt="Empresa" onerror="this.style.display='none'">
+                <img src="ativos/imagens/empresa.jpeg" class="card-bg" alt="Empresa" onerror="this.style.display='none'">
                 <div class="card-content">
                     <div class="card-title" style="font-size:1.1rem;">Sou Empresa / Frota</div>
-                    <div class="card-desc">Menos atraso. Mais controle.</div>
+                    <div class="card-desc">Gestão de risco e compliance.</div>
                 </div>
                 <i class="fa-solid fa-building card-icon"></i>
             </div>
+
         </div>
 
+        <!-- RODAPÉ ESTRUTURADO (4 BLOCOS) -->
         <footer>
-            <div class="footer-links">
-                <a href="#" onclick="openTextModal('Sobre')">Sobre</a>
-                <a href="#" onclick="openTextModal('FAQ')">Dúvidas</a>
-                <a href="#" onclick="openTextModal('Apoie')">Apoie</a>
+            <div class="footer-grid">
+                <!-- BLOCO 1: SOBRE -->
+                <div class="footer-block">
+                    <h4>Sobre o Loomper</h4>
+                    <p>Conectamos as pontas soltas da logística automotiva. Não substituímos pessoas. Organizamos relações para trazer previsibilidade, segurança e dignidade a quem vive da estrada.</p>
+                    <p>Tecnologia com propósito, construída a partir da operação real.</p>
+                </div>
+
+                <!-- BLOCO 2: DÚVIDAS -->
+                <div class="footer-block">
+                    <h4>Dúvidas Frequentes</h4>
+                    <p><strong>É gratuito?</strong><br>Sim. O uso é gratuito para motoristas e ajudantes.</p>
+                    <p><strong>É seguro?</strong><br>Sim. Trabalhamos com validação de cadastro e construção de reputação.</p>
+                    <p><strong>Quando lança?</strong><br>App previsto para 2026. O site é para pré-cadastro de pioneiros.</p>
+                </div>
+
+                <!-- BLOCO 3: INSTITUCIONAL -->
+                <div class="footer-block">
+                    <h4>Institucional</h4>
+                    <p>O Loomper é uma iniciativa independente focada em impacto social e organização operacional.</p>
+                    <p style="opacity:0.7; font-size:0.85rem;">
+                        <strong>Ajud.ai Brasil Inova Simples (I.S.)</strong><br>
+                        CNPJ: 59.150.688/0001-39<br>
+                        São Bernardo do Campo • SP • Brasil
+                    </p>
+                </div>
+
+                <!-- BLOCO 4: LEGAL -->
+                <div class="footer-block">
+                    <h4>Legal & Contato</h4>
+                    <ul>
+                        <li><a href="#" onclick="openModal('modal-termos')">Termos de Uso</a></li>
+                        <li><a href="#" onclick="openModal('modal-privacidade')">Política de Privacidade</a></li>
+                        <br>
+                        <li><i class="fa-regular fa-envelope"></i> contato@loomper.com.br</li>
+                    </ul>
+                </div>
             </div>
-            <div style="margin-top:15px;">
-                <a href="terms.html" style="color:#555; font-size:0.75rem;">Termos</a>
-                <a href="privacy.html" style="color:#555; font-size:0.75rem;">Privacidade</a>
+
+            <p class="footer-quote">"Quando o trabalho deixa de ser improviso, o crescimento deixa de ser sorte."</p>
+
+            <div class="footer-legal">
+                © 2025 Loomper. Todos os direitos reservados.
             </div>
-            <p style="margin-top:10px; opacity:0.5;">v8.0 Final</p>
         </footer>
     </div>
 
-    <!-- MODAL DE CADASTRO (FLUXO 2 PASSOS) -->
+    <!-- ================= MODAIS ================= -->
+
+    <!-- MODAL CADASTRO -->
     <div id="modal-cadastro" class="modal">
         <div class="modal-box">
-            <span class="close" onclick="closeModal()">&times;</span>
-            
+            <span class="close" onclick="closeModal('modal-cadastro')">&times;</span>
             <div class="modal-header">
-                <h3 id="modalTitle">...</h3>
+                <h3 id="modalTitle">Motorista</h3>
+                <p id="modalSub">Faça seu cadastro gratuito</p>
+            </div>
+            <div class="modal-benefits" id="modalBenefits"></div>
+            
+            <div id="dupMsg" style="background:#332b00; color:#ffd700; padding:10px; border-radius:8px; margin-bottom:15px; display:none; font-size:0.9rem; text-align:center;">
+                Você já tem cadastro! ID: <strong id="dupId"></strong>
             </div>
 
-            <!-- PASSO 1: O ESPELHO DA DOR -->
-            <div id="step-pain" class="step-content">
-                <div class="pain-list" id="painList"></div>
-                <button class="btn-submit" onclick="goToForm()" id="btnPain">QUERO RESOLVER ISSO</button>
-            </div>
+            <form name="loomper-beta" method="POST" data-netlify="true" action="/sucesso.html" id="mainForm">
+                <input type="hidden" name="perfil" id="perfilInput">
+                <input type="hidden" name="id_gerado" id="hiddenId">
+                <input type="hidden" name="data_aceite" id="hiddenDate">
 
-            <!-- PASSO 2: O FORMULÁRIO -->
-            <div id="step-form" class="step-content hidden">
-                <p style="text-align:center; color:#aaa; margin-bottom:20px; font-size:0.9rem;">
-                    Preencha para liberar seu acesso ao Beta Fechado.
-                </p>
-
-                <div id="dupMsg" style="background:#332b00; color:#ffd700; padding:10px; border-radius:8px; margin-bottom:15px; display:none; font-size:0.9rem; text-align:center;">
-                    Você já tem cadastro! ID: <strong id="dupId"></strong>
+                <input type="text" name="nome" class="form-control" placeholder="Seu Nome Completo" required>
+                <input type="tel" name="whatsapp" id="zapInput" class="form-control" placeholder="WhatsApp (DDD) 9..." required>
+                <input type="email" name="email" class="form-control" placeholder="E-mail" required>
+                
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1"><select id="ufSelect" name="uf" class="form-control" required><option value="">UF</option></select></div>
+                    <div style="flex:2"><input type="text" id="cityInput" name="cidade" list="cityList" class="form-control" placeholder="Cidade" required><datalist id="cityList"></datalist></div>
                 </div>
 
-                <form name="loomper-beta" method="POST" data-netlify="true" action="/sucesso.html" id="mainForm">
-                    <input type="hidden" name="perfil" id="perfilInput">
-                    <input type="hidden" name="id_gerado" id="hiddenId">
-                    <input type="hidden" name="data_aceite" id="hiddenDate">
+                <div class="check-area">
+                    <input type="checkbox" required>
+                    <span>Li e aceito os <a onclick="openModal('modal-termos')">Termos</a> e <a onclick="openModal('modal-privacidade')">Privacidade</a>.</span>
+                </div>
 
-                    <input type="text" name="nome" class="form-control" placeholder="Seu Nome Completo" required>
-                    <input type="tel" name="whatsapp" id="zapInput" class="form-control" placeholder="WhatsApp (ex: 11 99999-0000)" required>
-                    <input type="email" name="email" class="form-control" placeholder="E-mail" required>
-                    
-                    <div style="display:flex; gap:10px;">
-                        <div style="flex:1"><select id="ufSelect" name="uf" class="form-control" required><option value="">UF</option></select></div>
-                        <div style="flex:2"><input type="text" id="cityInput" name="cidade" list="cityList" class="form-control" placeholder="Cidade" required><datalist id="cityList"></datalist></div>
-                    </div>
+                <button type="submit" class="btn-submit">ENTRAR AGORA</button>
+            </form>
+        </div>
+    </div>
 
-                    <div class="check-area">
-                        <input type="checkbox" required>
-                        <span>Li e aceito os <a href="terms.html" target="_blank">Termos</a> e <a href="privacy.html" target="_blank">Privacidade</a>.</span>
-                    </div>
-
-                    <button type="submit" class="btn-submit" id="btnSubmit">GARANTIR ACESSO</button>
-                </form>
+    <!-- MODAL TERMOS DE USO -->
+    <div id="modal-termos" class="modal">
+        <div class="modal-box">
+            <span class="close" onclick="closeModal('modal-termos')">&times;</span>
+            <h3 class="modal-title">Termos de Uso</h3>
+            <div class="modal-body">
+                <p><strong>1. Identificação:</strong> O Loomper é operado pela Ajud.AI Brasil Inova Simples (CNPJ 59.150.688/0001-39). Somos uma plataforma de tecnologia.</p>
+                <p><strong>2. Natureza:</strong> Não somos transportadora. Não agenciamos mão de obra. Não intermediamos relações trabalhistas. Apenas conectamos partes.</p>
+                <p><strong>3. Vínculo:</strong> O uso do app não gera vínculo empregatício entre usuários ou com o Loomper.</p>
+                <p><strong>4. Responsabilidade:</strong> Você é responsável pelas informações que fornece e pelos acordos que faz com outros usuários.</p>
+                <p><strong>5. Uso Indevido:</strong> É proibido usar a plataforma para fins ilegais. Perfis falsos serão banidos.</p>
+                <p><em>Versão Beta 1.0 (2025)</em></p>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE TEXTO -->
-    <div id="modal-texto" class="modal">
-        <div class="modal-box" style="text-align:center;">
-            <span class="close" onclick="document.getElementById('modal-texto').style.display='none'">&times;</span>
-            <h3 id="txtTitle" style="color:var(--gold); margin-bottom:15px; text-align:center;">Título</h3>
-            <div id="txtContent" style="color:#ccc; font-size:0.95rem; line-height:1.6; text-align:left;">Texto...</div>
+    <!-- MODAL POLITICA DE PRIVACIDADE -->
+    <div id="modal-privacidade" class="modal">
+        <div class="modal-box">
+            <span class="close" onclick="closeModal('modal-privacidade')">&times;</span>
+            <h3 class="modal-title">Política de Privacidade</h3>
+            <div class="modal-body">
+                <p><strong>1. Controlador:</strong> Ajud.AI Brasil Inova Simples (I.S.).</p>
+                <p><strong>2. Dados Coletados:</strong> Nome, contato, localização e perfil profissional. Apenas o necessário para a operação.</p>
+                <p><strong>3. Finalidade:</strong> Viabilizar conexões, segurança e comunicação.</p>
+                <p><strong>4. Compartilhamento:</strong> Seus dados aparecem para outros usuários apenas quando necessário para o serviço. Não vendemos dados.</p>
+                <p><strong>5. Seus Direitos (LGPD):</strong> Você pode solicitar exclusão ou correção a qualquer momento pelo e-mail contato@loomper.com.br.</p>
+            </div>
         </div>
     </div>
 
-    <a href="https://wa.me/5511965858142?text=Quero%20entender%20como%20o%20Loomper%20funciona" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://wa.me/5511965858142" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
+    <!-- LÓGICA -->
     <script>
-        // DADOS (ESPELHAMENTO)
         const DATA = {
             'motorista': {
-                title: "Motorista",
-                pains: ["Cansado de procurar chapa na sorte?", "O improviso está saindo caro?", "Quer agilidade e segurança na descarga?"],
-                btnText: "QUERO RESOLVER ISSO"
+                title: "Sou Motorista",
+                sub: "Acabe com o improviso.",
+                benefits: [{i:"fa-user-shield", t:"Profissionais"}, {i:"fa-star", t:"Avaliação"}, {i:"fa-bolt", t:"Rápido"}, {i:"fa-ban", t:"Sem Custo"}]
             },
             'chapa': {
-                title: "Ajudante / Chapa",
-                pains: ["Seu trabalho é um bico incerto?", "Não sabe se vai ter serviço amanhã?", "Quer construir reputação e ganhar mais?"],
-                btnText: "QUERO GARANTIR MINHA VAGA"
+                title: "Sou Ajudante",
+                sub: "Trabalho no seu celular.",
+                benefits: [{i:"fa-mobile", t:"App Grátis"}, {i:"fa-id-card", t:"Histórico"}, {i:"fa-hand-holding-dollar", t:"Renda"}, {i:"fa-lock", t:"Seguro"}]
             },
             'empresa': {
-                title: "Transportadora",
-                pains: ["A gestão da última milha é um caos?", "Controle feito em planilhas desencontradas?", "Quer reduzir atrasos e melhorar seu SLA?"],
-                btnText: "QUERO ORGANIZAR MINHA OPERAÇÃO"
+                title: "Sou Empresa",
+                sub: "Gestão de risco.",
+                benefits: [{i:"fa-file-contract", t:"Compliance"}, {i:"fa-chart-line", t:"ESG"}, {i:"fa-users-viewfinder", t:"Gestão"}, {i:"fa-check-double", t:"Auditoria"}]
             }
-        };
-
-        const TEXTS = {
-            'Sobre': "<p>O Loomper conecta as pontas soltas da logística. Não substituímos pessoas, organizamos relações para dar segurança e dignidade a quem vive da estrada.</p><p>Uma iniciativa Ajud.ai Brasil.</p>",
-            'FAQ': "<p><strong>É gratuito?</strong> Sim, para motoristas e chapas.<br><br><strong>É seguro?</strong> Sim, fazemos validação de cadastro.</p><p><strong>Quando lança?</strong> App previsto para 2026. Site já funciona para pré-cadastro.</p>",
-            'Apoie': "<p>Somos um projeto independente. Sua ajuda mantém a plataforma gratuita para os motoristas.</p><div style='text-align:center; margin-top:20px;'><button class='btn-submit' style='padding:10px 20px;' onclick='copyPix()'>Copiar Chave PIX</button><p id='pixMsg' style='display:none; color:#25D366; margin-top:10px'>Copiado!</p></div>"
         };
 
         function openProfile(key) {
             const d = DATA[key];
             document.getElementById('modalTitle').innerText = d.title;
+            document.getElementById('modalSub').innerText = d.sub;
             let perfilVal = key === 'empresa' ? 'Transportadora' : (key === 'chapa' ? 'Chapa/Ajudante' : 'Motorista Cegonheiro');
             document.getElementById('perfilInput').value = perfilVal;
             
             let html = '';
-            d.pains.forEach(p => { html += `<div class="pain-item"><i class="fa-solid fa-circle-question pain-icon"></i><span class="pain-text">${p}</span></div>`; });
-            document.getElementById('painList').innerHTML = html;
-            document.getElementById('btnPain').innerText = d.btnText;
-
-            document.getElementById('step-pain').classList.remove('hidden');
-            document.getElementById('step-form').classList.add('hidden');
-            document.getElementById('modal-cadastro').style.display = 'flex';
-        }
-
-        function goToForm() {
-            document.getElementById('step-pain').classList.add('hidden');
-            document.getElementById('step-form').classList.remove('hidden');
+            d.benefits.forEach(b => { html += `<div class="m-benefit"><i class="fa-solid ${b.i}"></i><span>${b.t}</span></div>`; });
+            document.getElementById('modalBenefits').innerHTML = html;
+            
             if(localStorage.getItem('registered') === 'true') {
                 document.getElementById('dupMsg').style.display='block';
                 document.getElementById('dupId').innerText = localStorage.getItem('lid');
             }
+            openModal('modal-cadastro');
         }
 
-        function closeModal() { document.getElementById('modal-cadastro').style.display = 'none'; }
+        function openModal(id) { document.getElementById(id).style.display='flex'; }
+        function closeModal(id) { document.getElementById(id).style.display='none'; }
         
-        function openTextModal(key) {
-            document.getElementById('txtTitle').innerText = key;
-            document.getElementById('txtContent').innerHTML = TEXTS[key];
-            document.getElementById('modal-texto').style.display = 'flex';
-        }
+        window.onclick = e => { if(e.target.classList.contains('modal')) e.target.style.display='none'; }
 
-        function copyPix() { navigator.clipboard.writeText('contato@loomper.com.br'); document.getElementById('pixMsg').style.display='block'; }
-
+        // INIT & UTILS
         if(!localStorage.getItem('lid')) localStorage.setItem('lid', "LMP-"+Math.floor(Math.random()*90000));
         document.getElementById('hiddenId').value = localStorage.getItem('lid');
 
@@ -268,7 +372,6 @@
         });
 
         document.getElementById('zapInput').addEventListener('input',function(e){let x=e.target.value.replace(/\D/g,'').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);e.target.value=!x[2]?x[1]:'('+x[1]+') '+x[2]+(x[3]?'-'+x[3]:'')});
-        window.onclick = e => { if(e.target.classList.contains('modal')) e.target.style.display='none'; }
     </script>
 </body>
 </html>
