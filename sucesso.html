@@ -3,314 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Realizado com Sucesso! - Loomper</title>
-    <link rel="icon" type="image/png" href="assets/images/logotipo.PNG">
+    <title>Bem-vindo! - Loomper</title>
+    <link rel="icon" type="image/png" href="assets/images/FAVICON_Loomper.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2850 100%);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .success-container {
-            max-width: 600px;
-            text-align: center;
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .success-icon {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #D4AF37, #FF6600);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            animation: scaleIn 0.5s ease-out 0.3s both;
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
-        }
-        
-        @keyframes scaleIn {
-            from {
-                transform: scale(0);
-            }
-            to {
-                transform: scale(1);
-            }
-        }
-        
-        .success-icon i {
-            font-size: 4rem;
-            color: #0a1628;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #D4AF37, #F4D03F);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        
-        .info-box {
-            background: rgba(26, 40, 80, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .info-box h2 {
-            color: #D4AF37;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .info-box p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            margin-bottom: 0.8rem;
-        }
-        
-        .benefits-list {
-            list-style: none;
-            text-align: left;
-            margin: 1.5rem 0;
-        }
-        
-        .benefits-list li {
-            padding: 0.8rem;
-            margin-bottom: 0.5rem;
-            background: rgba(212, 175, 55, 0.1);
-            border-left: 3px solid #D4AF37;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .benefits-list i {
-            color: #D4AF37;
-            font-size: 1.2rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #D4AF37, #FF6600);
-            color: #0a1628;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: #D4AF37;
-            border-color: #D4AF37;
-        }
-        
-        .btn-secondary:hover {
-            background: #D4AF37;
-            color: #0a1628;
-        }
-        
-        .social-share {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        
-        .social-share h3 {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1rem;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-        
-        .social-icons a {
-            width: 50px;
-            height: 50px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #D4AF37;
-            font-size: 1.3rem;
-            transition: all 0.3s;
-        }
-        
-        .social-icons a:hover {
-            background: #D4AF37;
-            color: #0a1628;
-            transform: translateY(-5px);
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .success-icon {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .success-icon i {
-                font-size: 3rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: linear-gradient(135deg, #0a1628 0%, #1a2850 100%); color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .success-container { max-width: 600px; text-align: center; animation: fadeIn 0.6s; }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+        .success-icon { width: 100px; height: 100px; background: linear-gradient(135deg, #FF6600, #ffd700); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; font-size: 3.5rem; box-shadow: 0 0 20px rgba(255, 102, 0, 0.4); }
+        h1 { font-size: 2rem; margin-bottom: 10px; color: #FF6600; font-weight: 800; }
+        .subtitle { font-size: 1.1rem; color: #b8c1cc; margin-bottom: 30px; }
+        .id-card { background: rgba(255, 102, 0, 0.1); border: 2px dashed #FF6600; padding: 20px; border-radius: 12px; margin-bottom: 30px; }
+        .id-number { font-size: 2rem; font-weight: bold; color: #ffd700; letter-spacing: 3px; font-family: monospace; }
+        .info-card { background-color: rgba(26, 35, 50, 0.8); border-radius: 12px; padding: 30px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1); }
+        .info-card h2 { font-size: 1.4rem; margin-bottom: 15px; color: #ffd700; }
+        .beneficios-list li { background-color: rgba(0, 0, 0, 0.3); padding: 15px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #FF6600; text-align: left; display: flex; gap: 10px; }
+        .btn-whatsapp { background-color: #25d366; color: white; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; width: 100%; font-size: 1.1rem; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
+        .btn-home { color: #aaa; text-decoration: none; margin-top: 20px; display: inline-block; }
+        .footer-note { margin-top: 40px; font-size: 0.8rem; color: #556; border-top: 1px solid #223; padding-top: 20px; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
     <div class="success-container">
-        <div class="success-icon">
-            <i class="fas fa-check"></i>
+        <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+        
+        <h1 id="page-title">Bem-vindo, Pioneiro!</h1>
+        <p class="subtitle" id="page-subtitle">Sua inscrição foi confirmada.</p>
+
+        <div class="id-card">
+            <span class="id-label" style="display:block; font-size:0.8rem; color:#ccc;">SEU ID DE MEMBRO</span>
+            <div class="id-number" id="memberID">...</div>
         </div>
-        
-        <h1>Bem-vindo ao Loomper!</h1>
-        
-        <p class="subtitle">
-            Seu cadastro foi realizado com sucesso! 🎉<br>
-            Você agora faz parte dos pioneiros da revolução na logística automotiva.
-        </p>
-        
-        <div class="info-box">
-            <h2>📬 Próximos Passos</h2>
-            <p>
-                <strong>Em breve você receberá um email de confirmação</strong> com todas as informações 
-                sobre o programa de pioneiros e acesso antecipado ao beta.
-            </p>
-            
-            <ul class="benefits-list">
-                <li>
-                    <i class="fas fa-crown"></i>
-                    <span><strong>Selo de Pioneiro:</strong> Destaque especial no seu perfil</span>
-                </li>
-                <li>
-                    <i class="fas fa-bolt"></i>
-                    <span><strong>Acesso Antecipado:</strong> Beta exclusivo em 2026</span>
-                </li>
-                <li>
-                    <i class="fas fa-gift"></i>
-                    <span><strong>Benefícios Exclusivos:</strong> Vantagens para primeiros usuários</span>
-                </li>
-                <li>
-                    <i class="fas fa-comments"></i>
-                    <span><strong>Voz Ativa:</strong> Ajude a construir a plataforma</span>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="cta-buttons">
-            <a href="/" class="btn btn-primary">
-                <i class="fas fa-home"></i> Voltar ao Início
-            </a>
-            <a href="https://wa.me/5511999999999?text=Acabei%20de%20me%20cadastrar%20no%20Loomper!" class="btn btn-secondary" target="_blank">
-                <i class="fab fa-whatsapp"></i> Falar Conosco
-            </a>
-        </div>
-        
-        <div class="social-share">
-            <h3>Compartilhe com seus colegas:</h3>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://loomper.com.br" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://twitter.com/intent/tweet?text=Acabei%20de%20me%20cadastrar%20no%20Loomper,%20a%20primeira%20plataforma%20da%20logística%20automotiva!&url=https://loomper.com.br" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://loomper.com.br" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://api.whatsapp.com/send?text=Conhece%20o%20Loomper?%20É%20a%20primeira%20plataforma%20da%20logística%20automotiva!%20https://loomper.com.br" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
+
+        <!-- SEÇÃO B2C (Motorista/Chapa) -->
+        <div id="content-b2c">
+            <div class="info-card">
+                <h2>🚀 Aumente sua Moral</h2>
+                <p style="color:#ccc; margin-bottom:20px;">Convide amigos da estrada. Quanto mais indicados, mais benefícios.</p>
+                <a href="#" class="btn-whatsapp" id="shareBtn" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> ENVIAR CONVITE NO ZAP
                 </a>
             </div>
         </div>
+
+        <!-- SEÇÃO B2B (Empresa) - Oculta por padrão -->
+        <div id="content-b2b" class="hidden">
+            <div class="info-card">
+                <h2>✅ Solicitação Recebida</h2>
+                <p style="color:#ccc; line-height:1.6;">Nossa equipe entrará em contato para agendar uma apresentação executiva.</p>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn-home">Voltar para o Início</a>
+
+        <div class="footer-note">
+            <p>Gestão: <strong>Ajud.ai Brasil Inova Simples (i.s.)</strong></p>
+        </div>
     </div>
-    
+
     <script>
-        // Confetti animation (opcional - adicione biblioteca de confetti se quiser)
-        console.log('🎉 Cadastro realizado com sucesso!');
+        let finalID = localStorage.getItem('meuIdLoomper') || 'LMP-BETA';
+        let perfil = localStorage.getItem('userProfile') || 'Motorista';
         
-        // Track conversion
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'conversion', {
-                'event_category': 'Form',
-                'event_label': 'Cadastro Sucesso'
-            });
+        document.getElementById('memberID').textContent = finalID;
+
+        // Configura Link do Zap
+        const siteUrl = "https://loomper-novo.netlify.app"; 
+        const msg = `Olá! Acabei de me cadastrar como Pioneiro na Loomper. 🚛 É a nova rede da logística. Usa meu código pra entrar: ${siteUrl}?convite=${finalID}`;
+        document.getElementById('shareBtn').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+
+        // Se for B2B, esconde o convite
+        const perfisB2B = ['Transportadora', 'Investidor', 'Governo', 'Governo/Social'];
+        if (perfisB2B.includes(perfil)) {
+            document.getElementById('page-title').innerText = "Solicitação Recebida";
+            document.getElementById('page-subtitle').innerText = "Obrigado pelo contato institucional.";
+            document.getElementById('content-b2c').classList.add('hidden');
+            document.getElementById('content-b2b').classList.remove('hidden');
         }
     </script>
 </body>
