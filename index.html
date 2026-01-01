@@ -1,86 +1,256 @@
-<!-- MODAL DE FLUXO E CADASTRO -->
-<div id="modal-flow" class="modal">
-    <div class="modal-content">
-        <span class="modal-close" onclick="closeModal('modal-flow')">&times;</span>
-        
-        <!-- PASSO 1: ESPELHO DA DOR (Dinâmico) -->
-        <div id="step-1" class="step-view">
-            <p class="modal-intro" id="modal-intro-text">Texto de abertura...</p>
-            <h3 id="modal-title-pain">Título do Perfil</h3>
-            <ul id="modal-bullets-pain" class="pain-list"></ul>
-            <p class="modal-turn" id="modal-turn-text">Frase de virada...</p>
-            <button id="btn-to-step-2" class="cta-button cta-primary full-width" onclick="goToStep2()">
-                Quero resolver isso
-            </button>
-        </div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO -->
+    <title>Loomper | Logística sem improviso</title>
+    <meta name="description" content="Conectamos quem executa a logística com quem precisa que ela funcione. Sem improviso. Sem ruído. Com respeito.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-        <!-- PASSO 2: FORMULÁRIO DE CADASTRO -->
-        <div id="step-2" class="step-view" style="display: none;">
-            <div class="form-header">
-                <h3>Cadastro Beta Fechado</h3>
-                <p>Garanta sua vaga de pioneiro.</p>
-            </div>
-
-            <form id="beta-form" name="beta-signup" method="POST" data-netlify="true" onsubmit="submitForm(event)">
-                <!-- Configuração Netlify -->
-                <input type="hidden" name="form-name" value="beta-signup" />
-                
-                <!-- Identifica o perfil (Motorista, Chapa...) -->
-                <input type="hidden" id="input-perfil" name="perfil" value="">
-                
-                <!-- RASTREAMENTO: Quem indicou essa pessoa? (Capturado da URL) -->
-                <input type="hidden" id="input-indicado-por" name="indicado_por" value="">
-
-                <div class="form-group">
-                    <label>Nome completo</label>
-                    <input type="text" name="nome" required placeholder="Seu nome">
-                </div>
-
-                <div class="form-group">
-                    <label>WhatsApp</label>
-                    <input type="tel" name="whatsapp" required placeholder="(XX) XXXXX-XXXX" id="phone-input">
-                </div>
-
-                <button type="submit" class="cta-button cta-primary full-width">
-                    Entrar para o Beta Loomper
-                </button>
-
-                <p class="micro-trust">
-                    <i class="fas fa-lock"></i> Seus dados são usados apenas para contato oficial.
+    <!-- 1. HERO: CONCEITO IMEDIATO -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Conectamos quem executa a logística com quem precisa que ela funcione.<br>
+                    <span class="highlight">Sem improviso. Sem ruído. Com respeito.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Motoristas, ajudantes e transportadoras operando com mais segurança, previsibilidade e dignidade.
                 </p>
-            </form>
+                <div class="hero-authority">
+                    <i class="fas fa-hammer"></i> Construído junto com quem está na estrada e no pátio.
+                </div>
+                <button class="cta-button cta-primary" onclick="scrollToSection('perfis')">
+                    Começar agora
+                </button>
+            </div>
         </div>
+    </section>
 
-        <!-- PASSO 3: SUCESSO & MGM (Member Get Member) -->
-        <div id="step-success" class="step-view" style="display: none; text-align: center;">
-            <div style="margin-bottom: 20px;">
-                <i class="fas fa-check-circle" style="font-size: 3.5rem; color: #d4af37;"></i>
+    <!-- 2. PERFIS: ONDE VOCÊ SE ENCAIXA? -->
+    <section id="perfis" class="profiles-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Onde você se encaixa no Loomper?</h2>
             </div>
             
-            <h3 style="color: #fff; margin-bottom: 10px;">Bem-vindo, Pioneiro!</h3>
-            <p style="color: #ccc; margin-bottom: 25px; line-height: 1.4;">
-                Seu cadastro foi confirmado. Agora, aumente sua moral convidando parceiros da estrada.
-            </p>
+            <div class="profiles-grid">
+                <!-- Card Motorista -->
+                <div class="profile-card" onclick="openFlow('motorista')">
+                    <div class="card-icon"><i class="fas fa-truck-monster"></i></div>
+                    <h3>Sou Motorista de Cegonha</h3>
+                    <p>Menos improviso na descarga. Mais segurança, apoio e previsibilidade.</p>
+                    <div class="card-cta">Sou Motorista <i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <!-- Card Ajudante -->
+                <div class="profile-card" onclick="openFlow('ajudante')">
+                    <div class="card-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Sou Ajudante / Chapa</h3>
+                    <p>Mais oportunidades. Mais respeito pelo seu trabalho. Chega de depender da sorte.</p>
+                    <div class="card-cta">Sou Ajudante <i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <!-- Card Transportadora -->
+                <div class="profile-card" onclick="openFlow('transportadora')">
+                    <div class="card-icon"><i class="fas fa-building"></i></div>
+                    <h3>Sou Transportadora</h3>
+                    <p>Menos atraso, menos risco. Mais controle e organização na operação urbana.</p>
+                    <div class="card-cta">Sou Transportadora <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+
+            <!-- Card Auxiliar (Pioneiros) -->
+            <div class="card-auxiliary" onclick="openFlow('motorista')">
+                <div class="aux-content">
+                    <h4><i class="fas fa-hard-hat"></i> Projeto em Construção</h4>
+                    <p>Quem entra agora ajuda a decidir. Quem entra depois só usa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. POR QUE AGORA? (ESCASSEZ REAL) -->
+    <section class="reality-section">
+        <div class="container">
+            <div class="reality-box">
+                <div class="reality-text">
+                    <h2>O Loomper está sendo construído agora.</h2>
+                    <p>O grupo inicial é limitado para garantir qualidade.</p>
+                    <ul class="pioneer-list">
+                        <li><i class="fas fa-check"></i> Voz ativa na construção</li>
+                        <li><i class="fas fa-check"></i> Prioridade no lançamento</li>
+                        <li><i class="fas fa-check"></i> Benefícios de pioneiro</li>
+                    </ul>
+                </div>
+                <div class="reality-img-container">
+                    <!-- Imagem 2: Motorista na cabine -->
+                    <img src="img/image2.jpg" alt="Motorista pioneiro" class="responsive-img-small">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. RODAPÉ ESTRATÉGICO (5 BLOCOS) -->
+    <footer class="footer-strategic">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- BLOCO 1: SOBRE -->
+                <div class="footer-block">
+                    <h4>Sobre o Loomper</h4>
+                    <p>O Loomper organiza o que hoje acontece no improviso. Conectamos motoristas, ajudantes e transportadoras para executar a operação com mais segurança, previsibilidade e respeito.</p>
+                    <p>Não substituímos pessoas. Organizamos relações para que o trabalho flua melhor para todos.</p>
+                    <p class="footer-highlight">Uma iniciativa do ecossistema Ajud.ai Brasil.</p>
+                </div>
+
+                <!-- BLOCO 2: PARA QUEM É -->
+                <div class="footer-block">
+                    <h4>Para quem o Loomper existe</h4>
+                    <ul class="clean-list">
+                        <li>Motoristas que precisam de apoio local confiável</li>
+                        <li>Ajudantes que querem mais oportunidades</li>
+                        <li>Transportadoras que buscam menos improviso</li>
+                    </ul>
+                    <p class="footer-note">Se você vive a logística real, o Loomper é para você.</p>
+                </div>
+
+                <!-- BLOCO 3: FAQ -->
+                <div class="footer-block">
+                    <h4>Dúvidas Frequentes</h4>
+                    <ul class="faq-list">
+                        <li><strong>É gratuito?</strong> Sim. Motoristas e ajudantes utilizam gratuitamente.</li>
+                        <li><strong>É seguro?</strong> Sim. Validação de cadastro e rastreabilidade.</li>
+                        <li><strong>Quando lança?</strong> App previsto para 2026. Hoje você entra como pioneiro.</li>
+                    </ul>
+                </div>
+
+                <!-- BLOCO 4: CTA FINAL -->
+                <div class="footer-block cta-block">
+                    <h4>Seja Pioneiro</h4>
+                    <p>Quem entra depois usa o que já foi decidido. Quem entra agora ajuda a decidir.</p>
+                    <button class="cta-button cta-small full-width" onclick="scrollToSection('perfis')">
+                        Quero ser pioneiro
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- BLOCO 5: INSTITUCIONAL -->
+            <div class="footer-legal">
+                <p>LOOMPER® • Uma iniciativa Ajud.ai Brasil • São Bernardo do Campo – SP</p>
+                <p><strong>Razão Social:</strong> Ajud.ai Brasil Inova Simples (I.S.) • <strong>CNPJ:</strong> 59.150.688/0001-39</p>
+                <div class="legal-links">
+                    <a href="termos.html" target="_blank">Termos de Uso</a> • <a href="politica.html" target="_blank">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5511965858142?text=Olá!%20Quero%20ser%20pioneiro%20no%20Loomper" 
+       class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- MODAL DE FLUXO (PERFIL -> DOR -> CADASTRO -> SUCESSO/MGM) -->
+    <div id="modal-flow" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-flow')">&times;</span>
             
-            <!-- Caixa de Indicação -->
-            <div class="referral-box" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px dashed #555; margin-bottom: 20px;">
-                <p style="font-size: 0.8rem; color: #d4af37; margin-bottom: 8px; font-weight: bold; text-transform: uppercase;">Seu Link de Convite:</p>
-                
-                <!-- Input com o Link Gerado -->
-                <input type="text" id="my-referral-link" readonly 
-                       style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 12px; font-size: 0.9rem; text-align: center; border-radius: 4px; margin-bottom: 15px;">
-                
-                <!-- Botão de Compartilhar -->
-                <button onclick="shareOnWhatsapp()" class="cta-button full-width" 
-                        style="background: #25d366; color: #fff; border: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar no Zap
+            <!-- PASSO 1: ESPELHO DA DOR (Preenchido via JS) -->
+            <div id="step-1" class="step-view">
+                <p class="modal-intro" id="modal-intro-text">Texto de abertura...</p>
+                <h3 id="modal-title-pain">Título do Perfil</h3>
+                <ul id="modal-bullets-pain" class="pain-list"></ul>
+                <p class="modal-turn" id="modal-turn-text">Frase de virada...</p>
+                <button id="btn-to-step-2" class="cta-button cta-primary full-width" onclick="goToStep2()">
+                    Quero resolver isso
                 </button>
             </div>
 
-            <p style="font-size: 0.8rem; color: #666;">
-                Quem mais indica ganha prioridade no lançamento oficial.
-            </p>
-        </div>
+            <!-- PASSO 2: FORMULÁRIO -->
+            <div id="step-2" class="step-view" style="display: none;">
+                <div class="form-header">
+                    <h3>Cadastro Beta Fechado</h3>
+                    <p>Você está entrando em um beta fechado. Os pioneiros ajudam a construir a solução e têm prioridade.</p>
+                </div>
 
+                <form id="beta-form" name="beta-signup" method="POST" data-netlify="true" onsubmit="submitForm(event)">
+                    <!-- Configuração Netlify -->
+                    <input type="hidden" name="form-name" value="beta-signup" />
+                    
+                    <!-- Campos Ocultos de Rastreamento -->
+                    <input type="hidden" id="input-perfil" name="perfil" value="">
+                    <input type="hidden" id="input-indicado-por" name="indicado_por" value="">
+
+                    <div class="form-group">
+                        <label>Nome completo</label>
+                        <input type="text" name="nome" required placeholder="Seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label>WhatsApp</label>
+                        <input type="tel" name="whatsapp" required placeholder="(XX) XXXXX-XXXX" id="phone-input">
+                    </div>
+
+                    <button type="submit" class="cta-button cta-primary full-width">
+                        Entrar para o Beta Loomper
+                    </button>
+
+                    <p class="micro-trust">
+                        <i class="fas fa-lock"></i> Seus dados são usados apenas para contato sobre o Loomper. Transparência desde o primeiro passo.
+                    </p>
+                </form>
+            </div>
+
+            <!-- PASSO 3: SUCESSO & INDICAÇÃO (MGM) -->
+            <div id="step-success" class="step-view" style="display: none; text-align: center;">
+                <div style="margin-bottom: 20px;">
+                    <i class="fas fa-check-circle" style="font-size: 3.5rem; color: #d4af37;"></i>
+                </div>
+                
+                <h3 style="color: #fff; margin-bottom: 10px;">Bem-vindo, Pioneiro!</h3>
+                <p style="color: #ccc; margin-bottom: 25px; line-height: 1.4;">
+                    Seu cadastro foi confirmado. Agora, aumente sua moral convidando parceiros da estrada.
+                </p>
+                
+                <!-- Caixa de Indicação -->
+                <div class="referral-box" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px dashed #555; margin-bottom: 20px;">
+                    <p style="font-size: 0.8rem; color: #d4af37; margin-bottom: 8px; font-weight: bold; text-transform: uppercase;">Seu Link de Convite:</p>
+                    
+                    <!-- Input com o Link Gerado Automaticamente -->
+                    <input type="text" id="my-referral-link" readonly 
+                           style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 12px; font-size: 0.9rem; text-align: center; border-radius: 4px; margin-bottom: 15px;">
+                    
+                    <!-- Botão de Compartilhar -->
+                    <button onclick="shareOnWhatsapp()" class="cta-button full-width" 
+                            style="background: #25d366; color: #fff; border: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar no Zap
+                    </button>
+                </div>
+
+                <p style="font-size: 0.8rem; color: #666;">
+                    Quem mais indica ganha prioridade no lançamento oficial.
+                </p>
+            </div>
+
+        </div>
     </div>
-</div>
+
+    <!-- Script Javascript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
