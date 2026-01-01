@@ -1,243 +1,286 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO -->
-    <title>Loomper | O Sistema Operacional da Logística Automotiva</title>
-    <meta name="description" content="Ecossistema que conecta Motoristas Cegonheiros, Chapas e Transportadoras.">
-    <meta name="theme-color" content="#020617">
+    <title>LOOMPER | Conexão. Segurança. Dignidade.</title>
+    <meta name="description" content="O Primeiro Ecossistema de Logística Automotiva.">
     
     <!-- FAVICON -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M16 32c0-6.6 5.4-12 12-12 3.3 0 6.3 1.3 8.5 3.5L40 27l3.5-3.5C45.7 21.3 48.7 20 52 20c6.6 0 12 5.4 12 12s-5.4 12-12 12c-3.3 0-6.3-1.3-8.5-3.5L40 37l-3.5 3.5C34.3 42.7 31.3 44 28 44c-6.6 0-12-5.4-12-12z' fill='none' stroke='%23F1C40F' stroke-width='5' stroke-linecap='round'/><path d='M28 20c-6.6 0-12 5.4-12 12s5.4 12 12 12' fill='none' stroke='%23F1C40F' stroke-width='5' stroke-linecap='round' opacity='0.8'/></svg>">
+    <link rel="icon" type="image/png" href="assets/images/FAVICON_Loomper.png">
 
-    <!-- LIBS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: { loomper: { DEFAULT: '#F1C40F', hover: '#D4AC0D' }, dark: { bg: '#020617' } },
-                    animation: { 'pulse-slow': 'pulse 3s infinite' }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body { background-color: #020617; color: white; overflow-x: hidden; }
-        
-        /* Correção de Interatividade */
-        .interactive { position: relative; z-index: 50; pointer-events: auto; }
-        
-        /* Vidro e Inputs */
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .glass-input { 
-            background: rgba(0,0,0,0.4); 
-            border: 1px solid #334155; 
-            color: white; 
-            position: relative; 
-            z-index: 20; /* Garante clique */
-        }
-        .glass-input:focus { border-color: #F1C40F; outline: none; background: rgba(0,0,0,0.6); }
-
-        /* Mobile Menu - Correção de Bloqueio */
-        .mobile-menu { 
-            transform: translateX(100%); 
-            transition: transform 0.3s ease-in-out;
-            pointer-events: none; /* Não bloqueia tela quando fechado */
-        }
-        .mobile-menu.open { 
-            transform: translateX(0); 
-            pointer-events: auto; /* Bloqueia só quando aberto */
-        }
-
-        /* Toast - Correção de Bloqueio */
-        #toast-container { 
-            position: fixed; top: 20px; right: 20px; z-index: 9999; 
-            pointer-events: none; /* Deixa clicar através dele */
-        }
-        .toast { 
-            transform: translateX(120%); transition: transform 0.3s; 
-            pointer-events: auto; /* O toast em si é clicável */
-        }
-        .toast.show { transform: translateX(0); }
-
-        /* Telas do Simulador */
-        .app-screen { transition: all 0.4s ease-in-out; position: absolute; width: 100%; height: 100%; top: 0; left: 0; background-color: #111827; display: flex; flex-direction: column; }
-        .hidden-screen { opacity: 0; pointer-events: none; transform: translateX(20px); z-index: 0; }
-        .active-screen { opacity: 1; pointer-events: auto; transform: translateX(0); z-index: 10; }
-        
-        /* WhatsApp Flutuante */
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 9000; animation: pulse-green 2s infinite; cursor: pointer; }
-        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-    </style>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="antialiased selection:bg-loomper selection:text-black">
+<body>
 
-    <div id="toast-container" class="flex flex-col gap-2"></div>
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        
+        <!-- LOGO -->
+        <div class="brand-logo">
+            <img src="assets/images/logo.png" alt="Loomper Logo">
+        </div>
 
-    <!-- HEADER -->
-    <nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-[#020617]/95 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <a href="#" class="flex items-center gap-3 group interactive">
-                    <svg class="w-10 h-10 group-hover:scale-105 transition" viewBox="0 0 64 64" fill="none">
-                        <path d="M16 32c0-6.6 5.4-12 12-12 3.3 0 6.3 1.3 8.5 3.5L40 27l3.5-3.5C45.7 21.3 48.7 20 52 20c6.6 0 12 5.4 12 12s-5.4 12-12 12c-3.3 0-6.3-1.3-8.5-3.5L40 37l-3.5 3.5C34.3 42.7 31.3 44 28 44c-6.6 0-12-5.4-12-12z" stroke="#F1C40F" stroke-width="5" stroke-linecap="round"/>
-                        <path d="M28 20c-6.6 0-12 5.4-12 12s5.4 12 12 12" stroke="#F1C40F" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
-                    </svg>
-                    <span class="text-2xl font-bold tracking-tighter text-white">Loomper</span>
-                </a>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    LOOMPER<br>
+                    <span class="hero-subtitle-main">Conectamos motoristas cegonheiros com chapas experientes.</span>
+                </h1>
                 
-                <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300 items-center interactive">
-                    <a href="#ecossistema" class="hover:text-loomper transition py-2">O Ecossistema</a>
-                    <a href="#simulador" class="hover:text-loomper transition py-2">Simulador</a>
-                    <a href="#investidores" class="hover:text-loomper transition py-2">Investidores</a>
-                    <a href="#apoie" class="text-loomper font-bold border border-loomper/50 px-5 py-2 rounded-full hover:bg-loomper hover:text-black transition cursor-pointer">Apoie</a>
-                </div>
+                <p class="hero-desc">
+                    Sem Improviso. Sem surpresa. Com agilidade e respeito.<br>
+                    <span class="highlight-text">Motoristas CEGONHEIROS, ajudantes e transportadoras operando com mais segurança, organização e dignidade.</span>
+                </p>
 
-                <div class="hidden md:flex items-center interactive">
-                    <a href="#cadastro" class="bg-gradient-to-r from-loomper to-yellow-500 hover:to-yellow-400 text-black font-extrabold px-6 py-3 rounded-xl text-sm transition transform hover:scale-105 shadow-[0_0_20px_rgba(241,196,15,0.4)] cursor-pointer">
-                        QUERO SER PIONEIRO
-                    </a>
-                </div>
-
-                <button class="md:hidden text-2xl text-white focus:outline-none interactive" onclick="toggleMenu()">
-                    <i class="fa-solid fa-bars"></i>
+                <button class="cta-button cta-primary" onclick="scrollToSection('perfis')">
+                    Começar agora
                 </button>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <!-- MOBILE MENU -->
-    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[1000] bg-[#020617] w-full h-screen flex flex-col items-center justify-center space-y-8">
-        <button class="absolute top-6 right-6 text-3xl text-gray-400 pointer-events-auto" onclick="toggleMenu()">&times;</button>
-        <div class="text-3xl font-bold text-white mb-4">L<span class="text-loomper">oo</span>mper</div>
-        <a href="#ecossistema" class="text-xl font-medium hover:text-loomper transition pointer-events-auto" onclick="toggleMenu()">O Ecossistema</a>
-        <a href="#simulador" class="text-xl font-medium hover:text-loomper transition pointer-events-auto" onclick="toggleMenu()">Simulador</a>
-        <a href="#investidores" class="text-xl font-medium hover:text-loomper transition pointer-events-auto" onclick="toggleMenu()">Investidores</a>
-        <a href="#apoie" class="text-xl font-bold text-loomper pointer-events-auto" onclick="toggleMenu()">Quero Apoiar</a>
-        <a href="#cadastro" class="bg-loomper text-black px-8 py-4 rounded-xl font-bold text-lg shadow-lg pointer-events-auto" onclick="toggleMenu()">SER PIONEIRO</a>
+    <!-- 2. PERFIS -->
+    <section id="perfis" class="profiles-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Onde você se encaixa?</h2>
+            </div>
+            
+            <div class="profiles-grid">
+                <!-- Card Motorista (ÍCONE PERSONALIZADO) -->
+                <div class="profile-card" onclick="openFlow('motorista')">
+                    <div class="card-icon">
+                         <!-- Caminhão Dourado (FontAwesome) -->
+                         <i class="fas fa-truck"></i> 
+                     </div>
+                    <h3>Sou Motorista Cegonheiro</h3>
+                    <p>Menos improviso na descarga. Mais segurança, apoio e previsibilidade.</p>
+                    <div class="card-cta">Sou Motorista <i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <!-- Card Ajudante -->
+                <div class="profile-card" onclick="openFlow('ajudante')">
+                    <div class="card-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Sou Ajudante / Chapa</h3>
+                    <p>Mais oportunidades. Mais respeito pelo seu trabalho. Chega de depender da sorte.</p>
+                    <div class="card-cta">Sou Ajudante <i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <!-- Card Transportadora -->
+                <div class="profile-card" onclick="openFlow('transportadora')">
+                    <div class="card-icon"><i class="fas fa-building"></i></div>
+                    <h3>Sou Transportadora</h3>
+                    <p>Menos atraso, menos risco. Mais controle e organização na operação urbana.</p>
+                    <div class="card-cta">Sou Transportadora <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+
+            <!-- Card Auxiliar - Linha do Tempo -->
+            <div class="card-auxiliary" onclick="openTimelineModal()">
+                <div class="aux-content">
+                    <h4><i class="fas fa-hard-hat"></i> Projeto em Construção</h4>
+                    <p>Clique para ver a Linha do Tempo (2025 - 2026)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. REALIDADE -->
+    <section class="reality-section">
+        <div class="container">
+            <div class="reality-box">
+                <div class="reality-text">
+                    <h2>O Loomper está sendo construído agora.</h2>
+                    <p>O grupo inicial é limitado para garantir qualidade.</p>
+                    <ul class="pioneer-list">
+                        <li><i class="fas fa-check"></i> Voz ativa na construção</li>
+                        <li><i class="fas fa-check"></i> Prioridade no lançamento</li>
+                        <li><i class="fas fa-check"></i> Benefícios de pioneiro</li>
+                    </ul>
+                </div>
+                <div class="reality-img-container">
+                    <img src="assets/images/driver.jpeg" alt="Motorista Cegonheiro" class="responsive-img-wide">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. RODAPÉ TIPO MENU (Ponto M) -->
+    <footer class="footer-menu-style">
+        <div class="container">
+            
+            <!-- MENU PRINCIPAL -->
+            <div class="footer-nav">
+                <div class="footer-nav-item" onclick="openFooterModal('sobre')">Sobre o Loomper</div>
+                <div class="footer-nav-item" onclick="openFooterModal('praque')">Para que Serve</div>
+                <div class="footer-nav-item" onclick="openFooterModal('duvidas')">Dúvidas</div>
+                <div class="footer-nav-item" onclick="openFooterModal('legal')">Legal</div>
+                <div class="footer-nav-item" onclick="openFooterModal('stakeholders')">Stakeholders</div>
+                <div class="footer-nav-item" onclick="openFooterModal('fale')">Fale Conosco</div>
+                <!-- Botão Apoie integrado ao Menu -->
+                <div class="footer-nav-item highlight-apoie" onclick="openFooterModal('apoie')">
+                    <i class="fas fa-heart"></i> APOIE
+                </div>
+            </div>
+
+            <!-- DADOS INSTITUCIONAIS -->
+            <div class="footer-bottom-info">
+                <p class="brand-name">LOOMPER®</p>
+                <p class="brand-slogan">TECNOLOGIA • GESTÃO • PESSOAS • ESG</p>
+                <p class="company-details">
+                    Uma empresa do Grupo Ajud.ai Brasil I.S.<br>
+                    CNPJ 59.150.688/0001-39<br>
+                    São Bernardo do Campo | SP | BRASIL
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5511965858142?text=Olá!%20Quero%20ser%20pioneiro%20no%20Loomper" 
+       class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ================= MODAIS ================= -->
+
+    <!-- 1. MODAL CADASTRO (FLUXO) -->
+    <div id="modal-flow" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-flow')">&times;</span>
+            
+            <!-- Passo 1: Dor -->
+            <div id="step-1" class="step-view">
+                <p class="modal-intro" id="modal-intro-text">Texto de abertura...</p>
+                <h3 id="modal-title-pain">Título do Perfil</h3>
+                <ul id="modal-bullets-pain" class="pain-list"></ul>
+                <p class="modal-turn" id="modal-turn-text">Frase de virada...</p>
+                <button id="btn-to-step-2" class="cta-button cta-primary full-width" onclick="goToStep2()">
+                    Quero resolver isso
+                </button>
+            </div>
+
+            <!-- Passo 2: Formulário (IBGE) -->
+            <div id="step-2" class="step-view" style="display: none;">
+                <div class="form-header">
+                    <h3>Cadastro Beta Fechado</h3>
+                    <p>Preencha para garantir sua vaga.</p>
+                </div>
+
+                <form id="beta-form" name="beta-signup" method="POST" data-netlify="true" onsubmit="submitForm(event)">
+                    <input type="hidden" name="form-name" value="beta-signup" />
+                    <input type="hidden" id="input-perfil" name="perfil" value="">
+                    <input type="hidden" id="input-indicado-por" name="indicado_por" value="">
+                    <input type="hidden" id="input-data-aceite" name="data_aceite_termos" value="">
+
+                    <div class="form-group">
+                        <label>Nome completo</label>
+                        <input type="text" name="nome" required placeholder="Seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label>WhatsApp</label>
+                        <input type="tel" name="whatsapp" required placeholder="(XX) XXXXX-XXXX" id="phone-input">
+                    </div>
+
+                    <!-- UF e CIDADE (API IBGE) -->
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label>UF</label>
+                            <select id="uf-select" name="uf" required onchange="buscarCidades()">
+                                <option value="">Selecione</option>
+                                <!-- Preenchido via JS -->
+                            </select>
+                        </div>
+                        <div class="form-group" style="flex: 2;">
+                            <label>Cidade</label>
+                            <select id="cidade-select" name="cidade" required disabled>
+                                <option value="">Aguardando UF...</option>
+                                <!-- Preenchido via JS -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- CHECKBOX LGPD -->
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="terms-check" required>
+                        <label for="terms-check">
+                            Li e aceito os <a href="termos.html" target="_blank">Termos de Uso</a> e <a href="privacidade.html" target="_blank">Política de Privacidade</a>.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="cta-button cta-primary full-width">
+                        Entrar para o Beta Loomper
+                    </button>
+                    <p class="micro-trust">Descadastre-se a qualquer momento.</p>
+                </form>
+            </div>
+
+            <!-- Passo 3: Sucesso -->
+            <div id="step-success" class="step-view" style="display: none; text-align: center;">
+                <div style="margin-bottom: 20px;">
+                    <i class="fas fa-check-circle" style="font-size: 3.5rem; color: #d4af37;"></i>
+                </div>
+                <h3 style="color: #fff; margin-bottom: 10px;">Você está dentro!</h3>
+                <p style="color: #ccc; margin-bottom: 25px;">Convide parceiros e ganhe prioridade.</p>
+                <div class="referral-box">
+                    <p class="referral-title">SEU LINK DE CONVITE:</p>
+                    <input type="text" id="my-referral-link" readonly class="referral-input">
+                    <button onclick="shareOnWhatsapp()" class="cta-button full-width btn-whatsapp-share">
+                        <i class="fab fa-whatsapp"></i> Convidar Parceiros
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- HERO -->
-    <section class="relative pt-36 pb-28 overflow-hidden">
-        <div class="absolute inset-0 z-0 pointer-events-none">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/90 to-[#020617]/40 z-10"></div>
-            <img src="hero.jpg" class="w-full h-full object-cover opacity-50" alt="Caminhão" onerror="this.src='https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070'">
-        </div>
-        <div class="container mx-auto px-4 relative z-20">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-loomper/30 bg-black/50 backdrop-blur text-loomper text-xs font-bold uppercase mb-6">
-                    <i class="fa-solid fa-check-circle"></i> Logística 4.0
-                </div>
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-[1.1] text-white">Loomper <br><span class="text-gray-400">A evolução da conexão.</span></h1>
-                <p class="text-xl text-gray-300 mb-10 max-w-2xl pl-6 border-l-4 border-loomper">Conectamos Motoristas, Chapas e Transportadoras em um único ecossistema. Segurança e Tecnologia.</p>
-                <div class="flex gap-5 interactive">
-                    <a href="#cadastro" class="bg-loomper text-black font-bold px-8 py-4 rounded-xl text-lg hover:bg-white transition shadow-xl cursor-pointer">QUERO SER PIONEIRO</a>
-                </div>
+    <!-- 2. MODAL TIMELINE -->
+    <div id="modal-timeline" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-timeline')">&times;</span>
+            <div class="timeline-header">
+                <h3><i class="fas fa-road"></i> Nossa Jornada</h3>
             </div>
-        </div>
-    </section>
-
-    <!-- ECOSSISTEMA -->
-    <section id="ecossistema" class="py-20 bg-[#050B14] relative">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12"><h2 class="text-3xl font-bold mb-4">A Solução Completa</h2></div>
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group mb-12 pointer-events-none">
-                <img src="personas.jpg" class="w-full object-cover" onerror="this.style.display='none'">
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass p-6 rounded-xl border-l-4 border-blue-500"><h3 class="text-xl font-bold mb-2 text-white">Agilidade</h3><p class="text-sm text-gray-400">Match em segundos.</p></div>
-                <div class="glass p-6 rounded-xl border-l-4 border-loomper"><h3 class="text-xl font-bold mb-2 text-white">Oportunidade</h3><p class="text-sm text-gray-400">Renda recorrente.</p></div>
-                <div class="glass p-6 rounded-xl border-l-4 border-green-500"><h3 class="text-xl font-bold mb-2 text-white">Segurança</h3><p class="text-sm text-gray-400">Validação de perfil.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SIMULADOR -->
-    <section id="simulador" class="py-24 bg-[#020617] relative">
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <h2 class="text-4xl font-bold">Simulador Interativo</h2>
-                <div class="flex bg-white/5 p-1 rounded-full mt-6 md:mt-0 interactive">
-                    <button onclick="setMode('motorista')" id="tab-motorista" class="px-6 py-2 rounded-full text-sm font-bold bg-loomper text-black shadow-lg">Motorista</button>
-                    <button onclick="setMode('chapa')" id="tab-chapa" class="px-6 py-2 rounded-full text-sm font-bold text-gray-400">Chapa</button>
-                    <button onclick="setMode('transp')" id="tab-transp" class="px-6 py-2 rounded-full text-sm font-bold text-gray-400">Transportadora</button>
+            <div class="timeline-container">
+                <div class="timeline-item done">
+                    <div class="tl-icon"><i class="fas fa-check"></i></div>
+                    <div class="tl-content"><h4>Início 2025</h4><p>Pesquisa e concepção.</p></div>
                 </div>
-            </div>
-
-            <!-- DEVICE AREA -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-5 flex justify-center h-[700px] relative pointer-events-auto">
-                    <!-- PHONE -->
-                    <div id="device-phone" class="relative w-[340px] h-[680px] bg-black border-[10px] border-gray-800 rounded-[45px] shadow-2xl overflow-hidden z-20">
-                        <div id="app-motorista" class="w-full h-full bg-gray-900 relative flex flex-col">
-                            <!-- Screen 1 -->
-                            <div id="mot-screen-1" class="app-screen active-screen pt-12 px-5 flex flex-col h-full">
-                                <h3 class="text-white font-bold text-lg mb-6">Criar Solicitação</h3>
-                                <div class="space-y-4 flex-1">
-                                    <div><label class="text-xs text-gray-400 font-bold">Local</label><input type="text" value="Pátio Toyota SBC" class="bg-gray-800 text-white w-full p-2 rounded border border-gray-700"></div>
-                                    <div><label class="text-xs text-gray-400 font-bold">Serviço</label><select class="bg-gray-800 text-white w-full p-2 rounded border border-gray-700"><option>Chapa Guia</option></select></div>
-                                </div>
-                                <div class="mb-8"><button onclick="motNext(2)" class="w-full bg-loomper text-black font-bold py-4 rounded-xl cursor-pointer">PUBLICAR VAGA</button></div>
-                            </div>
-                            <!-- Screen 2 -->
-                            <div id="mot-screen-2" class="app-screen hidden-screen pt-12 px-4 bg-gray-900">
-                                <h3 class="font-bold text-lg text-white mb-4">5 Chapas Próximos</h3>
-                                <div class="bg-gray-800 p-3 rounded-xl border border-gray-700 cursor-pointer hover:border-loomper" onclick="motNext(3)">
-                                    <div class="flex justify-between"><h4 class="font-bold text-white">Carlos Silva</h4><span class="text-loomper">★ 4.9</span></div>
-                                    <div class="text-xs text-gray-400">142 serviços • Online</div>
-                                </div>
-                            </div>
-                            <!-- Screen 3 -->
-                            <div id="mot-screen-3" class="app-screen hidden-screen pt-20 px-5 bg-gray-900 text-center">
-                                <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fa-solid fa-check text-4xl text-white"></i></div>
-                                <h3 class="text-2xl font-bold text-white mb-2">Solicitação Enviada!</h3>
-                                <button onclick="motNext(1)" class="w-full bg-gray-700 text-white font-bold py-3 rounded-xl mt-8">Novo Pedido</button>
-                            </div>
-                        </div>
-                        
-                        <div id="app-chapa" class="w-full h-full bg-gray-900 relative hidden flex flex-col">
-                             <div class="pt-12 px-6"><h2 class="text-4xl font-bold text-white">R$ 450,00</h2><p class="text-xs text-gray-400">Saldo</p></div>
-                             <div class="px-4 mt-6">
-                                <div id="chapa-card-1" class="bg-gray-800 border-l-4 border-loomper rounded-r-xl p-5 shadow-lg">
-                                    <h4 class="font-bold text-white">Nova Vaga: Ajudante</h4>
-                                    <div class="flex gap-2 mt-4"><button onclick="this.parentElement.parentElement.style.display='none'; showToast('Aceito!', 'success')" class="flex-1 bg-loomper text-black py-2 rounded font-bold">ACEITAR</button></div>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- TABLET -->
-                    <div id="device-tablet" class="hidden w-full h-[550px] bg-[#0F172A] border-[10px] border-gray-700 rounded-2xl shadow-2xl overflow-hidden flex">
-                         <div class="w-56 bg-[#0B1120] p-4"><div class="text-xl font-bold text-white">LoomperCorp</div></div>
-                         <div class="flex-1 p-6"><canvas id="chartVolume"></canvas></div>
-                    </div>
+                <div class="timeline-item active">
+                    <div class="tl-icon"><i class="fas fa-sync fa-spin"></i></div>
+                    <div class="tl-content"><h4>Agora</h4><p>Beta Fechado (Pioneiros).</p></div>
                 </div>
-
-                <!-- TEXTOS -->
-                <div class="lg:col-span-7 pl-10 text-white">
-                    <div id="txt-motorista">
-                        <h3 class="text-4xl font-bold mb-6">Contrate com Certeza</h3>
-                        <p class="text-gray-400 text-lg">Defina o serviço, veja candidatos e pague com segurança.</p>
-                    </div>
-                    <div id="txt-chapa" class="hidden"><h3 class="text-4xl font-bold mb-6">Trabalho na Mão</h3><p class="text-gray-400 text-lg">Receba ofertas no celular e aumente sua renda.</p></div>
-                    <div id="txt-transp" class="hidden"><h3 class="text-4xl font-bold mb-6">Controle Total</h3><p class="text-gray-400 text-lg">Dashboard de gestão e compliance em tempo real.</p></div>
+                <div class="timeline-item future">
+                    <div class="tl-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="tl-content"><h4>Março / 2026</h4><p>Entrega do MVP (App).</p></div>
+                </div>
+                <div class="timeline-item future">
+                    <div class="tl-icon"><i class="fas fa-store"></i></div>
+                    <div class="tl-content"><h4>Junho / 2026</h4><p>Lançamento nas Lojas.</p></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- INVESTIDORES -->
-    <section id="investidores" class="py-20 bg-[#050B14]">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-10">Investidores</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass p-6 rounded-xl hover:border-loomper transition cur
+    <!-- 3. MODAIS DO RODAPÉ (TEXTOS PARA CURIOSOS) -->
+    <div id="modal-footer" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-footer')">&times;</span>
+            <div id="footer-modal-content">
+                <!-- Conteúdo injetado via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
