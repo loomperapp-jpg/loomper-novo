@@ -19,7 +19,7 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-white);
     font-family: 'Inter', sans-serif;
-    line-height: 1.6; /* Aumento de legibilidade solicitado */
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
@@ -37,8 +37,11 @@ body {
     justify-content: center;
     text-align: center;
     position: relative;
-    /* Imagem 3: Caminhão/Estrada */
-    background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.95)), url('../img/image3.jpg');
+    
+    /* CORREÇÃO DO CAMINHO DA IMAGEM ABAIXO: */
+    /* Aponta para a pasta assets/images/hero.png */
+    background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.95)), url('../assets/images/hero.png');
+    
     background-size: cover;
     background-position: center;
     padding: 60px 20px;
