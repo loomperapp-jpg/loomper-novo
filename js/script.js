@@ -1,50 +1,52 @@
 /* ==========================================================================
-   LOOMPER LOGIC - VERSÃO FINAL (MGM + NETLIFY + UX)
+   LOOMPER LOGIC - VERSÃO LANÇAMENTO
    ========================================================================== */
 
-// 1. RASTREAMENTO DE ENTRADA (MGM)
+// 1. RASTREAMENTO E PREVENÇÃO DE DUPLICIDADE
 document.addEventListener('DOMContentLoaded', function() {
-    // Procura por ?ref= ou ?convite= na URL
+    // Rastreio de indicação
     const urlParams = new URLSearchParams(window.location.search);
     const ref = urlParams.get('ref') || urlParams.get('convite');
-    
-    // Se achou um código, salva no input oculto do formulário
     if (ref) {
         const inputIndicacao = document.getElementById('input-indicado-por');
-        if (inputIndicacao) {
-            inputIndicacao.value = ref;
-            // Salva no console para debug
-            console.log('Indicação detectada:', ref);
-        }
+        if (inputIndicacao) inputIndicacao.value = ref;
+    }
+
+    // Checa se usuário já está cadastrado nesta máquina (LocalStorage)
+    const savedId = localStorage.getItem('loomper_user_id');
+    if (savedId) {
+        console.log('Usuário já cadastrado:', savedId);
+        // Opcional: Poderíamos mudar o botão do Hero para "Ver meu link", 
+        // mas vamos deixar ele acessar o form e tratamos no submit.
     }
 });
 
-// DADOS DOS MODAIS (Textos da Revisão Cirúrgica)
+// DADOS DOS PERFIS
 const modalData = {
     'motorista': {
-        title: 'Motorista de Cegonha',
-        bullets: ['Já perdeu tempo procurando ajudante confiável?', 'Já precisou improvisar na descarga?', 'Sente que a pressa vira risco?'],
-        turn: 'A logística não precisa ser no grito nem na sorte.',
-        btnText: 'Quero operar com mais segurança',
-        intro: 'Se você vive a operação real, já passou por isso:'
+        title: 'Motorista Cegonheiro',
+        bullets: ['Já perdeu tempo procurando chapa confiável?', 'Improviso na descarga gera risco?', 'Quer previsibilidade na rota?'],
+        turn: 'A logística não precisa ser no grito.',
+        btnText: 'Quero operar com segurança',
+        intro: 'Se você vive a estrada, sabe:'
     },
     'ajudante': {
         title: 'Ajudante / Chapa',
-        bullets: ['Serviço aparece quando aparece?', 'Esforço não é reconhecido?', 'Falta continuidade?'],
-        turn: 'Quem trabalha bem merece mais que sorte.',
+        bullets: ['Trabalho aparece só de vez em quando?', 'Falta reconhecimento profissional?', 'Quer sair da informalidade total?'],
+        turn: 'Quem trabalha bem merece constância.',
         btnText: 'Quero mais oportunidades',
-        intro: 'Na descarga, você sabe como funciona:'
+        intro: 'Na descarga, a realidade é dura:'
     },
     'transportadora': {
         title: 'Transportadora',
-        bullets: ['Atrasos por falta de apoio local?', 'Risco concentrado na descarga?', 'Dificuldade de padronização?'],
-        turn: 'Organização é proteção da operação.',
-        btnText: 'Quero controle operacional',
+        bullets: ['Atrasos na ponta final?', 'Risco jurídico e operacional?', 'Falta de padronização?'],
+        turn: 'Organização é lucro e proteção.',
+        btnText: 'Quero controle total',
         intro: 'Pequenos ruídos viram grandes prejuízos:'
     }
 };
 
-// --- FUNÇÕES DE NAVEGAÇÃO ---
+// --- NAVEGAÇÃO E MODAIS ---
 
 function scrollToSection(id) {
     const el = document.getElementById(id);
@@ -52,32 +54,38 @@ function scrollToSection(id) {
 }
 
 function openFlow(profileKey) {
-    // Se não passar perfil, usa motorista como padrão
-    const data = modalData[profileKey] || modalData['motorista']; 
+    const data = modalData[profileKey];
     
-    // Preenche textos dinamicamente
+    // Preenche textos
     document.getElementById('modal-intro-text').innerText = data.intro;
     document.getElementById('modal-title-pain').innerText = data.title;
     document.getElementById('modal-bullets-pain').innerHTML = data.bullets.map(t => `<li>${t}</li>`).join('');
     document.getElementById('modal-turn-text').innerText = data.turn;
     document.getElementById('btn-to-step-2').innerText = data.btnText;
     
-    // Define o valor no input oculto
     document.getElementById('input-perfil').value = profileKey;
 
-    // Reseta visualização para o passo 1
+    // Reseta visualização
     document.getElementById('step-1').style.display = 'block';
     document.getElementById('step-2').style.display = 'none';
     document.getElementById('step-success').style.display = 'none';
     
-    // Abre o modal
     document.getElementById('modal-flow').style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
 
 function goToStep2() {
+    // Registra data/hora do aceite dos termos (Ponto D - Preparação)
+    const now = new Date().toLocaleString('pt-BR');
+    document.getElementById('input-data-aceite').value = now;
+    
     document.getElementById('step-1').style.display = 'none';
     document.getElementById('step-2').style.display = 'block';
+}
+
+function openTimelineModal() {
+    document.getElementById('modal-timeline').style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
 
 function closeModal(id) {
@@ -85,14 +93,14 @@ function closeModal(id) {
     document.body.style.overflow = 'auto';
 }
 
-// Fecha ao clicar fora do modal
 window.onclick = function(e) {
     if (e.target.classList.contains('modal')) {
-        closeModal(e.target.id);
+        e.target.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 }
 
-// --- LÓGICA DE SUBMISSÃO E GERAÇÃO DE CONVITE ---
+// --- LÓGICA DE SUBMISSÃO (Com verificação de duplicidade Ponto I) ---
 
 function submitForm(event) {
     event.preventDefault();
@@ -101,67 +109,85 @@ function submitForm(event) {
     const btn = form.querySelector('button[type="submit"]');
     const originalText = btn.innerText;
     
-    // 1. Pega o telefone para usar como ID (remove formatação)
+    // Pega telefone e remove formatação
     const phoneInput = document.getElementById('phone-input').value;
-    const userId = phoneInput.replace(/\D/g, ''); 
+    const userId = phoneInput.replace(/\D/g, '');
+    const perfil = document.getElementById('input-perfil').value;
     
+    // Validação básica
     if (userId.length < 10) {
-        alert('Por favor, digite um WhatsApp válido.');
+        alert('Digite um WhatsApp válido.');
         return;
     }
 
-    // Feedback visual
+    // CHECK DE DUPLICIDADE (Simulado via LocalStorage para MVP estático)
+    const savedUser = localStorage.getItem('loomper_user_id');
+    const savedProfile = localStorage.getItem('loomper_user_profile');
+
+    if (savedUser === userId && savedProfile === perfil) {
+        // Usuário já cadastrado com mesmo perfil -> Mostra tela de sucesso direto
+        showSuccessScreen(userId);
+        return; 
+    }
+
     btn.innerText = 'Processando...';
     btn.disabled = true;
 
+    // Atualiza Timestamp do aceite
+    document.getElementById('input-data-aceite').value = new Date().toLocaleString('pt-BR');
+
     const formData = new FormData(form);
 
-    // 2. Envia para o Netlify via AJAX
     fetch('/', {
         method: 'POST',
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString()
     })
     .then(() => {
-        // 3. SUCESSO: Gera o Link de Convite
-        const siteUrl = window.location.origin; // Ex: https://seu-site.netlify.app
-        const inviteLink = `${siteUrl}/?ref=${userId}`;
-        
-        // Coloca o link no input da tela de sucesso
-        const linkInput = document.getElementById('my-referral-link');
-        if(linkInput) linkInput.value = inviteLink;
-        
-        // Troca a tela para Sucesso
-        document.getElementById('step-2').style.display = 'none';
-        document.getElementById('step-success').style.display = 'block';
-        
-        // Opcional: Salva ID no navegador
+        // Salva localmente para evitar duplo cadastro
         localStorage.setItem('loomper_user_id', userId);
-
-        // Reseta formulário
+        localStorage.setItem('loomper_user_profile', perfil);
+        
+        showSuccessScreen(userId);
+        
         form.reset();
         btn.innerText = originalText;
         btn.disabled = false;
     })
     .catch((err) => {
         console.error(err);
-        alert('Erro de conexão. Tente novamente.');
+        alert('Erro de conexão.');
         btn.innerText = originalText;
         btn.disabled = false;
     });
 }
 
-// --- COMPARTILHAR NO WHATSAPP ---
+function showSuccessScreen(userId) {
+    const siteUrl = window.location.origin;
+    const inviteLink = `${siteUrl}/?ref=${userId}`;
+    
+    document.getElementById('my-referral-link').value = inviteLink;
+    document.getElementById('step-2').style.display = 'none';
+    document.getElementById('step-success').style.display = 'block';
+}
+
+// --- FUNÇÕES UTILITÁRIAS ---
+
 function shareOnWhatsapp() {
-    const linkInput = document.getElementById('my-referral-link');
-    const link = linkInput ? linkInput.value : window.location.origin;
-    
-    const msg = `Fala parceiro! Tô usando o Loomper pra organizar a logística. Entra aí no time de pioneiros que vale a pena: ${link}`;
-    
+    const link = document.getElementById('my-referral-link').value;
+    const msg = `Fala parceiro! Tô usando o Loomper. Entra aí no time de pioneiros: ${link}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// --- MÁSCARA DE TELEFONE ---
+function copyPix() {
+    navigator.clipboard.writeText("contato@loomper.com.br").then(() => {
+        const feedback = document.getElementById('pix-feedback');
+        feedback.style.display = 'block';
+        setTimeout(() => { feedback.style.display = 'none'; }, 3000);
+    });
+}
+
+// Máscara Telefone
 const phoneInp = document.getElementById('phone-input');
 if (phoneInp) {
     phoneInp.addEventListener('input', function (e) {
