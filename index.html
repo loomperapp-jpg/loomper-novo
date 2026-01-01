@@ -6,9 +6,9 @@
     
     <!-- SEO -->
     <title>LOOMPER | Conexão. Segurança. Dignidade.</title>
-    <meta name="description" content="O Primeiro Ecossistema de Logística Automotiva. Conectamos motoristas cegonheiros a chapas experientes.">
+    <meta name="description" content="O Primeiro Ecossistema de Logística Automotiva.">
     
-    <!-- FAVICON (Ponto A) -->
+    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="assets/images/FAVICON_Loomper.png">
 
     <!-- Fonts & Icons -->
@@ -20,11 +20,11 @@
 </head>
 <body>
 
-    <!-- 1. HERO SECTION (Pontos A, F) -->
+    <!-- 1. HERO SECTION -->
     <section id="hero" class="hero-section">
         <div class="hero-overlay"></div>
         
-        <!-- LOGO (Ponto A) -->
+        <!-- LOGO -->
         <div class="brand-logo">
             <img src="assets/images/logo.png" alt="Loomper Logo">
         </div>
@@ -41,15 +41,6 @@
                     <span class="highlight-text">Motoristas CEGONHEIROS, ajudantes e transportadoras operando com mais segurança, organização e dignidade.</span>
                 </p>
 
-                <!-- FLUXO VISUAL (Ponto A - Sugestão) -->
-                <div class="hero-flow-icons">
-                    <div class="flow-item"><i class="fas fa-truck-monster"></i><br>Cegonheiro</div>
-                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                    <div class="flow-item active"><i class="fas fa-mobile-alt"></i><br>App Loomper</div>
-                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                    <div class="flow-item"><i class="fas fa-user-check"></i><br>Chapa</div>
-                </div>
-
                 <button class="cta-button cta-primary" onclick="scrollToSection('perfis')">
                     Começar agora
                 </button>
@@ -57,7 +48,7 @@
         </div>
     </section>
 
-    <!-- 2. PERFIS (Pontos B, C, L) -->
+    <!-- 2. PERFIS -->
     <section id="perfis" class="profiles-section">
         <div class="container">
             <div class="section-header">
@@ -65,9 +56,12 @@
             </div>
             
             <div class="profiles-grid">
-                <!-- Card Motorista -->
+                <!-- Card Motorista (ÍCONE PERSONALIZADO) -->
                 <div class="profile-card" onclick="openFlow('motorista')">
-                    <div class="card-icon"><i class="fas fa-truck-monster"></i></div>
+                    <div class="card-icon-img">
+                        <!-- Salve seu ícone como icone-cegonha.png na pasta assets/images -->
+                        <img src="assets/images/icone-cegonha.png" alt="Ícone Cegonha" onerror="this.src='https://cdn-icons-png.flaticon.com/512/766/766326.png'">
+                    </div>
                     <h3>Sou Motorista Cegonheiro</h3>
                     <p>Menos improviso na descarga. Mais segurança, apoio e previsibilidade.</p>
                     <div class="card-cta">Sou Motorista <i class="fas fa-arrow-right"></i></div>
@@ -90,7 +84,7 @@
                 </div>
             </div>
 
-            <!-- Card Auxiliar - Linha do Tempo (Ponto H) -->
+            <!-- Card Auxiliar - Linha do Tempo -->
             <div class="card-auxiliary" onclick="openTimelineModal()">
                 <div class="aux-content">
                     <h4><i class="fas fa-hard-hat"></i> Projeto em Construção</h4>
@@ -100,7 +94,7 @@
         </div>
     </section>
 
-    <!-- 3. REALIDADE & PIONEIRISMO (Ponto K) -->
+    <!-- 3. REALIDADE -->
     <section class="reality-section">
         <div class="container">
             <div class="reality-box">
@@ -113,69 +107,32 @@
                         <li><i class="fas fa-check"></i> Benefícios de pioneiro</li>
                     </ul>
                 </div>
-                <!-- Imagem retangular mais ampla do caminhão/motorista -->
                 <div class="reality-img-container">
-                    <img src="assets/images/driver.jpeg" alt="Motorista Cegonheiro e Caminhão" class="responsive-img-wide">
+                    <img src="assets/images/driver.jpeg" alt="Motorista Cegonheiro" class="responsive-img-wide">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. RODAPÉ ESTRATÉGICO & APOIO (Pontos M, N) -->
-    <footer class="footer-strategic">
+    <!-- 4. RODAPÉ TIPO MENU (Ponto M) -->
+    <footer class="footer-menu-style">
         <div class="container">
             
-            <!-- BLOCO APOIO (PIX) -->
-            <div class="support-section">
-                <h3><i class="fas fa-heart" style="color: #ff6b35;"></i> Apoie o Projeto</h3>
-                <p>Mantemos a gratuidade para motoristas e ajudantes com sua ajuda.</p>
-                <div class="donation-options">
-                    <button class="donate-btn" onclick="copyPix()">Apoiar R$ 20</button>
-                    <button class="donate-btn" onclick="copyPix()">Apoiar R$ 50</button>
-                    <button class="donate-btn outline" onclick="copyPix()">Outro valor</button>
-                </div>
-                <div id="pix-feedback" class="pix-feedback" style="display:none;">
-                    <i class="fas fa-check"></i> Chave PIX copiada: contato@loomper.com.br
-                </div>
-            </div>
-
-            <div class="footer-grid">
-                <!-- BLOCO 1: SOBRE -->
-                <div class="footer-block">
-                    <h4>Sobre o Loomper</h4>
-                    <p>O Primeiro Ecossistema de Logística Automotiva. Conectamos pontas soltas para gerar valor real.</p>
-                </div>
-
-                <!-- BLOCO 2: PÚBLICO -->
-                <div class="footer-block">
-                    <h4>Para quem serve</h4>
-                    <ul class="clean-list">
-                        <li>Motoristas Cegonheiros</li>
-                        <li>Chapas Profissionais</li>
-                        <li>Transportadoras</li>
-                    </ul>
-                </div>
-
-                <!-- BLOCO 3: DÚVIDAS -->
-                <div class="footer-block">
-                    <h4>Dúvidas</h4>
-                    <ul class="clean-list">
-                        <li>Beta Gratuito</li>
-                        <li>Lançamento: Jun/2026</li>
-                    </ul>
-                </div>
-
-                <!-- BLOCO 4: CONTATO -->
-                <div class="footer-block">
-                    <h4>Fale Conosco</h4>
-                    <p><a href="mailto:contato@loomper.com.br" class="footer-link">contato@loomper.com.br</a></p>
-                    <div class="legal-links-footer">
-                        <a href="termos.html" target="_blank">Termos</a> • <a href="privacidade.html" target="_blank">Privacidade</a>
-                    </div>
+            <!-- MENU PRINCIPAL -->
+            <div class="footer-nav">
+                <div class="footer-nav-item" onclick="openFooterModal('sobre')">Sobre o Loomper</div>
+                <div class="footer-nav-item" onclick="openFooterModal('praque')">Para que Serve</div>
+                <div class="footer-nav-item" onclick="openFooterModal('duvidas')">Dúvidas</div>
+                <div class="footer-nav-item" onclick="openFooterModal('legal')">Legal</div>
+                <div class="footer-nav-item" onclick="openFooterModal('stakeholders')">Stakeholders</div>
+                <div class="footer-nav-item" onclick="openFooterModal('fale')">Fale Conosco</div>
+                <!-- Botão Apoie integrado ao Menu -->
+                <div class="footer-nav-item highlight-apoie" onclick="openFooterModal('apoie')">
+                    <i class="fas fa-heart"></i> APOIE
                 </div>
             </div>
 
-            <!-- BLOCO INSTITUCIONAL (Ponto N) -->
+            <!-- DADOS INSTITUCIONAIS -->
             <div class="footer-bottom-info">
                 <p class="brand-name">LOOMPER®</p>
                 <p class="brand-slogan">TECNOLOGIA • GESTÃO • PESSOAS • ESG</p>
@@ -194,12 +151,14 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- MODAL DE FLUXO (CADASTRO) -->
+    <!-- ================= MODAIS ================= -->
+
+    <!-- 1. MODAL CADASTRO (FLUXO) -->
     <div id="modal-flow" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-flow')">&times;</span>
             
-            <!-- PASSO 1: DOR -->
+            <!-- Passo 1: Dor -->
             <div id="step-1" class="step-view">
                 <p class="modal-intro" id="modal-intro-text">Texto de abertura...</p>
                 <h3 id="modal-title-pain">Título do Perfil</h3>
@@ -210,7 +169,7 @@
                 </button>
             </div>
 
-            <!-- PASSO 2: FORMULÁRIO (Pontos D, G, I) -->
+            <!-- Passo 2: Formulário (IBGE) -->
             <div id="step-2" class="step-view" style="display: none;">
                 <div class="form-header">
                     <h3>Cadastro Beta Fechado</h3>
@@ -221,7 +180,6 @@
                     <input type="hidden" name="form-name" value="beta-signup" />
                     <input type="hidden" id="input-perfil" name="perfil" value="">
                     <input type="hidden" id="input-indicado-por" name="indicado_por" value="">
-                    <!-- Data do aceite dos termos -->
                     <input type="hidden" id="input-data-aceite" name="data_aceite_termos" value="">
 
                     <div class="form-group">
@@ -234,34 +192,25 @@
                         <input type="tel" name="whatsapp" required placeholder="(XX) XXXXX-XXXX" id="phone-input">
                     </div>
 
-                    <!-- CIDADE E UF (Ponto G) -->
+                    <!-- UF e CIDADE (API IBGE) -->
                     <div class="form-row">
-                        <div class="form-group" style="flex: 2;">
-                            <label>Cidade</label>
-                            <input type="text" name="cidade" required placeholder="Ex: São Bernardo">
-                        </div>
                         <div class="form-group" style="flex: 1;">
                             <label>UF</label>
-                            <select name="uf" required>
-                                <option value="">UF</option>
-                                <option value="SP">SP</option>
-                                <option value="MG">MG</option>
-                                <option value="RJ">RJ</option>
-                                <option value="ES">ES</option>
-                                <option value="PR">PR</option>
-                                <option value="SC">SC</option>
-                                <option value="RS">RS</option>
-                                <option value="BA">BA</option>
-                                <option value="GO">GO</option>
-                                <option value="MT">MT</option>
-                                <option value="MS">MS</option>
-                                <option value="DF">DF</option>
-                                <!-- Outros estados se necessário -->
+                            <select id="uf-select" name="uf" required onchange="buscarCidades()">
+                                <option value="">Selecione</option>
+                                <!-- Preenchido via JS -->
+                            </select>
+                        </div>
+                        <div class="form-group" style="flex: 2;">
+                            <label>Cidade</label>
+                            <select id="cidade-select" name="cidade" required disabled>
+                                <option value="">Aguardando UF...</option>
+                                <!-- Preenchido via JS -->
                             </select>
                         </div>
                     </div>
 
-                    <!-- CHECKBOX LGPD (Ponto D) -->
+                    <!-- CHECKBOX LGPD -->
                     <div class="form-checkbox">
                         <input type="checkbox" id="terms-check" required>
                         <label for="terms-check">
@@ -272,21 +221,17 @@
                     <button type="submit" class="cta-button cta-primary full-width">
                         Entrar para o Beta Loomper
                     </button>
-
-                    <p class="micro-trust">
-                        Você pode se descadastrar a qualquer momento.
-                    </p>
+                    <p class="micro-trust">Descadastre-se a qualquer momento.</p>
                 </form>
             </div>
 
-            <!-- PASSO 3: SUCESSO & MGM -->
+            <!-- Passo 3: Sucesso -->
             <div id="step-success" class="step-view" style="display: none; text-align: center;">
                 <div style="margin-bottom: 20px;">
                     <i class="fas fa-check-circle" style="font-size: 3.5rem; color: #d4af37;"></i>
                 </div>
                 <h3 style="color: #fff; margin-bottom: 10px;">Você está dentro!</h3>
-                <p style="color: #ccc; margin-bottom: 25px;">Cadastro confirmado. Convide parceiros para ganhar prioridade.</p>
-                
+                <p style="color: #ccc; margin-bottom: 25px;">Convide parceiros e ganhe prioridade.</p>
                 <div class="referral-box">
                     <p class="referral-title">SEU LINK DE CONVITE:</p>
                     <input type="text" id="my-referral-link" readonly class="referral-input">
@@ -298,44 +243,40 @@
         </div>
     </div>
 
-    <!-- MODAL TIMELINE (Ponto H) -->
+    <!-- 2. MODAL TIMELINE -->
     <div id="modal-timeline" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-timeline')">&times;</span>
             <div class="timeline-header">
                 <h3><i class="fas fa-road"></i> Nossa Jornada</h3>
-                <p>Construindo o futuro passo a passo.</p>
             </div>
-            
             <div class="timeline-container">
                 <div class="timeline-item done">
                     <div class="tl-icon"><i class="fas fa-check"></i></div>
-                    <div class="tl-content">
-                        <h4>Início 2025</h4>
-                        <p>Pesquisa de campo e concepção.</p>
-                    </div>
+                    <div class="tl-content"><h4>Início 2025</h4><p>Pesquisa e concepção.</p></div>
                 </div>
                 <div class="timeline-item active">
                     <div class="tl-icon"><i class="fas fa-sync fa-spin"></i></div>
-                    <div class="tl-content">
-                        <h4>Agora</h4>
-                        <p>Construção da base de Pioneiros (Beta Fechado).</p>
-                    </div>
+                    <div class="tl-content"><h4>Agora</h4><p>Beta Fechado (Pioneiros).</p></div>
                 </div>
                 <div class="timeline-item future">
                     <div class="tl-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="tl-content">
-                        <h4>Março / 2026</h4>
-                        <p>Entrega do MVP (Aplicativo Beta).</p>
-                    </div>
+                    <div class="tl-content"><h4>Março / 2026</h4><p>Entrega do MVP (App).</p></div>
                 </div>
                 <div class="timeline-item future">
                     <div class="tl-icon"><i class="fas fa-store"></i></div>
-                    <div class="tl-content">
-                        <h4>Junho / 2026</h4>
-                        <p>Lançamento oficial nas Lojas de App.</p>
-                    </div>
+                    <div class="tl-content"><h4>Junho / 2026</h4><p>Lançamento nas Lojas.</p></div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. MODAIS DO RODAPÉ (TEXTOS PARA CURIOSOS) -->
+    <div id="modal-footer" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-footer')">&times;</span>
+            <div id="footer-modal-content">
+                <!-- Conteúdo injetado via JS -->
             </div>
         </div>
     </div>
