@@ -1,434 +1,86 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Loomper | Logística sem Enrolação</title>
-    <meta name="theme-color" content="#0a1628">
-    <meta name="description" content="Conectamos motoristas, chapas e empresas. O jeito certo de fazer logística.">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/FAVICON_Loomper.png">
-    
-    <!-- Fontes & Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --dark: #0a1628;
-            --gold: #D4AF37;
-            --orange: #FF6600;
-            --white: #ffffff;
-            --glass: rgba(0, 0, 0, 0.6);
-        }
+<!-- MODAL DE FLUXO E CADASTRO -->
+<div id="modal-flow" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal-flow')">&times;</span>
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            background-color: var(--dark); color: white; 
-            /* FUNDO: assets/images/bg_home.jpeg */
-            background: url('assets/images/bg_home.jpeg') no-repeat center center fixed; 
-            background-size: cover;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .overlay-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 22, 40, 0.85);
-            z-index: 0;
-        }
-
-        .app-container {
-            position: relative; z-index: 1;
-            max-width: 800px; margin: 0 auto;
-            min-height: 100vh;
-            display: flex; flex-direction: column;
-            padding: 20px;
-        }
-
-        /* HEADER */
-        header { text-align: center; margin-bottom: 30px; padding-top: 20px; }
-        .logo { height: 50px; width: auto; max-width: 80%; }
-        .tagline { font-size: 1.4rem; font-weight: 800; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); letter-spacing: -0.5px; }
-        .sub-tag { font-size: 0.9rem; color: #ccc; font-weight: 500; margin-top: 5px; }
-
-        /* CARDS GRID */
-        .cards-grid {
-            display: flex; flex-direction: column; gap: 20px;
-            flex-grow: 1; justify-content: center;
-        }
-
-        .visual-card {
-            position: relative;
-            height: 160px;
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            transition: transform 0.2s;
-            background-color: #111;
-        }
-        .visual-card:active { transform: scale(0.98); }
-
-        .card-bg {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.5s; opacity: 0.7;
-        }
-        .visual-card:hover .card-bg { transform: scale(1.05); opacity: 1; }
-
-        .card-content {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 0 25px;
-        }
-
-        .card-title { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; color: white; margin-bottom: 5px; text-shadow: 2px 2px 4px black; }
-        .card-desc { font-size: 0.9rem; color: #ddd; font-weight: 500; max-width: 85%; line-height: 1.3; text-shadow: 1px 1px 2px black; }
-        .card-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: var(--orange); opacity: 0.9; }
-
-        .card-small { height: 100px; border-color: var(--gold); }
-        .card-small .card-content { background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.8) 100%); }
-        .card-small .card-title { font-size: 1.1rem; color: var(--gold); }
-        .card-small .card-icon { font-size: 1.8rem; color: var(--gold); }
-
-        /* RODAPÉ ESTRUTURADO */
-        footer { margin-top: 40px; background: rgba(0,0,0,0.8); border-radius: 15px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); }
-        
-        .footer-cols { display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; text-align: left; }
-        .f-col { flex: 1; min-width: 140px; }
-        .f-col h4 { color: var(--gold); margin-bottom: 15px; font-size: 0.95rem; text-transform: uppercase; border-left: 3px solid var(--orange); padding-left: 10px; }
-        .f-col ul li { margin-bottom: 10px; }
-        .f-col a { color: #ccc; text-decoration: none; font-size: 0.85rem; transition: 0.2s; cursor: pointer; }
-        .f-col a:hover { color: var(--orange); padding-left: 5px; }
-
-        .footer-legal { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; color: #777; line-height: 1.6; }
-        .footer-legal strong { color: #aaa; }
-        
-        .manifesto { text-align: center; font-style: italic; margin-top: 20px; color: #fff; font-weight: 600; opacity: 0.9; font-size: 0.9rem; }
-
-        /* MODAIS */
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 3000;
-            display: none; align-items: center; justify-content: center;
-            backdrop-filter: blur(8px); padding: 20px;
-        }
-        .modal-box {
-            background: #151f32; width: 100%; max-width: 600px; border-radius: 15px;
-            padding: 30px; position: relative; max-height: 90vh; overflow-y: auto;
-            border: 1px solid #333; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
-        .close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #666; cursor: pointer; transition: 0.2s; z-index: 10; }
-        .close:hover { color: var(--orange); }
-        
-        /* Estilo do Texto dentro dos Modais */
-        .modal-title { color: var(--gold); font-size: 1.4rem; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .modal-body { color: #ccc; font-size: 0.95rem; line-height: 1.7; text-align: left; }
-        .modal-body h4 { color: white; margin: 20px 0 10px; font-size: 1.1rem; }
-        .modal-body ul { list-style: none; margin-bottom: 15px; }
-        .modal-body li { margin-bottom: 8px; padding-left: 15px; border-left: 2px solid var(--orange); }
-        .modal-body strong { color: #fff; }
-
-        /* Benefícios do Modal de Cadastro */
-        .modal-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .m-benefit { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; text-align: center; }
-        .m-benefit i { font-size: 1.2rem; color: var(--gold); margin-bottom: 5px; display:block; }
-        .m-benefit span { display: block; font-size: 0.75rem; color: #ddd; font-weight: 600; line-height: 1.2; }
-
-        /* Formulário */
-        .form-control { width: 100%; padding: 14px; background: #0a1628; border: 1px solid #333; border-radius: 8px; color: white; margin-bottom: 12px; font-size: 1rem; }
-        .btn-submit { width: 100%; padding: 16px; background: var(--orange); color: white; font-weight: 800; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin-top: 10px; }
-        
-        /* PIX BUTTONS */
-        .pill-btn { background: transparent; border: 1px solid #ffd700; color: #ffd700; padding: 8px 15px; border-radius: 20px; margin: 5px; cursor: pointer; }
-        .pill-btn:hover { background: #ffd700; color: #000; }
-
-        .wa-float { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 1500; }
-
-        @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-        @media (min-width: 768px) {
-            .cards-grid { flex-direction: row; flex-wrap: wrap; }
-            .visual-card { width: 48%; height: 280px; }
-            .card-small { width: 100%; height: 140px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="overlay-bg"></div>
-
-    <div class="app-container">
-        <!-- HEADER -->
-        <header>
-            <img src="assets/images/logo.png" alt="Loomper" class="logo">
-            <div class="tagline">Logística sem enrolação.</div>
-            <div class="sub-tag">Selecione seu perfil para começar:</div>
-        </header>
-
-        <!-- DASHBOARD VISUAL (Caminhos Corrigidos) -->
-        <div class="cards-grid">
-            <!-- MOTORISTA -->
-            <div class="visual-card" onclick="openProfile('motorista')">
-                <img src="assets/images/driver.jpeg" class="card-bg" alt="Motorista" onerror="this.style.display='none'">
-                <div class="card-content">
-                    <div class="card-title">Sou Motorista</div>
-                    <div class="card-desc">Quero ajuda segura para carga e descarga.</div>
-                </div>
-                <i class="fa-solid fa-truck-front card-icon"></i>
-            </div>
-
-            <!-- CHAPA -->
-            <div class="visual-card" onclick="openProfile('chapa')">
-                <img src="assets/images/chapa.jpeg" class="card-bg" alt="Chapa" onerror="this.style.display='none'">
-                <div class="card-content">
-                    <div class="card-title">Sou Ajudante</div>
-                    <div class="card-desc">Quero ofertas de trabalho no celular.</div>
-                </div>
-                <i class="fa-solid fa-helmet-safety card-icon"></i>
-            </div>
-
-            <!-- EMPRESA -->
-            <div class="visual-card card-small" onclick="openProfile('empresa')">
-                <img src="assets/images/empresa.jpeg" class="card-bg" alt="Empresa" onerror="this.style.display='none'">
-                <div class="card-content">
-                    <div class="card-title" style="font-size:1.1rem;">Sou Empresa / Frota</div>
-                    <div class="card-desc">Gestão de risco e compliance.</div>
-                </div>
-                <i class="fa-solid fa-building card-icon"></i>
-            </div>
+        <!-- PASSO 1: ESPELHO DA DOR (Dinâmico) -->
+        <div id="step-1" class="step-view">
+            <p class="modal-intro" id="modal-intro-text">Texto de abertura...</p>
+            <h3 id="modal-title-pain">Título do Perfil</h3>
+            <ul id="modal-bullets-pain" class="pain-list"></ul>
+            <p class="modal-turn" id="modal-turn-text">Frase de virada...</p>
+            <button id="btn-to-step-2" class="cta-button cta-primary full-width" onclick="goToStep2()">
+                Quero resolver isso
+            </button>
         </div>
 
-        <!-- RODAPÉ RICO (COM LINKS DE POP-UP) -->
-        <footer>
-            <div class="footer-cols">
-                <div class="f-col">
-                    <h4>Institucional</h4>
-                    <ul>
-                        <li><a onclick="openModal('modal-sobre')">Sobre o Loomper</a></li>
-                        <li><a onclick="openModal('modal-investidores')">Para Investidores</a></li>
-                        <li><a onclick="openModal('modal-gov')">Governo & Social</a></li>
-                    </ul>
-                </div>
-                <div class="f-col">
-                    <h4>Ajuda</h4>
-                    <ul>
-                        <li><a onclick="openModal('modal-faq')">Dúvidas (FAQ)</a></li>
-                        <li><a onclick="openModal('modal-apoie')">Apoie o Projeto</a></li>
-                        <li><a href="mailto:contato@loomper.com.br">Suporte por E-mail</a></li>
-                    </ul>
-                </div>
-                <div class="f-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a onclick="openModal('modal-termos')">Termos de Uso</a></li>
-                        <li><a onclick="openModal('modal-privacidade')">Política de Privacidade</a></li>
-                    </ul>
-                </div>
+        <!-- PASSO 2: FORMULÁRIO DE CADASTRO -->
+        <div id="step-2" class="step-view" style="display: none;">
+            <div class="form-header">
+                <h3>Cadastro Beta Fechado</h3>
+                <p>Garanta sua vaga de pioneiro.</p>
             </div>
 
-            <p class="manifesto">"Quando o trabalho deixa de ser improviso, o crescimento deixa de ser sorte."</p>
-
-            <div class="footer-legal">
-                <p>LOOMPER® — Marca Registrada</p>
-                <p>Uma empresa do Grupo <strong>Ajud.AI Brasil Inova Simples (I.S.)</strong></p>
-                <p>CNPJ: 59.150.688/0001-39 • São Bernardo do Campo • SP • Brasil</p>
-                <p>© 2025 Loomper. Todos os direitos reservados.</p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ================= MODAIS DE CONTEÚDO (POP-UPS) ================= -->
-
-    <!-- SOBRE -->
-    <div id="modal-sobre" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-sobre')">&times;</span>
-        <h3 class="modal-title">Sobre o Loomper</h3>
-        <div class="modal-body">
-            <p>O Loomper conecta as pontas soltas da logística automotiva. Não substituímos pessoas. Organizamos relações para trazer previsibilidade, segurança e dignidade a quem vive da estrada.</p>
-            <p>Tecnologia com propósito, construída a partir da operação real — não de planilhas distantes da realidade.</p>
-        </div>
-    </div></div>
-
-    <!-- INVESTIDORES -->
-    <div id="modal-investidores" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-investidores')">&times;</span>
-        <h3 class="modal-title">Para Investidores</h3>
-        <div class="modal-body">
-            <p>O Loomper é um negócio <strong>asset light</strong>, orientado por dados e construído sobre um mercado real e pouco digitalizado.</p>
-            <ul>
-                <li>Mercado bilionário na logística automotiva.</li>
-                <li>Base pulverizada, com forte efeito de rede.</li>
-                <li>Modelo escalável, baixo custo marginal.</li>
-                <li>Impacto social aliado a eficiência operacional.</li>
-            </ul>
-            <p>Estamos em fase de validação de base e tração inicial (Seed / Pré-Seed).</p>
-            <button class="btn-submit" onclick="closeModal('modal-investidores'); openProfile('empresa')">Falar com a Direção</button>
-        </div>
-    </div></div>
-
-    <!-- GOVERNO -->
-    <div id="modal-gov" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-gov')">&times;</span>
-        <h3 class="modal-title">Governo & Social</h3>
-        <div class="modal-body">
-            <p>Atuamos diretamente na informalidade do trabalho operacional rodoviário.</p>
-            <ul>
-                <li>Caminho para formalização de milhares de chapas.</li>
-                <li>Aumento da segurança viária.</li>
-                <li>Inclusão produtiva com dignidade.</li>
-                <li>Geração de dados para políticas públicas.</li>
-            </ul>
-            <p><strong>Não é assistencialismo. É infraestrutura social aplicada à economia real.</strong></p>
-        </div>
-    </div></div>
-
-    <!-- FAQ -->
-    <div id="modal-faq" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-faq')">&times;</span>
-        <h3 class="modal-title">Dúvidas Frequentes</h3>
-        <div class="modal-body">
-            <h4>É gratuito mesmo?</h4>
-            <p>Sim. Para chapas e ajudantes, o acesso é gratuito. Acreditamos que inclusão vem antes da monetização.</p>
-            <h4>É seguro?</h4>
-            <p>Sim. Trabalhamos com validação de cadastro e construção de reputação.</p>
-            <h4>Quando o aplicativo será lançado?</h4>
-            <p>O app está previsto para 2026. Neste momento, o site funciona para pré-cadastro e formação da base de pioneiros.</p>
-        </div>
-    </div></div>
-
-    <!-- APOIE -->
-    <div id="modal-apoie" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-apoie')">&times;</span>
-        <h3 class="modal-title">Mova este Propósito</h3>
-        <div class="modal-body" style="text-align:center;">
-            <p>O Loomper é uma iniciativa independente. Sua contribuição ajuda a manter a tecnologia no ar e gratuita para quem está na estrada.</p>
-            <div style="display:flex; justify-content:center; gap:10px; margin-top:20px; flex-wrap:wrap;">
-                <button class="pill-btn" onclick="copyPix()">Apoiar R$ 20</button>
-                <button class="pill-btn" onclick="copyPix()">Apoiar R$ 50</button>
-                <button class="pill-btn" onclick="copyPix()">Outro Valor</button>
-            </div>
-            <p id="pixMsg" style="color:#25D366; font-size:0.9rem; margin-top:15px; display:none;">Chave PIX copiada!</p>
-        </div>
-    </div></div>
-
-    <!-- TERMOS DE USO (COMPLETO) -->
-    <div id="modal-termos" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-termos')">&times;</span>
-        <h3 class="modal-title">Termos de Uso</h3>
-        <div class="modal-body">
-            <p><strong>1. Identificação:</strong> O Loomper é operado pela Ajud.AI Brasil Inova Simples. Somos uma plataforma de tecnologia.</p>
-            <p><strong>2. Natureza:</strong> Não somos transportadora. Não agenciamos mão de obra. Não intermediamos relações trabalhistas. Apenas conectamos partes.</p>
-            <p><strong>3. Vínculo:</strong> O uso do app não gera vínculo empregatício entre usuários ou com o Loomper.</p>
-            <p><strong>4. Responsabilidade:</strong> Você é responsável pelas informações que fornece e pelos acordos que faz com outros usuários.</p>
-            <p><strong>5. Uso Indevido:</strong> É proibido usar a plataforma para fins ilegais. Perfis falsos serão banidos.</p>
-            <p><em>Versão Beta 1.0 (2025) - Ajud.AI Brasil</em></p>
-        </div>
-    </div></div>
-
-    <!-- PRIVACIDADE (COMPLETO) -->
-    <div id="modal-privacidade" class="modal"><div class="modal-box"><span class="close" onclick="closeModal('modal-privacidade')">&times;</span>
-        <h3 class="modal-title">Política de Privacidade</h3>
-        <div class="modal-body">
-            <p><strong>1. Controlador:</strong> Ajud.AI Brasil Inova Simples (I.S.).</p>
-            <p><strong>2. Dados Coletados:</strong> Nome, contato, localização e perfil profissional. Apenas o necessário.</p>
-            <p><strong>3. Finalidade:</strong> Viabilizar conexões, segurança e comunicação.</p>
-            <p><strong>4. Compartilhamento:</strong> Seus dados aparecem para outros usuários apenas quando necessário para o serviço. Não vendemos dados.</p>
-            <p><strong>5. Seus Direitos (LGPD):</strong> Você pode solicitar exclusão ou correção a qualquer momento pelo e-mail contato@loomper.com.br.</p>
-        </div>
-    </div></div>
-
-    <!-- MODAL CADASTRO (FORMULÁRIO) -->
-    <div id="modal-cadastro" class="modal">
-        <div class="modal-box">
-            <span class="close" onclick="closeModal('modal-cadastro')">&times;</span>
-            <div class="modal-header">
-                <h3 id="modalTitle">Motorista</h3>
-                <p id="modalSub">Faça seu cadastro gratuito</p>
-            </div>
-            <div class="modal-benefits" id="modalBenefits"></div>
-            
-            <div id="dupMsg" style="background:#332b00; color:#ffd700; padding:10px; border-radius:8px; margin-bottom:15px; display:none; font-size:0.9rem; text-align:center;">
-                Você já tem cadastro! ID: <strong id="dupId"></strong>
-            </div>
-
-            <form name="loomper-beta" method="POST" data-netlify="true" action="/sucesso.html" id="mainForm">
-                <input type="hidden" name="perfil" id="perfilInput">
-                <input type="hidden" name="id_gerado" id="hiddenId">
-                <input type="hidden" name="data_aceite" id="hiddenDate">
-
-                <input type="text" name="nome" class="form-control" placeholder="Seu Nome Completo" required>
-                <input type="tel" name="whatsapp" id="zapInput" class="form-control" placeholder="WhatsApp (DDD) 9..." required>
-                <input type="email" name="email" class="form-control" placeholder="E-mail" required>
+            <form id="beta-form" name="beta-signup" method="POST" data-netlify="true" onsubmit="submitForm(event)">
+                <!-- Configuração Netlify -->
+                <input type="hidden" name="form-name" value="beta-signup" />
                 
-                <div style="display:flex; gap:10px;">
-                    <div style="flex:1"><select id="ufSelect" name="uf" class="form-control" required><option value="">UF</option></select></div>
-                    <div style="flex:2"><input type="text" id="cityInput" name="cidade" list="cityList" class="form-control" placeholder="Cidade" required><datalist id="cityList"></datalist></div>
+                <!-- Identifica o perfil (Motorista, Chapa...) -->
+                <input type="hidden" id="input-perfil" name="perfil" value="">
+                
+                <!-- RASTREAMENTO: Quem indicou essa pessoa? (Capturado da URL) -->
+                <input type="hidden" id="input-indicado-por" name="indicado_por" value="">
+
+                <div class="form-group">
+                    <label>Nome completo</label>
+                    <input type="text" name="nome" required placeholder="Seu nome">
                 </div>
 
-                <div class="check-area">
-                    <input type="checkbox" required>
-                    <span>Li e aceito os <a onclick="openModal('modal-termos')">Termos</a> e <a onclick="openModal('modal-privacidade')">Privacidade</a>.</span>
+                <div class="form-group">
+                    <label>WhatsApp</label>
+                    <input type="tel" name="whatsapp" required placeholder="(XX) XXXXX-XXXX" id="phone-input">
                 </div>
 
-                <button type="submit" class="btn-submit">ENTRAR AGORA</button>
+                <button type="submit" class="cta-button cta-primary full-width">
+                    Entrar para o Beta Loomper
+                </button>
+
+                <p class="micro-trust">
+                    <i class="fas fa-lock"></i> Seus dados são usados apenas para contato oficial.
+                </p>
             </form>
         </div>
+
+        <!-- PASSO 3: SUCESSO & MGM (Member Get Member) -->
+        <div id="step-success" class="step-view" style="display: none; text-align: center;">
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-check-circle" style="font-size: 3.5rem; color: #d4af37;"></i>
+            </div>
+            
+            <h3 style="color: #fff; margin-bottom: 10px;">Bem-vindo, Pioneiro!</h3>
+            <p style="color: #ccc; margin-bottom: 25px; line-height: 1.4;">
+                Seu cadastro foi confirmado. Agora, aumente sua moral convidando parceiros da estrada.
+            </p>
+            
+            <!-- Caixa de Indicação -->
+            <div class="referral-box" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px dashed #555; margin-bottom: 20px;">
+                <p style="font-size: 0.8rem; color: #d4af37; margin-bottom: 8px; font-weight: bold; text-transform: uppercase;">Seu Link de Convite:</p>
+                
+                <!-- Input com o Link Gerado -->
+                <input type="text" id="my-referral-link" readonly 
+                       style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 12px; font-size: 0.9rem; text-align: center; border-radius: 4px; margin-bottom: 15px;">
+                
+                <!-- Botão de Compartilhar -->
+                <button onclick="shareOnWhatsapp()" class="cta-button full-width" 
+                        style="background: #25d366; color: #fff; border: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar no Zap
+                </button>
+            </div>
+
+            <p style="font-size: 0.8rem; color: #666;">
+                Quem mais indica ganha prioridade no lançamento oficial.
+            </p>
+        </div>
+
     </div>
-
-    <!-- ZAP -->
-    <a href="https://wa.me/5511965858142" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-
-    <!-- LÓGICA -->
-    <script>
-        const DATA = {
-            'motorista': { title: "Sou Motorista", sub: "Acabe com o improviso. Tenha segurança.", benefits: [{i:"fa-user-shield", t:"Profissionais"}, {i:"fa-star", t:"Avaliação"}, {i:"fa-bolt", t:"Rápido"}, {i:"fa-ban", t:"Sem Custo"}] },
-            'chapa': { title: "Sou Ajudante", sub: "Trabalho direto no celular.", benefits: [{i:"fa-mobile", t:"App Grátis"}, {i:"fa-id-card", t:"Histórico"}, {i:"fa-hand-holding-dollar", t:"Renda"}, {i:"fa-lock", t:"Seguro"}] },
-            'empresa': { title: "Sou Empresa", sub: "Gestão de risco para frota.", benefits: [{i:"fa-file-contract", t:"Compliance"}, {i:"fa-chart-line", t:"ESG"}, {i:"fa-users-viewfinder", t:"Gestão"}, {i:"fa-check-double", t:"Auditoria"}] }
-        };
-
-        function openProfile(key) {
-            const d = DATA[key];
-            document.getElementById('modalTitle').innerText = d.title;
-            document.getElementById('modalSub').innerText = d.sub;
-            let val = key === 'empresa' ? 'Transportadora' : (key === 'chapa' ? 'Chapa/Ajudante' : 'Motorista Cegonheiro');
-            document.getElementById('perfilInput').value = val;
-            let html = '';
-            d.benefits.forEach(b => { html += `<div class="m-benefit"><i class="fa-solid ${b.i}"></i><span>${b.t}</span></div>`; });
-            document.getElementById('modalBenefits').innerHTML = html;
-            if(localStorage.getItem('registered') === 'true') {
-                document.getElementById('dupMsg').style.display='block';
-                document.getElementById('dupId').innerText = localStorage.getItem('lid');
-            }
-            openModal('modal-cadastro');
-        }
-
-        function openModal(id) { document.getElementById(id).style.display='flex'; }
-        function closeModal(id) { document.getElementById(id).style.display='none'; }
-        window.onclick = e => { if(e.target.classList.contains('modal')) e.target.style.display='none'; }
-
-        function copyPix() { navigator.clipboard.writeText('contato@loomper.com.br'); document.getElementById('pixMsg').style.display='block'; }
-
-        if(!localStorage.getItem('lid')) localStorage.setItem('lid', "LMP-"+Math.floor(Math.random()*90000));
-        document.getElementById('hiddenId').value = localStorage.getItem('lid');
-
-        let validCities=[];
-        fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome').then(r=>r.json()).then(res=>{
-            res.forEach(u=>{let o=document.createElement('option');o.value=u.sigla;o.innerText=u.sigla;document.getElementById('ufSelect').appendChild(o)})
-        });
-        document.getElementById('ufSelect').addEventListener('change',function(){
-            let u=this.value; let l=document.getElementById('cityList');
-            document.getElementById('cityInput').value=""; l.innerHTML=""; validCities=[];
-            if(u) fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${u}/municipios`).then(r=>r.json()).then(res=>{
-                res.forEach(c=>{let o=document.createElement('option');o.value=c.nome;l.appendChild(o);validCities.push(c.nome)})
-            });
-        });
-
-        document.getElementById('mainForm').addEventListener('submit',function(e){
-            if(!validCities.includes(document.getElementById('cityInput').value)){e.preventDefault();alert('Cidade inválida.');return}
-            document.getElementById('hiddenDate').value=new Date().toLocaleString();
-            localStorage.setItem('registered','true');
-            localStorage.setItem('userProfile', document.getElementById('perfilInput').value);
-        });
-
-        document.getElementById('zapInput').addEventListener('input',function(e){let x=e.target.value.replace(/\D/g,'').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);e.target.value=!x[2]?x[1]:'('+x[1]+') '+x[2]+(x[3]?'-'+x[3]:'')});
-    </script>
-</body>
-</html>
+</div>
