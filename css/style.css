@@ -34,7 +34,7 @@ body {
     text-align: center;
     position: relative;
     /* AJUSTE FINO: Opacidade 0.75 (deixa a foto aparecer bem) */
-    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('../assets/images/hero.png');
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), url('../assets/images/hero.png');
     background-size: cover;
     background-position: center;
     padding: 100px 20px 60px;
@@ -98,11 +98,15 @@ body {
     padding: 30px 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    
+
+    /* 🔑 Essenciais para a marca d’água */
+    position: relative;
+    overflow: hidden;
+
     /* Flexbox para empurrar o botão para o fundo */
     display: flex;
     flex-direction: column;
-    
+
     /* Tamanho controlado */
     flex: 1;
     min-width: 300px;
@@ -119,7 +123,16 @@ body {
     color: var(--gold);
     margin-bottom: 20px;
 }
-
+.profile-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  opacity: 0.04; /* 🔑 ESSA É A CHAVE */
+  pointer-events: none;
+}
 .profile-card h3 { font-size: 1.25rem; margin-bottom: 12px; font-weight: 700; color: #fff; }
 
 .profile-card p {
@@ -128,6 +141,16 @@ body {
     font-size: 0.95rem;
     flex-grow: 1; /* Ocupa espaço para alinhar botão */
 }
+.profile-card.motorista::before {
+  background-image: url('../assets/images/bg-motorista.png');
+}
+.profile-card.chapa::before {
+  background-image: url('../assets/images/bg-chapa.png');
+}
+.profile-card.transportadora::before {
+  background-image: url('../assets/images/bg-transportadora.png');
+}
+
 
 .card-cta {
     color: var(--orange);
