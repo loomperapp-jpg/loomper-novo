@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LOOMPER - VERSÃO FINAL 100%
+   LOOMPER - VERSÃO FINAL 1.000.000%
    ========================================================================== */
 
 :root {
@@ -22,13 +22,9 @@ body {
     overflow-x: hidden;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-/* --- HERO (CORRIGIDO PARA LEGIBILIDADE) --- */
+/* --- HERO (MARCA D'ÁGUA) --- */
 .hero-section {
     min-height: 90vh;
     display: flex;
@@ -37,8 +33,8 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
-    /* Ajustei a opacidade do degradê para 0.6 para mostrar mais o caminhão */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('../assets/images/hero.png');
+    /* TRUQUE DA MARCA D'ÁGUA: Opacidade 0.92 (quase preto) por cima da foto */
+    background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.96)), url('../assets/images/hero.png');
     background-size: cover;
     background-position: center;
     padding: 100px 20px 60px;
@@ -54,7 +50,6 @@ body {
     margin-bottom: 20px;
     color: var(--gold);
     text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Sombra para legibilidade */
 }
 
 .hero-subtitle-main {
@@ -64,26 +59,18 @@ body {
     font-weight: 700;
     margin-top: 10px;
     text-transform: none;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 .hero-desc {
     font-size: clamp(1rem, 2vw, 1.2rem);
-    color: #f0f0f0; /* Texto mais claro */
+    color: #f0f0f0;
     margin-bottom: 30px;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
 
 .highlight-text { color: var(--gold); font-weight: 600; }
-
-/* --- BOTÕES --- */
-.cta-button { background: var(--gold); color: #000; border: none; padding: 18px 40px; font-size: 1.1rem; font-weight: 800; border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: all 0.3s ease; display: inline-block; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
-.cta-button:hover { background: var(--gold-hover); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); }
-.full-width { width: 100%; }
-.btn-whatsapp-share { background: #25d366; color: white; }
 
 /* --- PERFIS --- */
 .profiles-section { padding: 40px 0; background: var(--bg-dark); }
@@ -107,11 +94,7 @@ body {
 }
 .profile-card:hover { border-color: var(--gold); transform: translateY(-5px); }
 
-/* Ícone Personalizado (Caminhão Cegonha) */
-.card-icon-img { height: 60px; margin-bottom: 20px; }
-.card-icon-img img { height: 100%; width: auto; }
 .card-icon { font-size: 2.2rem; color: var(--gold); margin-bottom: 20px; }
-
 .profile-card h3 { font-size: 1.25rem; margin-bottom: 12px; font-weight: 700; color: #fff; }
 .profile-card p { color: var(--text-gray); margin-bottom: 25px; font-size: 0.95rem; flex-grow: 1; }
 .card-cta { color: var(--orange); font-weight: 700; font-size: 0.9rem; margin-top: auto; display: flex; align-items: center; gap: 8px; text-transform: uppercase; }
@@ -129,50 +112,44 @@ body {
 .pioneer-list i { color: var(--gold); margin-right: 8px; }
 .responsive-img-wide { width: 100%; max-width: 500px; height: auto; max-height: 300px; object-fit: cover; border-radius: 8px; border: 1px solid #333; }
 
-/* --- RODAPÉ MENU (NOVO ESTILO) --- */
+/* --- RODAPÉ MENU --- */
 .footer-menu-style { background: #050505; padding: 40px 0 20px; border-top: 1px solid #222; }
-
-.footer-nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 40px;
-}
-
-.footer-nav-item {
-    color: #ccc;
-    font-size: 0.95rem;
-    cursor: pointer;
-    padding: 8px 16px;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    transition: all 0.3s;
-}
-
-.footer-nav-item:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(212, 175, 55, 0.05);
-}
-
-.highlight-apoie {
-    border-color: var(--orange);
-    color: var(--orange);
-    font-weight: bold;
-}
-.highlight-apoie:hover {
-    background: var(--orange);
-    color: #fff;
-}
-
-/* Dados Institucionais */
+.footer-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 40px; }
+.footer-nav-item { color: #ccc; font-size: 0.95rem; cursor: pointer; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; transition: all 0.3s; }
+.footer-nav-item:hover { border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+.highlight-apoie { border-color: var(--orange); color: var(--orange); font-weight: bold; }
+.highlight-apoie:hover { background: var(--orange); color: #fff; }
 .footer-bottom-info { text-align: center; border-top: 1px solid #222; padding-top: 30px; color: #888; }
 .brand-name { color: var(--gold); font-weight: 900; font-size: 1.2rem; margin-bottom: 5px; }
 .brand-slogan { font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 15px; color: #666; }
 .company-details { font-size: 0.8rem; line-height: 1.4; color: #777; }
 
-/* --- TIMELINE --- */
+/* ESTILO DOS BOTÕES DE INVESTIDOR (NOVO) */
+.investor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 20px; }
+.investor-btn {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.investor-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.1); }
+
+/* --- OUTROS --- */
+.cta-button { background: var(--gold); color: #000; border: none; padding: 18px 40px; font-size: 1.1rem; font-weight: 800; border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: all 0.3s ease; display: inline-block; }
+.cta-button:hover { background: var(--gold-hover); transform: translateY(-3px); }
+.full-width { width: 100%; }
+.donate-btn { background: var(--orange); color: #fff; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; margin: 5px; }
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); overflow-y: auto; backdrop-filter: blur(5px); }
+.modal-content { background: #181818; margin: 5% auto; padding: 30px; width: 95%; max-width: 500px; border-radius: 12px; border: 1px solid #333; position: relative; animation: fadeIn 0.3s; }
+.modal-close { position: absolute; right: 15px; top: 15px; color: #666; font-size: 28px; cursor: pointer; }
+.form-group input, .form-group select { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; margin-bottom: 5px; }
+.form-row { display: flex; gap: 15px; }
 .timeline-container { position: relative; padding-left: 20px; }
 .timeline-item { position: relative; margin-bottom: 30px; padding-left: 40px; }
 .timeline-item::before { content: ''; position: absolute; left: 14px; top: 30px; bottom: -30px; width: 2px; background: #333; }
@@ -180,28 +157,8 @@ body {
 .tl-icon { position: absolute; left: 0; top: 0; width: 30px; height: 30px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #555; border: 2px solid #333; }
 .timeline-item.done .tl-icon { background: var(--gold); color: #000; }
 .timeline-item.active .tl-icon { background: var(--orange); color: #fff; box-shadow: 0 0 10px rgba(255, 107, 53, 0.4); }
-
-/* --- FORM & MODAL --- */
-.form-row { display: flex; gap: 15px; }
-.form-checkbox { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px; font-size: 0.85rem; color: #ccc; }
-.form-checkbox a { color: var(--gold); text-decoration: none; }
-.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); overflow-y: auto; backdrop-filter: blur(5px); }
-.modal-content { background: #181818; margin: 5% auto; padding: 30px; width: 95%; max-width: 500px; border-radius: 12px; border: 1px solid #333; position: relative; animation: fadeIn 0.3s; }
-.modal-close { position: absolute; right: 15px; top: 15px; color: #666; font-size: 28px; cursor: pointer; }
-.form-group input, .form-group select { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; margin-bottom: 5px; }
-
-/* Botões do Apoie (Dentro do Modal) */
-.donate-btn { background: var(--orange); color: #fff; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; margin: 5px; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-/* Mobile Stack Footer */
-@media (max-width: 768px) {
-    .footer-nav { flex-direction: column; align-items: center; }
-    .footer-nav-item { width: 80%; text-align: center; }
-    .hero-section { padding-top: 120px; }
-}
-
-/* Whatsapp Float */
 .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white !important; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 2000; text-decoration: none; }
 .whatsapp-float i { color: white !important; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 768px) { .footer-nav { flex-direction: column; align-items: center; } .footer-nav-item { width: 80%; text-align: center; } .hero-section { padding-top: 120px; } }
