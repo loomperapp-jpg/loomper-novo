@@ -212,4 +212,22 @@ body {
 .whatsapp-float i { color: white !important; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@media (max-width: 768px) { .footer-nav { flex-direction: column; align-items: center; } .footer-nav-item { width: 80%; text-align: center; } .hero-section { padding-top: 120px; } }
+@media (max-width: 768px) {
+  .footer-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-nav-item {
+    width: 80%;
+    text-align: center;
+  }
+
+  /* HERO – mais imagem, mais caminhão, mais impacto */
+  .hero-section {
+    min-height: 85vh;
+    padding-top: 120px;
+    /* 🔑 O segredo está aqui */
+     background-position: center top;
+    background-size: 120%;}
+}
