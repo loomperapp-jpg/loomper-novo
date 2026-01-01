@@ -195,98 +195,81 @@
                 </button>
             </div>
 
-            <!-- Passo 2: Formulário (IBGE) -->
-            <div id="step-2" class="step-view" style="display: none;">
-                <div class="form-header">
-                    <h3>Cadastro Beta Fechado</h3>
-                    <p>Preencha para garantir sua vaga.</p>
-                </div>
+           <!-- Passo 2: Formulário (IBGE + Netlify) -->
+<div id="step-2" class="step-view" style="display: none;">
+    <div class="form-header">
+        <h3>Cadastro Beta Fechado</h3>
+        <p>Preencha para garantir sua vaga.</p>
+    </div>
 
-               <form id="beta-form"
-      name="lead-loomper"
-      method="POST"
-      data-netlify="true"
-      onsubmit="submitForm(event)">
+    <form id="beta-form"
+          name="lead-loomper"
+          method="POST"
+          data-netlify="true"
+          onsubmit="submitForm(event)">
 
-  <input type="hidden" name="form-name" value="lead-loomper" />
+        <!-- Netlify obrigatório -->
+        <input type="hidden" name="form-name" value="lead-loomper">
 
-  <input type="hidden" name="perfil" id="input-perfil" value="">
-  <input type="hidden" name="indicado_por" id="input-indicado-por" value="">
-  <input type="hidden" name="data_aceite" id="input-data-aceite" value="">
+        <!-- Campos ocultos de controle -->
+        <input type="hidden" name="perfil" id="input-perfil">
+        <input type="hidden" name="indicado_por" id="input-indicado-por">
+        <input type="hidden" name="data_aceite" id="input-data-aceite">
 
-  <div class="form-group">
-    <label>Nome completo</label>
-    <input type="text" name="nome" required placeholder="Seu nome completo">
-  </div>
+        <!-- Nome -->
+        <div class="form-group">
+            <label>Nome completo</label>
+            <input type="text" name="nome" required placeholder="Seu nome completo">
+        </div>
 
-  <div class="form-group">
-    <label>WhatsApp</label>
-    <input type="tel"
-           name="whatsapp"
-           required
-           placeholder="(11) 91234-5678"
-           id="phone-input">
-  </div>
+        <!-- WhatsApp -->
+        <div class="form-group">
+            <label>WhatsApp</label>
+            <input type="tel"
+                   name="whatsapp"
+                   required
+                   placeholder="(11) 91234-5678"
+                   id="phone-input">
+        </div>
 
-  <div class="form-group">
-    <label>Cidade</label>
-    <input type="text" name="cidade" placeholder="Sua cidade">
-  </div>
-
-  <div class="form-group">
-    <label>UF</label>
-    <input type="text" name="uf" maxlength="2" placeholder="UF">
-  </div>
-
-  <button type="submit" class="btn-primary">
-    Entrar no Beta
-  </button>
-</form>
-
-
-                    <div class="form-group">
-                        <label>Nome completo</label>
-                        <input type="text" name="nome" required placeholder="Seu nome">
-                    </div>
-
-                    <div class="form-group">
-                        <label>WhatsApp</label>
-                        <input type="tel" name="whatsapp" required placeholder="(XX) XXXXX-XXXX" id="phone-input">
-                    </div>
-
-                    <!-- UF e CIDADE (API IBGE) -->
-                    <div class="form-row">
-                        <div class="form-group" style="flex: 1;">
-                            <label>UF</label>
-                            <select id="uf-select" name="uf" required onchange="buscarCidades()">
-                                <option value="">Selecione</option>
-                                <!-- Preenchido via JS -->
-                            </select>
-                        </div>
-                        <div class="form-group" style="flex: 2;">
-                            <label>Cidade</label>
-                            <select id="cidade-select" name="cidade" required disabled>
-                                <option value="">Aguardando UF...</option>
-                                <!-- Preenchido via JS -->
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- CHECKBOX LGPD -->
-                    <div class="form-checkbox">
-                        <input type="checkbox" id="terms-check" required>
-                        <label for="terms-check">
-                            Li e aceito os <a href="termos.html" target="_blank">Termos de Uso</a> e <a href="privacidade.html" target="_blank">Política de Privacidade</a>.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="cta-button cta-primary full-width">
-                        Entrar para o Beta Loomper
-                    </button>
-                    <p class="micro-trust">Descadastre-se a qualquer momento.</p>
-                </form>
+        <!-- UF e Cidade (API IBGE) -->
+        <div class="form-row">
+            <div class="form-group" style="flex: 1;">
+                <label>UF</label>
+                <select id="uf-select" name="uf" required onchange="buscarCidades()">
+                    <option value="">Selecione</option>
+                    <!-- JS IBGE -->
+                </select>
             </div>
 
+            <div class="form-group" style="flex: 2;">
+                <label>Cidade</label>
+                <select id="cidade-select" name="cidade" required disabled>
+                    <option value="">Aguardando UF...</option>
+                    <!-- JS IBGE -->
+                </select>
+            </div>
+        </div>
+
+        <!-- LGPD -->
+        <div class="form-checkbox">
+            <input type="checkbox" id="terms-check" required>
+            <label for="terms-check">
+                Li e aceito os
+                <a href="termos.html" target="_blank">Termos de Uso</a>
+                e a
+                <a href="privacidade.html" target="_blank">Política de Privacidade</a>.
+            </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="cta-button cta-primary full-width">
+            Entrar para o Beta Loomper
+        </button>
+
+        <p class="micro-trust">Descadastre-se a qualquer momento.</p>
+    </form>
+</div>
             <!-- Passo 3: Sucesso -->
             <div id="step-success" class="step-view" style="display: none; text-align: center;">
                 <div style="margin-bottom: 20px;">
