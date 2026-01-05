@@ -323,7 +323,13 @@ function showSuccessScreen(userId) {
 
 function shareOnWhatsapp() {
     const link = document.getElementById('my-referral-link').value;
-    const msg = `Fala parceiro! Tô usando o Loomper para organizar a logística. Entra aí no time de pioneiros: ${link}`;
+    const msg = `Fala parceiro!
+Tô participando da construção do Loomper - um app criado pra organizar a logística e valorizar quem faz o transporte acontecer.
+
+Estamos formando um grupo seleto de pioneiros pra testar a versão beta e ajudar a moldar o app do nosso jeito.
+
+Se fizer sentido pra você, entra aqui 👇
+${link}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
